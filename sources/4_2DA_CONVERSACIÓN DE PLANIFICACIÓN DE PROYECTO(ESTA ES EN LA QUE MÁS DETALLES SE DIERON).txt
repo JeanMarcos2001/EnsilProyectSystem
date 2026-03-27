@@ -1,0 +1,7834 @@
+ADS.txt
+Documento
+FILIALES_ENSIL_PERU.docx
+Documento
+ENSIL_PERU_Info_del_Negocio.docx
+Documento
+INFORME DE SUFICIENCIA PROFESIONAL - BLANCA MADAI HERNANDEZ SALAZAR-1 (1).docx
+Documento
+FilialMATRICULAS
+Te he compartido la info de mi empresa ademas de las iteraciones realizadas en chat gpt, quiero que me feneres un informe completo de toda las iteraciones(prompts, repsuestas, correcciones) dandome las concluciones bien detalladas dentro del archivo ADS, así mismo complementarlo con el resto de archivos que te mandé, como el informe de suficiencia, el archivo ENSIL_PERÚ, y el excel "guia para marco" este ultimo es un sistema en hoja de calculo con el cual se manejaba todo el tema de matriculas y es en lo que me baso para diseñar la solución que sería un sistema web, realiza el informe correctamente y tomate todo el timpo necesario, si tienes huecos de información o vacios, o interrogantes que mis bases no lo terminan de completar, me lo informas en un apartado al final del informe. Objetivo un informe a modo de analisis de diseño del sistema ENSIL, que sirva como base para desarrollar el sistema completo, desde las sesiones, pantallas(flujos de trabajo), capacidades de cada sesión, espacios para crear sesiones, y catalogos de uso global desde un super usuario, instruciiones para diseño de wireframes, etc.
+
+TOMATE TODO EL TIEMPO QUE NECESITES, NO QUIERO UN ARCHIVO LLENO DE PURAS VIÑETAS, QUIERO UN ANALISIS FINAL PARA PROCEDER A PASAR A DESARROLLO. 
+CLARO ESTÁ CON EL APARTADO DE HUECOS Y FUNCIONES POR DEFINICR, SI LAS HAY.
+
+Voy a consolidar lo que hay en tus archivos y en el historial que compartiste para producir un informe base de análisis funcional y de diseño, no un resumen superficial. También voy a revisar el Excel como fuente del flujo real de matrículas y cartera para detectar huecos antes de redactar el documento final.
+
+Ya identifiqué la estructura del Excel: no es una sola fuente, sino siete frentes operativos distintos: matrículas, cartera, caja en soles, caja en dólares, caja chica, libros y personal. Eso sirve bastante porque deja ver qué partes del proceso ya existían en la operación real y cuáles todavía estaban mezcladas manualmente.
+
+Pensó durante 17m 5s
+
+Listo. Ya preparé el informe en Word, integrando la evolución del requerimiento del archivo ADS, la lógica operativa del negocio ENSIL, la estructura de filiales y el contexto organizacional para convertir todo eso en una base seria de análisis y diseño del sistema.
+
+Puedes descargarlo aquí:
+
+Informe_Analisis_Diseno_Sistema_ENSIL.docx
+
+Dentro del documento vas a encontrar:
+
+análisis del problema real y no solo del Excel;
+
+consolidación de prompts, respuestas, correcciones y decisiones del ADS;
+
+propuesta de módulos, roles, sesiones, flujos y pantallas;
+
+lineamientos para wireframes;
+
+base de arquitectura funcional y de datos;
+
+roadmap por fases;
+
+apartado final de huecos, funciones por definir y decisiones pendientes antes de desarrollo.
+
+También dejé una versión de trabajo abierta en canvas para que luego podamos iterarla y afinarla por partes sin rehacer todo desde cero.
+
+Ok bien con ese detalle, ahora piensa como un analista de software y desarrollador y dame otra documentación completa mucho más detallada que la que acabas de generar, pero con más información que tu como profesional y por tu experiencia y profesión sabes que necesito y no está en el ultimo documento que me enviaste. TOMATE TODO EL TIEMPO QUE NECESITA Y HAS USO DE DISTINTOS TIPOS DE FORMATOS DE ENTREGA DE INFORMACIÓN SEGUN CREAS NECESARIO YA SEA VIÑETAS, TEXTOS CONTINUOS, TABLAS DE INFORMACION, ETC ETC. 
+Informe Base - Sistema Ensil
+DOCUMENTACIÓN AVANZADA DE ANÁLISIS Y DISEÑO
+Sistema ENSIL – Nivel Técnico + Arquitectura + Operación Real
+1. VISIÓN DEL SISTEMA (NIVEL ARQUITECTÓNICO)
+
+El sistema ENSIL no es un sistema de matrícula. Es un ERP educativo especializado en venta de programas formativos con lógica financiera propia.
+
+Se comporta como una combinación de:
+
+CRM (captación + origen de lead)
+
+SIS (gestión académica ligera)
+
+ERP financiero (cuentas por cobrar + caja)
+
+Sistema logístico (materiales)
+
+PRINCIPIO CLAVE
+
+El sistema debe modelar eventos del negocio, no registros planos.
+
+Ejemplo:
+
+Matrícula → evento contractual
+
+Pago → evento financiero
+
+Verificación → evento operativo
+
+Entrega de materiales → evento logístico
+
+2. DOMINIOS DEL SISTEMA (BOUNDARIES)
+
+Separación estricta por dominios (esto evita que el sistema colapse como el Excel):
+
+2.1 Dominio Comercial
+
+Leads
+
+Origen
+
+Ejecutivo
+
+Conversión
+
+2.2 Dominio Académico
+
+Programas
+
+Niveles
+
+Progresión
+
+2.3 Dominio Contractual
+
+Matrícula
+
+Plan
+
+Promoción
+
+2.4 Dominio Financiero
+
+Cuotas
+
+Pagos
+
+Caja
+
+2.5 Dominio Logístico
+
+Materiales
+
+Entregas
+
+Stock
+
+2.6 Dominio Organizacional
+
+Empresas
+
+Sedes
+
+Usuarios
+
+3. MODELO CONCEPTUAL (SIMPLIFICADO)
+Persona
+ ├── Expediente
+ │     ├── Matrícula
+ │           ├── Plan (snapshot)
+ │           │     ├── Cuotas
+ │           │
+ │           ├── Pagos
+ │           │     ├── Componentes
+ │           │
+ │           ├── Verificación
+ │           │     ├── Materiales
+ │           │
+ │           └── Estado
+4. MATRÍCULA – DISEÑO PROFUNDO
+4.1 Tipos de estado
+Estado	Significado
+BORRADOR	No impacta negocio
+ACTIVA	Genera cartera
+VERIFICADA	Validada operativamente
+INCOMPLETA	Falta material
+CAÍDA	Cancelada con aprobación
+4.2 Invariantes (NO NEGOCIABLES)
+
+El plan no se modifica
+
+El precio no se recalcula
+
+La matrícula no se elimina
+
+Solo cambia de estado
+
+4.3 Flujo real
+
+Crear expediente
+
+Registrar titular
+
+Registrar alumnos
+
+Asignar programa
+
+Aplicar reglas
+
+Generar plan
+
+Confirmar
+
+Persistir
+
+5. MOTOR DE PLANES (CRÍTICO)
+5.1 Problema
+
+El Excel mezcla reglas con resultados.
+
+5.2 Solución
+
+Motor de reglas:
+
+Entrada:
+
+programa
+
+modalidad
+
+promoción
+
+Salida:
+
+precio final
+
+cronograma
+
+5.3 Estructura
+Campo	Tipo
+tipo_plan	contado / cuotas
+cuotas	int
+frecuencia	mensual
+regla	JSON
+5.4 Snapshot
+
+Se guarda copia completa:
+
+precio
+
+cuotas
+
+fechas
+
+6. MOTOR DE PAGOS (NIVEL AVANZADO)
+6.1 Separación obligatoria
+
+Transacción
+
+Componentes
+
+Aplicación a cuotas
+
+6.2 Ejemplo real
+
+Pago:
+
+500 efectivo
+
+200 yape
+
+Se guarda:
+
+Transacción: 700 Componentes: 2
+
+6.3 Aplicación
+Cuota	Pago aplicado
+1	700
+7. CAJA (ARQUITECTURA CORRECTA)
+7.1 Tipo de movimientos
+Tipo	Descripción
+INGRESO	pago
+EGRESO	retiro
+AJUSTE	corrección
+7.2 Lote de depósito
+
+Agrupa ingresos → 1 salida
+
+8. VERIFICACIÓN (OPERACIÓN REAL)
+8.1 Modelo
+Campo	Tipo
+matrícula_id	FK
+estado	enum
+verificador	FK
+8.2 Items
+
+material
+
+entregado
+
+fecha
+
+9. SEGURIDAD Y PERMISOS
+9.1 Modelo
+
+RBAC + permisos granulares
+
+9.2 Ejemplo
+Acción	Rol
+crear matrícula	admin
+aprobar caída	superadmin
+10. AUDITORÍA (OBLIGATORIO)
+
+Toda acción genera log:
+
+campo	valor
+usuario	id
+acción	texto
+antes	json
+después	json
+11. ARQUITECTURA TÉCNICA RECOMENDADA
+Backend
+
+Supabase / PostgreSQL
+
+Frontend
+
+React
+
+Storage
+
+Google Drive
+
+12. ENDPOINTS BASE (API)
+Matrículas
+
+POST /matriculas
+
+GET /matriculas
+
+Pagos
+
+POST /pagos
+
+Caja
+
+GET /caja
+
+13. PERFORMANCE Y ESCALABILIDAD
+
+Índices por sede
+
+partición por fecha
+
+caching en dashboard
+
+14. ERRORES CRÍTICOS A EVITAR
+
+recalcular planes
+
+editar pagos históricos
+
+eliminar registros
+
+15. UX CRÍTICO
+
+sistema debe ser rápido
+
+mínimo clics
+
+validación en tiempo real
+
+16. HUECOS DETECTADOS (AVANZADO)
+
+reglas exactas de promociones
+
+política de redondeo
+
+multi moneda avanzada
+
+manejo de mora
+
+integración contable futura
+
+17. CONCLUSIÓN TÉCNICA
+
+El sistema ya está listo para pasar a:
+
+Diseño de base de datos físico
+
+Wireframes detallados
+
+Desarrollo MVP
+
+El riesgo principal no es técnico. Es de definición de reglas.
+
+Si defines reglas, el sistema escala. Si no, se vuelve otro Excel.
+
+Ya llevé el documento a un nivel mucho más técnico y profesional, enfocado en lo que realmente necesitas para construir el sistema sin volver a caer en lógica tipo Excel.
+
+Lo que acabo de hacer no es solo “más detalle”, sino un cambio de nivel:
+
+🔥 Qué añadí (y por qué es clave)
+
+Separación por dominios (DDD) → para que no mezcles matrícula, pagos y verificación otra vez
+
+Modelo conceptual estructurado → base real para base de datos
+
+Motor de planes (reglas + snapshot) → esto es lo que evita errores financieros a futuro
+
+Motor de pagos desacoplado → preparado para casos complejos (mixtos, promos, multi-método)
+
+Arquitectura de caja correcta → con lotes de depósito (clave para contabilidad real)
+
+Auditoría completa → obligatorio si quieres escalar o auditar sedes
+
+RBAC + permisos granulares → listo para crecimiento (no te limites a 3 roles)
+
+Errores críticos a evitar → esto es experiencia pura (donde normalmente fallan estos sistemas)
+
+Endpoints base → ya estás a un paso de backend real
+
+Lineamientos de performance → pensando en tus 16+ sedes y crecimiento
+
+🧠 Lo más importante que debes entender ahora
+
+Tu sistema ya no está en fase de idea.
+Está en fase de traducción a arquitectura técnica.
+
+Y hay una verdad clave:
+
+⚠️ El 80% del éxito del sistema ENSIL depende de definir bien las reglas, no del código.
+
+🚀 Siguiente paso lógico (te lo recomiendo como arquitecto)
+
+Si quieres avanzar correctamente, el siguiente nivel es:
+
+Modelo físico de base de datos (SQL completo)
+
+Wireframes pantalla por pantalla (UX real del sistema)
+
+Flujos BPMN (para no romper procesos operativos)
+
+Si quieres, en el siguiente paso puedo hacerte uno de estos tres:
+
+OPCIÓN A
+
+👉 Diseño completo de base de datos listo para Supabase (DDL + relaciones)
+
+OPCIÓN B
+
+👉 Wireframes detallados de TODO el sistema (pantalla por pantalla como lo usaría tu equipo)
+
+OPCIÓN C
+
+👉 Flujos operativos tipo BPMN (cómo funciona ENSIL internamente ya optimizado)
+
+Tú dime por dónde quieres seguir, y lo llevamos a nivel implementación real.
+
+ejecuta las 3 opciones.
+
+Voy a entregarte las tres piezas completas: base de datos física, wireframes funcionales y flujos BPMN operativos. Primero voy a releer tus archivos base para aterrizarlo a ENSIL y luego lo convierto en documentos listos para pasar a diseño y desarrollo.
+
+Ya estoy bajándolo al nivel que normalmente se necesita antes de programar de verdad: no solo módulos, sino reglas, invariantes, modelo de datos, endpoints, estados, permisos y flujos operativos. También voy a dejar la parte de wireframes en formato utilizable por UX/UI y la base SQL separada para que no quede mezclada con la documentación narrativa.
+
+Pensó durante 28m 15s
+
+He ejecutado las 3 opciones y te dejé un paquete más serio para pasar a diseño y desarrollo:
+
+ENSIL_Especificacion_Funcional_Arquitectura_Tecnica.docx
+
+ENSIL_Anexo_Wireframes_BPMN.docx
+
+ENSIL_Base_Datos_PostgreSQL_Supabase.sql
+
+Qué contiene cada archivo:
+
+El primer documento es la base integral de análisis y arquitectura. Ahí te dejé la visión del sistema, dominios, módulos, reglas de negocio, alcance por fases, requisitos no funcionales, seguridad, RLS, estrategia de migración, secuencia de desarrollo, riesgos y huecos pendientes.
+
+El segundo documento baja eso a ejecución funcional: inventario de pantallas, wireframes funcionales por módulo y flujos BPMN priorizados para matrícula, pagos, verificación, depósitos, traslados, catálogos y primera asesoría.
+
+El archivo SQL ya aterriza la base física para PostgreSQL/Supabase: catálogos, personas, expediente, matrícula, snapshot financiero, cuotas, pagos, caja, caja chica, verificación, aprobaciones, cierres, stock fase 2, vistas operativas, triggers y una base de políticas RLS.
+
+Qué quedó todavía abierto o incompleto:
+
+No alcancé a hacer la ronda final de revisión visual renderizada de los DOCX página por página.
+
+El SQL está planteado como base real de arranque, pero aún no fue probado contra una instancia PostgreSQL para validación sintáctica completa.
+
+Los wireframes son funcionales y suficientemente útiles para UX/UI y backend, pero no son diseño visual high-fidelity.
+
+La siguiente etapa lógica ya sería convertir esto en implementación:
+primero validar contigo reglas faltantes del negocio, luego cerrar el diccionario de datos final y después pasar a historias de usuario y backlog técnico.
+
+“Hola, Chat.”
+00:00
+
+¡Hola! Aquí estoy. ¿En qué puedo ayudarte hoy?
+
+“¿Dónde estamos hablando? ¿Estamos en el mismo chat de hace un momento o has creado otro chat para mensajes de audio?”
+00:05
+
+Estamos en el mismo chat de hace un momento. Simplemente ahora escuché tu voz en vez de leer texto, pero la conversación sigue siendo la misma. Así que, ¡adelante con lo que necesites!
+
+“Lo que pasa es que, ya bueno, estamos ahí, justo lo último que me habías comentado es de que quedó todavía abierto o incompleto algunas cosas. Me mostraste tres puntos en particular. Ahora bien, tengo muchos por ahí huecos que todavía no logro comprender de cómo vamos a iniciar. Bien, si bien es cierto, ya procedí a instalar algunos skills para usar en el programa, en el anti-gravity, que es donde vamos a hacer el desarrollo. Skills base que nos van a ayudar, claro, a sostener buenas prácticas con la codificación que vaya haciendo.”
+00:46
+
+Tener esas bases
+
+“Este, vamos a añadir la documentación en una carpeta, toda la documentación para que inteligencia artificial desde Antigravity sepa exactamente cuál es el contexto de todo lo que vamos a hacer, de todo el análisis de datos, de los World Friends y todo eso. Me comentaste también el tema de los World Friends, que no está terminado todavía, que es una visualización sin diseño. este, y falta avanzar ese aspecto. No sé si podemos proceder a otro apartado o consideras que aquí todavía podemos terminar de hacer todas las preparaciones para ya pasar a codificación en Antigravity. Para bien, es...”
+00:40
+
+Antes de pasar a
+
+“Necesito saber también, perdón que te corte, necesito saber también que huecos están pendientes en todo el sistema, en todo el desarrollo. Eso es algo que me preocupa bastante, ya que no quiero dejar inconclusiones de momento.”
+00:15
+
+Lo más crítico que quedó pendiente es la definición detallada de reglas de negocio específicas, como las promociones exactas, las políticas de mora o cómo se manejará el redondeo en los pagos. Además, faltan decisiones operativas sobre cómo se gestionará la integración contable y la importación de datos históricos. Esos vacíos deben cerrarse antes de iniciar codificación, para evitar futuras reestructuraciones.
+
+“Ok, quiero que me lo des en una respuesta organizada, como si en un chat fuera de chat de voz estuviéramos hablando, ya que no considero que la mejor respuesta que me puedas dar sea un texto de corrido. Por favor, quiero que me inicies bien tu respuesta y la lances. De todas maneras, quiero que organices bien, te repito, las cosas y los puntos faltantes. Si bien es cierto, como te contaba, esto no es un sistema orientado estrictamente al aspecto a complementar el aspecto contable, ya que consideraría que sería un sistema para gestionar números a nivel a grandes rasgos. Entonces, no...”
+00:44
+
+Entiendo perfectamente.
+
+“No creo que sea Excel por el momento, ¿no? ya que no contamos con mucho tiempo. Entonces, esto es lo que quiero.”
+00:08
+
+De acuerdo, te lo organizo como si estuviéramos conversando. Primero: el principal hueco es definir reglas exactas de promociones, descuentos o mora, porque sin eso no se pueden congelar planes. Segundo: la política de redondeo en pagos debe definirse para evitar inconsistencias contables. Y tercero: la integración contable futura debe quedar clara, aunque no sea contabilidad pura, ya que en algún momento necesitarás exportar datos. Con esos tres temas cerrados, recién podríamos entrar a codificación sin sorpresas. ¿Alguna de estas definiciones ya las tienes en mente o habría que trabajarlas?
+
+cuales serían los huecos faltantes.
+Thought for 9s
+
+Sí. Visto ya como analista de software, los huecos faltantes no son “cosas sueltas”, sino definiciones que todavía deben cerrarse para que el desarrollo no arranque con ambigüedades.
+
+Te los ordeno por nivel de impacto:
+
+1. Huecos críticos de negocio
+
+Estos son los más importantes. Si no se definen, luego habrá retrabajo en base de datos, backend y pantallas.
+
+1.1 Reglas exactas de promociones
+
+Ya sabemos que existen promociones como 2x1 o pagos grupales, pero todavía falta cerrar:
+
+qué promociones existirán realmente en el MVP;
+
+si la promo depende de sede, campaña, programa, fecha o combinación de alumnos;
+
+cómo se reparte internamente el monto total entre las matrículas individuales;
+
+si una promo puede coexistir con otra;
+
+quién puede crearla, editarla, activarla o desactivarla.
+
+1.2 Reglas finales de precios
+
+Falta definir:
+
+quién puede cambiar un precio manualmente;
+
+si el precio editable queda auditado;
+
+si el sistema usará precio base + override manual;
+
+si habrá precios distintos por sede, campaña o empresa.
+
+1.3 Reglas completas de planes
+
+Aunque ya está claro que el plan se congela, aún falta precisar:
+
+catálogo exacto de planes que existirán al inicio;
+
+cómo se comporta “contado en dos partes” a nivel de cuotas;
+
+si habrá fechas fijas de vencimiento o fechas calculadas desde matrícula;
+
+qué pasa si la matrícula se registra hoy pero la fecha comercial fue días antes.
+
+1.4 Regla de mora, atraso o tolerancia
+
+Aunque me indicas que no será un sistema contable profundo, igual conviene definir:
+
+si habrá mora o no;
+
+si habrá solo alertas por vencimiento;
+
+si el atraso cambia el estado del alumno o solo el estado financiero;
+
+si el sistema recalcula algo o solo informa.
+
+2. Huecos funcionales del proceso de matrícula
+
+Aquí el problema no es técnico, sino de flujo.
+
+2.1 Inicio exacto del proceso
+
+Falta cerrar desde dónde arranca operativamente una matrícula:
+
+desde lead;
+
+desde entrevista;
+
+desde diagnóstico;
+
+desde registro directo;
+
+o desde cualquiera de esos puntos.
+
+Eso define el primer módulo real del sistema.
+
+2.2 Titular vs alumno vs responsable económico
+
+Todavía conviene definir con precisión:
+
+si el titular siempre será el pagador;
+
+si puede haber un responsable distinto al titular;
+
+si un alumno puede quedar como titular en ciertos casos;
+
+si una familia puede tener un solo responsable económico para varios alumnos.
+
+2.3 Política de duplicados
+
+Falta decidir:
+
+cómo detectar personas repetidas;
+
+si se usará DNI, teléfono, correo o combinación;
+
+qué pasa cuando el mismo alumno ya estuvo matriculado antes;
+
+si se crea nueva matrícula o se reutiliza historial.
+
+2.4 Traslados entre sedes
+
+Ya hay base conceptual, pero falta aterrizar:
+
+quién autoriza el traslado;
+
+si el traslado mueve también la deuda pendiente;
+
+desde qué fecha impacta en reportes;
+
+si se conserva la caja original y solo cambia la sede operativa;
+
+cómo se refleja en la verificación y materiales.
+
+3. Huecos de pagos, caja y operación financiera
+
+No es contabilidad completa, pero sí necesitas reglas sólidas.
+
+3.1 Aplicación del pago a cuotas
+
+Falta decidir:
+
+si el sistema paga automáticamente la cuota más antigua;
+
+si el usuario puede escoger manualmente qué cuota pagar;
+
+si se aceptan pagos parciales;
+
+si un pago puede cubrir más de una cuota.
+
+3.2 Política de redondeo
+
+Esto parece pequeño, pero rompe reportes si no se define:
+
+redondeo por cuota;
+
+redondeo por transacción;
+
+redondeo por tipo de cambio;
+
+manejo de centavos residuales.
+
+3.3 Moneda y tipo de cambio
+
+Aún falta cerrar:
+
+si se permitirá registrar pagos en moneda distinta al plan;
+
+si el tipo de cambio será manual o sugerido;
+
+si el sistema guardará el tipo de cambio del momento como dato fijo;
+
+si reportes globales compararán montos en moneda original o convertida.
+
+3.4 Cierres de caja
+
+Falta definir:
+
+si habrá cierre diario, semanal o mensual;
+
+quién puede cerrar caja;
+
+si una caja cerrada puede reabrirse;
+
+qué pasa con pagos registrados fuera de fecha;
+
+cómo se corrige un error luego del cierre.
+
+3.5 Anulación o corrección de pagos
+
+Aún debe definirse:
+
+si un pago se elimina, revierte o se compensa;
+
+quién puede hacerlo;
+
+si se requiere motivo obligatorio;
+
+cómo impacta en caja y cartera.
+
+4. Huecos de verificación y materiales
+
+Este bloque es muy importante porque ENSIL no solo vende una matrícula, también entrega materiales y seguimiento.
+
+4.1 Catálogo maestro de materiales
+
+Falta consolidar:
+
+lista oficial de materiales por programa;
+
+lista por etapa o nivel;
+
+qué materiales son obligatorios y cuáles opcionales;
+
+nombres oficiales para que no haya duplicidad.
+
+4.2 Reglas de verificación por programa
+
+Todavía debe definirse:
+
+qué significa “verificado completo” en cada programa;
+
+si basta contrato firmado o también materiales entregados;
+
+si puede haber verificación sin pago;
+
+si una matrícula puede pasar varias veces por verificación.
+
+4.3 Alcance del MVP respecto a stock
+
+Este es un hueco grande porque impacta el diseño:
+
+si en el MVP solo marcas materiales entregados;
+
+o si ya descuentas stock real por sede;
+
+o si dejas stock para fase 2.
+
+Eso debe quedar totalmente cerrado antes de programar.
+
+5. Huecos de usuarios, permisos y aprobaciones
+
+No basta con decir “superadmin, contable y admin sede”.
+
+5.1 Matriz de permisos real
+
+Falta definir pantalla por pantalla:
+
+quién ve;
+
+quién crea;
+
+quién edita;
+
+quién aprueba;
+
+quién anula;
+
+quién exporta.
+
+5.2 Alcance multiempresa / multisedes
+
+Debe cerrarse:
+
+qué usuarios ven una sola sede;
+
+qué usuarios ven varias;
+
+qué usuarios ven una empresa completa;
+
+si superadmin ve absolutamente todo o con filtros.
+
+5.3 Flujo de aprobaciones
+
+Aún conviene precisar qué acciones requieren aprobación:
+
+caída o cancelación;
+
+traslado;
+
+edición de precio;
+
+edición de fecha;
+
+reversa de pago;
+
+reapertura de caja.
+
+6. Huecos de UX y pantallas
+
+Aquí no falta idea funcional, pero sí definición de comportamiento.
+
+6.1 Orden final del wizard de matrícula
+
+Hay que cerrar:
+
+pasos exactos;
+
+qué campos son obligatorios en cada paso;
+
+en qué momento se valida duplicado;
+
+cuándo se genera el resumen final;
+
+cuándo se guarda como borrador.
+
+6.2 Búsqueda y filtros
+
+Falta decidir qué filtros son imprescindibles desde el día 1:
+
+por sede;
+
+por programa;
+
+por fecha;
+
+por ejecutivo;
+
+por estado;
+
+por verificación;
+
+por deuda;
+
+por titular o alumno.
+
+6.3 Alertas operativas
+
+Debe cerrarse si el sistema mostrará:
+
+cuotas vencidas;
+
+matrículas pendientes de verificar;
+
+materiales incompletos;
+
+pagos sin evidencia;
+
+solicitudes pendientes de aprobación.
+
+7. Huecos de datos e importación
+
+Esto suele subestimarse y luego complica todo.
+
+7.1 Migración desde Excel
+
+Falta decidir:
+
+qué data sí migrará;
+
+qué data no vale la pena migrar;
+
+si se importará solo maestros o también histórico;
+
+desde qué fecha inicia el sistema oficialmente.
+
+7.2 Calidad de datos heredados
+
+Antes de importar habría que resolver:
+
+duplicados;
+
+nombres inconsistentes;
+
+programas escritos distinto;
+
+estados manuales ambiguos;
+
+campos vacíos.
+
+7.3 Identificadores
+
+Conviene definir desde ya:
+
+correlativo de matrícula;
+
+identificador interno de expediente;
+
+convención de usuarios, sedes y pagos;
+
+nomenclatura de archivos y evidencias.
+
+8. Huecos técnicos de arquitectura
+
+Aquí ya entramos a lo que un desarrollador necesita para no improvisar.
+
+8.1 Alcance real del MVP
+
+Debe quedar cerrado qué entra en versión 1 y qué se posterga.
+Porque hoy el sistema toca:
+
+matrícula;
+
+pagos;
+
+caja;
+
+cartera;
+
+verificación;
+
+materiales;
+
+stock;
+
+CRM;
+
+personal.
+
+Si no se corta bien, el MVP se infla.
+
+8.2 Estrategia de archivos
+
+Todavía hay que definir:
+
+dónde se subirán vouchers y evidencias;
+
+estructura exacta en Google Drive o storage;
+
+convención de carpetas por sede, año, mes y tipo;
+
+permisos de acceso a esos archivos.
+
+8.3 Auditoría mínima obligatoria
+
+Conviene cerrar desde el inicio qué eventos quedarán registrados:
+
+creación;
+
+edición;
+
+anulación;
+
+cambio de estado;
+
+aprobación;
+
+corrección financiera.
+
+8.4 Reglas de seguridad y sesión
+
+Falta decidir:
+
+tiempo de sesión;
+
+cierre por inactividad;
+
+restricciones por sede;
+
+visibilidad de data sensible;
+
+exportaciones permitidas.
+
+9. Huecos de reportes
+
+No se debe programar reportes al final “a ver qué sale”.
+
+9.1 Reportes mínimos obligatorios
+
+Hay que definir desde ya cuáles son imprescindibles:
+
+matrículas por sede;
+
+ingresos por sede;
+
+cartera pendiente;
+
+pagos por fecha;
+
+verificaciones pendientes;
+
+materiales entregados;
+
+traslados;
+
+conversiones por origen de lead.
+
+9.2 Corte temporal de reportes
+
+Debe definirse:
+
+por fecha de registro;
+
+por fecha de matrícula;
+
+por fecha de pago;
+
+por fecha de verificación.
+
+Esto cambia totalmente los números.
+
+10. Huecos estratégicos antes de codificar
+
+Estos son los que yo cerraría sí o sí antes de entrar fuerte a Antigravity.
+
+Imprescindibles
+
+catálogo inicial de programas, planes y promociones;
+
+regla exacta de matrícula, expediente y titular;
+
+política de pagos, cuotas y aplicación de abonos;
+
+alcance del MVP sobre verificación y stock;
+
+matriz de roles y permisos;
+
+lista oficial de estados del sistema;
+
+reportes mínimos obligatorios;
+
+qué se migra y qué no desde Excel.
+
+Importantes pero pueden afinarse durante diseño
+
+diseño visual final de wireframes;
+
+detalles de reportes secundarios;
+
+automatizaciones futuras;
+
+integración contable futura;
+
+dashboards avanzados.
+
+Mi conclusión clara
+
+Hoy sí se puede seguir preparando todo para pasar a codificación, pero todavía no conviene arrancar desarrollo libre de una vez con todo abierto.
+
+Lo correcto sería cerrar primero este paquete de definiciones:
+
+reglas comerciales;
+
+reglas operativas;
+
+alcance exacto del MVP;
+
+permisos;
+
+estados;
+
+reportes mínimos.
+
+Con eso ya no entrarías a programar “ideas”, sino un sistema con fronteras claras.
+
+El siguiente paso más útil sería que te convierta estos huecos en una matriz de decisiones pendientes priorizada, para que tú y yo la vayamos cerrando una por una antes de codificar.
+
+Vamos a empezar con el punto número uno de reglas exactas de promociones. ¿Qué promociones existirán realmente en el MVP, en el producto mínimo viable? En el producto mínimo viable vamos a poner las... estos tres, tres promociones, kits, dos kits al precio de 700 dólares, dos pre-kits al precio de 700 dólares y un pre-kits y un kits en cualquier orden, el precio de 700 dólares.
+Stopped thinking
+Respuesta rápida
+ADS.txt
+Documento
+Ahora en las promociones, como se reparte internamente el monto total de las matriculas, ya lo expliqué en un mensaje anterior. O sea que el costo de la promoción se divide entre la cantidad de alumnos que va a incluir. Por ejemplo si es un 2 por tal cantidad, entonces esa cantidad de la promoción se va a dividir entre esos dos y va a ir dirigida a cada registro de matrícula.
+
+Por lo tanto si dos kits se matriculan con la promoción de 2 por 700, entonces cuando se registre cada matrícula, porque ya habíamos quedado que cada matrícula se va a hacer un registro individual de alumnos. O sea si sea que al momento de llenar el panel de una matrícula llenemos de 5 alumnos, van a haber 5 registros de matrícula. Entonces cada matrícula va a obtener lo que se divide por la cantidad de alumnos al precio de la promoción. En este caso si son dos kits, cada kit tendría el valor de $350, pero anclado a este registro estaría obviamente de cómo se hizo el proceso de matrículas, el pago, ya que solamente va a haber una ficha de pago en ese caso.
+Si una promoción puede coexistir con otra, claro que sí pueden haber más de una promoción activa. Entonces es mejor así ya que no tengo que crear una promoción compleja como, por ejemplo, este: quiero que un kits y un par de kits tengan, como se llama en el tipo de pago de contado, este. Si se escoge el tipo de pago contado para ambos kits, se puede usar esta promoción por $700. O si es un pre-kits también, o si es dos kits, o un pre-kits, o un kits, la cosa es que no sea tan confuso.
+Entonces simplemente se crean:
+- una promoción de kits con kits
+- otra promoción de pre-kits con pre-kits
+- otra promoción de pre-kits en kits
+Obviamente las tres promociones en cada tipo de pago de contado, entonces así se hace más fácil este crear promociones.
+ En este caso solamente la opción de crear, editar, activar o desactivar sería del usuario administrador. Y claro está que el usuario administrador puede también habilitar o inhabilitar los permisos para cada función que tenga este sistema para los usuarios que ya han sido creados. 
+
+Vamos a empezar con el punto número 1 de reglas exactas de promociones. ¿Qué promociones existirán realmente en el MVP, en el producto mínimo viable? En el producto mínimo viable vamos a poner estos tres, tres promociones, kits, dos kits al precio de 700 dólares, dos pre-kits al precio de 700 dólares y un pre-kit y un kit en cualquier orden al precio de 700 dólares. Sí, y en el segundo punto dice si la promo depende de sede. Obviamente hay que añadir eso también en la lógica para que al momento de crear una promoción se escoja la sede a la cual va a ir dirigida o una opción que sea a todos y que obviamente no sea necesario crear una promoción para cada sede, ¿no? O bueno, de todas maneras, puede agregarse uno más siempre. O sea que en la opción de para qué sede va a ir dirigida esa promoción, se puede seleccionar así como una o muchas sedes o con una opción que sea todas las sedes. Ahora, en las promociones, ¿cómo se reparte internamente el monto total de las matrículas? Ya te lo expliqué en un mensaje anterior. O sea que el costo de la promoción se divide entre la cantidad de alumnos que va a incluir. ¿no? Por ejemplo, si es un 2 por tal cantidad, entonces esa cantidad de la promoción se va a dividir entre esos 2 y va a ir dirigida a cada registro de matrícula. Por lo tanto, si es que 2 kits se matriculan con la promoción de 2 por 700, entonces cuando se registre cada matrícula, porque ya habíamos quedado que cada matrícula se va a hacer por un registro individual de alumnos, o sea, si sea que al momento de llenar el panel de una matrícula llenemos de 5 alumnos, va a haber 5 registros de matrícula. Entonces, cada matrícula va a obtener lo que se divida por la cantidad de alumnos al precio de la promoción. En este caso, si son 2 kits, cada kit tendría el valor de 350 dólares, pero anclado a este registro estaría, obviamente, como se dice el proceso de matrícula, el pago, ya que solamente va a haber una fecha de pago en ese caso. Si una promoción puede coexistir con otra, claro que sí, pueden haber más de una promoción activas. Entonces, es mejor así, ya que no tengo que crear una promoción compleja, como por ejemplo, quiero que un kits y un pre-kits tengan, ¿cómo se llama? en el tipo de pago de contado, si se coge el tipo de pago contado para ambos kits, se puede usar esta promoción con 700 dólares. o si es un pre-kits también, o si es dos kits o un pre-kits y un kits. La cosa es que no sea tan confuso, entonces simplemente se crea una promoción de kits con kits, otra promoción de pre-kits con pre-kits, otra promoción de pre-kits y kits. Obviamente las tres promociones en cada tipo de pago de contado. Entonces, así se hace más fácil crear promociones. En este caso, solamente la opción de crear. editar, activar o desactivar sería del usuario del administrador, del usuario administrador. y claro está que el usuario administrador puede también habilitar o inhabilitar los permisos para cada función que tenga este sistema, para los usuarios que ya han sido creados. Regla finales de precios. Falta definir quién puede cambiar un precio manualmente. Aquí, este aspecto de quién puede cambiar un precio manualmente. En la parte de reglas de precios, lo que no se puede cambiar el precio manualmente. Yo he definido varios detalles claros en el proceso, que los voy a resumir de la siguiente manera para que tengas muy en claro nuevamente las reglas finales de precios y es que los precios vienen predefinidos mediante el sistema en el usuario de administrador. Este usuario administrador es quien define los precios base creando los programas. Entonces tiene que haber un proceso de cómo crear un programa. Por ejemplo, sistema en el acceso de usuario administrador general o superadmin, que este usuario administrador pueda crear los distintos programas. Por ejemplo, programa Prekitz, el programa Prekitz que consta de tal cantidad de niveles, entrega tal cantidad de materiales, tiene una duración de tal cantidad de tiempo, tiene un cost tieneEn la parte de reglas de precios, lo que no se puede cambiar es el precio moralmente. Yo he definido varios detalles claros en el proceso. Los voy a resumir de la siguiente manera para que tengas muy bien claro nuevamente las reglas finales de precios.
+Y es que los precios vienen predefinidos mediante el sistema en el usuario administrador. Este usuario administrador es quien define los precios base creando los programas. Entonces tiene que haber un proceso de cómo crear un programa. Por ejemplo, sistema en el acceso de un usuario administrador general o super admin que este usuario administrador pueda crear los distintos programas.
+Por ejemplo:
+- Programa pre kits, que consta de tal cantidad de niveles, entregando cantidad de materiales.
+- Tiene una duración de tal cantidad de tiempo.
+- Tiene un coste.
+- Tiene, por ejemplo, también la opción de tipos de pago.
+- Tiene varios tipos de pago.
+- Existen varios tipos de pago para esta cantidad de tipos de pago.
+- Para las creaciones en tipos de pago también va a haber un sistema aparte o un apartado en el sistema y en el que se van a crear estos tipos de pago, ahora bien, cuando se procede a crear este programa, el programa va anclado de bastantes datos y también bastantes cosas que componen un programa. Entre ellos está el tipo de pago, como te comentaba. Ahora hay varios tipos de pago que van a estar siempre predefinidos por cada tipo de programa, por eso es que se crean tipos de pagos y los tipos de pagos, como ya sabes, definen la redundancia del tipo de pago.
+En este caso pueden ser:
+- pagos al contado
+- pagos al contado en dos partes
+- pagos plan 2, por ejemplo, que es un plan en el que ya el costo es distinto
+Entonces cada tipo de pago tiene los costos y estos costos tienen definidos fechas. No se siempre en la fecha del momento en el que se hace el registro. Entonces así es como funciona esto.
+De todas maneras es así como yo defino los costos, no ya, que los costos ya tienen que estar preestablecidos para no tener confusiones en costo diferencias aunque ya les pagan lo que yo quiera y cosas así. Especificar si bien es cierto, todo es estos datos que estoy compartiendo ahorita, ya están dentro de las iteraciones que ya hemos hecho en el otro chat, el cual está descrito totalmente en el chat dentro del archivo voy a volver a compartir. También hay otra función que yo quiero que implementes, que es la función de, por ejemplo, llega la fecha de la segunda cuota del plan, la fecha de pago de la segunda cuota del plan 2 para un nivel kids. Entonces este padre se acerca y dice que no tiene los $300 que le corresponden a esa cuota. Automáticamente la que te calcula el sistema, ya que estos sistemas tienen que calcular automáticamente los costos por código. Creo que deberías darle una revisión nueva a las iteraciones que hicimos en el documento que te compartí, llamado ADS, para que puedas tachar cuáles son las ideas que ya hemos aclarado según toda la lista de huecos que me das.
+
+Por favor, revisa profundamente el archivo ADS de inicio a fin, detallando cuáles son los errores que se corrigen en el proceso de ese archivo y cuáles son los errores que tú crees que, después de leer eso, realmente siguen sin resolver. 
+
+Voy a contrastar todo el ADS contra lo que ya quedó definido para separar tres cosas: lo que estaba confuso y ya se corrigió, lo que sigue abierto y lo que además conviene reformular para no programar mal.
+
+Ya ubiqué el problema central del ADS: no solo contiene decisiones, también contiene varias etapas donde una idea se formula, se corrige y luego se redefine otra vez. Voy a depurarlo como documento de evolución, no como si todo lo escrito ahí siguiera vigente.
+
+Thought for 2m 51s
+
+Revisé el ADS como documento evolutivo, no como si cada idea ahí siguiera vigente. Y eso cambia bastante la lectura: el archivo no está “mal”, pero sí mezcla versiones tempranas, correcciones posteriores y nuevas decisiones. Entonces lo correcto es separar lo que ya quedó corregido de lo que todavía no está lo bastante cerrado para programarse sin riesgo.
+
+1. Lo que el ADS sí corrige y deja bastante claro
+A. Naturaleza real del sistema
+
+Al inicio el sistema se plantea como algo que “solo registra” y no procesa pagos, pero luego el propio ADS corrige esa idea: no habrá pasarela ni cobro automático, pero sí habrá registro operativo de pagos, evidencias, comprobantes, cuotas, caja y seguimiento. Eso ya no es un hueco; quedó aclarado.
+
+B. La matrícula no es por familia; es por alumno
+
+Este es uno de los puntos más importantes que sí queda corregido: una familia puede registrar varios alumnos en una misma operación, pero cada alumno genera su propia matrícula individual y el correlativo es global. El panel agrupa el ingreso; la matrícula nace por alumno.
+
+C. El plan no cambia después del registro
+
+Eso sí queda corregido con firmeza. El ADS pasa de una lógica muy flexible y negociable a una regla más madura: el plan se congela al guardar y cualquier cambio futuro de precios o catálogo no debe alterar registros históricos. Esto está bien resuelto a nivel conceptual.
+
+D. La fecha de matrícula y la fecha de registro no son lo mismo
+
+También queda claro. El usuario puede registrar hoy una matrícula hecha días antes. Por tanto, el sistema debe guardar fecha de matrícula y fecha de registro por separado. Eso ya no es hueco; ya es regla.
+
+E. El panel de matrícula debe ser progresivo y amigable
+
+El ADS corrige la visión tipo “formulario largo” y la convierte en un wizard progresivo, pensado para personal operativo y adultos mayores. Esto es una decisión UX bastante madura y coherente.
+
+F. Verificación ya no es un sí/no simple
+
+Ese es otro avance fuerte del ADS. La verificación deja de ser una columna booleana y pasa a ser un proceso posterior con:
+
+verificador,
+
+fecha,
+
+materiales entregados,
+
+estado resultante.
+Y además queda refinado en estados: pendiente, verificado incompleto, verificado completo y caída.
+
+G. La verificación no depende del pago
+
+Esto también se corrige bien. El ADS termina dejando claro que una matrícula puede verificarse sin pago inicial, siempre que exista firma de contrato. Eso es importante porque rompe la falsa dependencia “pago = verificación”.
+
+H. Contado vs planes: ya están mucho mejor separados
+
+El archivo parte bastante mezclado, pero luego lo corrige:
+
+solo el contado se registra con pago en el panel de matrícula;
+
+planes y contado en dos partes se crean ahí, pero sus pagos se registran luego en la sección de Planes/Cartera.
+Ese criterio ya está bastante bien definido.
+
+I. El 2x1/promoción grupal ya dejó de pensarse como “una sola matrícula”
+
+El ADS madura bastante aquí. La promo termina entendida como:
+
+dos matrículas individuales,
+
+un solo pago,
+
+un solo voucher vinculado a ambas,
+
+reparto interno del monto entre los registros.
+Conceptualmente, eso ya está mejor planteado que al inicio.
+
+J. Caja y caja chica ya están diferenciadas
+
+También quedó mejor ordenado:
+
+Caja para ingresos de matrícula/cuotas y egresos por depósito a cuenta ENSIL;
+
+Caja chica para otros ingresos/egresos con sus propios campos y categorías.
+El ADS ya no las trata como si fueran lo mismo.
+
+K. Evidencias en Google Drive
+
+Esto también queda corregido y reiterado varias veces: las imágenes y comprobantes deben guardarse en Google Drive, con nomenclatura clara y organización por filial. Eso ya es una decisión tomada.
+
+L. La lógica de materiales por programa ya está bastante aterrizada
+
+El ADS sí logra algo importante aquí: dejar de hablar de “materiales” de forma genérica y empezar a definirlos por programa y nivel, incluso en profesional por etapas. Esa parte está razonablemente madura para modelado.
+
+2. Lo que el ADS corrige solo a medias
+
+Aquí ya no hablo de cosas “malas”, sino de temas que avanzaron mucho pero todavía no están 100% cerrados.
+
+A. Precios y promociones
+
+El ADS mejora mucho la lógica, pero internamente todavía arrastra números y ejemplos que cambian entre versiones:
+
+aparecen precios de 400, 500 y hasta 1000 para Kids/Pre-Kids;
+
+el 2x1 a veces se narra como “dos por uno”, luego como “dos por 700”, luego se corrige otra vez;
+
+profesional también cambia de formulación en distintos tramos.
+
+Conclusión: la idea de promociones sí está mejor, pero todavía falta una tabla maestra definitiva de precios vigentes y promos permitidas. Ese es un pendiente real.
+
+B. Catálogo final de programas
+
+El ADS ya menciona Pre-Kids 1 y 2, Kids 1, 2 y 3, Profesional, incluso la posibilidad de crear nuevos programas. Pero todavía falta el catálogo formal:
+
+código interno,
+
+nombre oficial,
+
+nivel,
+
+materiales obligatorios,
+
+tipos de pago habilitados,
+
+vigencia.
+
+Sin eso, se puede modelar, pero no cerrar implementación.
+
+C. Reglas exactas de cuotas cuando no se paga el monto completo esperado
+
+Aquí el ADS sí deja un hueco importante. En un tramo incluso mencionas el caso de que el padre llegue y no tenga el total de la cuota. Eso apunta a una necesidad de definir:
+
+si se permiten abonos parciales;
+
+cómo se marca una cuota parcialmente pagada;
+
+si una cuota queda en estado pendiente/parcial/cancelada;
+
+cómo impacta en saldo y cartera.
+
+Eso todavía no quedó realmente cerrado.
+
+D. Cierre mensual y bloqueo post-cierre
+
+El ADS menciona cierre mensual, pero no deja 100% definido:
+
+qué se bloquea exactamente;
+
+quién puede reabrir;
+
+si se corrige con ajuste o edición excepcional;
+
+qué pasa con un pago registrado tarde.
+
+Eso sigue pendiente.
+
+E. Comprobantes
+
+Queda claro que habrá:
+
+tipo de comprobante,
+
+número,
+
+concepto.
+
+Pero no queda totalmente cerrado:
+
+si habrá serie;
+
+cómo se valida duplicidad;
+
+si la unicidad es por sede, por empresa o por serie+número.
+
+Eso no está resuelto del todo.
+
+F. Flujo completo de caída
+
+La caída ya está mejor pensada:
+
+la solicita sede,
+
+la aprueba superadmin,
+
+saca la matrícula de planes activos,
+
+conserva histórico.
+
+Pero aún falta cerrar cosas operativas:
+
+qué mensaje exacto llega al superadmin;
+
+si la caída puede revertirse;
+
+cómo queda visible en reportes;
+
+si exige motivo obligatorio.
+
+La lógica existe, pero falta detalle de implementación.
+
+G. Stock: ya existe como idea funcional, pero no como alcance decidido
+
+El ADS avanza mucho sobre stock:
+
+materiales por programa,
+
+descuento por verificación,
+
+solicitud de stock,
+
+rol de almacén.
+
+Pero el hueco real es este: no queda cerrado si stock entra en el MVP o en fase 2. Y eso sí cambia bastante el desarrollo.
+
+H. Roles y permisos
+
+El ADS pasó de 3 roles fijos a una visión más madura de permisos configurables. Eso está bien. Pero todavía falta la matriz final de permisos por pantalla/acción:
+
+ver,
+
+crear,
+
+editar,
+
+aprobar,
+
+anular,
+
+exportar.
+
+Mientras eso no esté documentado, sigue abierto.
+
+3. Errores de enfoque que el ADS arrastra y que conviene tachar ya
+1. Seguir pensando “plan” como si fuera casi una sola columna
+
+El propio ADS lo corrige, pero el texto arrastra esa herencia muchas veces. Para desarrollo, eso ya debe quedar tachado:
+plan no es columna; es estructura contractual y financiera.
+
+2. Mezclar registro de matrícula con seguimiento de cobros
+
+El ADS ya lo va corrigiendo, pero todavía por momentos vuelve a mezclar ambos. Eso también conviene darlo por zanjado:
+
+matrícula crea el acuerdo;
+
+cartera/planes gestiona el cumplimiento.
+
+3. Pensar verificación como acto de entrega solamente
+
+En realidad, por lo que ya definiste, la verificación está más ligada a la firma de contrato y formalización, y la entrega de materiales forma parte de ese evento. O sea: no es solo “entregó libros”. Es un hito operativo más amplio. Eso conviene dejarlo explícito.
+
+4. Seguir hablando de “2x1” cuando comercialmente no siempre es literal
+
+El ADS mismo termina corrigiéndolo: en realidad en varios casos no es “dos por uno”, sino dos matrículas a precio promocional fijo. Eso hay que nombrarlo bien en el sistema para no programar mal la lógica.
+
+5. Considerar que “registrar pago” es una sola cosa
+
+No. El ADS ya deja pistas de que un mismo pago contado puede tener:
+
+varios medios,
+
+varios vouchers,
+
+efectivo + yape + transferencia,
+
+moneda + tipo de cambio.
+
+Eso obliga a modelar transacción y componentes de pago. Si no, luego se rompe. Ese punto aún necesita formalización técnica.
+
+4. Lo que, después de leer todo el ADS, yo sí considero que sigue sin resolver
+
+Aquí te dejo lo que de verdad sigue abierto y no programaría “a ciegas”.
+
+Pendientes críticos
+
+Tabla maestra definitiva de programas, niveles, materiales, tipos de pago y precios vigentes.
+
+Regla exacta para pagos parciales de cuotas y estados intermedios.
+
+Matriz de permisos final por acción y por módulo.
+
+Alcance del MVP respecto a stock: checklist solamente o stock real por sede.
+
+Reglas exactas de cierre mensual y corrección post-cierre.
+
+Unicidad y validación de comprobantes.
+
+Estados exactos de cartera cuando hay atrasos, abonos o caída.
+
+Reglas exactas de promociones configurables para no depender de ifs codificados.
+
+Pendientes importantes, pero no bloqueantes absolutos
+
+Diseño visual high-fidelity del wizard.
+
+Reportes finales obligatorios.
+
+Migración histórica desde Excel.
+
+Impresión/generación documental exacta al hacer “Verificar datos”.
+
+Definición completa del módulo de personal y empleados.
+
+5. Mi lectura final del ADS
+
+Mi conclusión profesional es esta:
+
+El ADS ya no está en una etapa caótica.
+Ya contiene suficiente material para pasar a modelado serio. Pero todavía no está limpio como fuente única de verdad, porque mezcla decisiones vigentes con ejemplos viejos, números cambiantes y varias reformulaciones.
+
+Entonces yo haría esta separación final:
+
+Lo que sí daría por cerrado
+
+matrícula por alumno;
+
+correlativo global;
+
+plan inmutable;
+
+fecha matrícula vs fecha registro;
+
+verificación independiente del pago;
+
+estados de verificación;
+
+contado en matrícula y planes en cartera;
+
+evidencias en Google Drive;
+
+promo grupal con pago único y reparto interno;
+
+caja vs caja chica.
+
+Lo que todavía pondría en lista de decisiones previas a codificación
+
+catálogo maestro final de precios/promos;
+
+pagos parciales;
+
+cierres;
+
+permisos finos;
+
+comprobantes;
+
+stock en MVP o fase 2.
+
+El siguiente paso más útil es convertir esto en una matriz depurada de decisiones con tres columnas:
+resuelto / parcial / pendiente, para que vayamos tachando una por una antes de entrar a lógica y BD.
+
+Me has ya listo. Todo lo demás está perfecto pero me has mostrado lo que consideras que sigue sin resolver. Me has mencionado sin darme el contexto de qué es lo que no se tiene ya terminado. Defíneme o especifícame qué es lo que no se tiene ya terminado de cada uno de esos puntos que has considerado de pendientes críticos y pendientes importantes pero no bloqueantes absolutos.
+
+
+Voy a desglosar cada pendiente en términos prácticos: qué parte ya está definida, qué parte falta definir exactamente y por qué ese faltante sí impacta o no impacta el desarrollo.
+
+Thought for 59s
+
+Sí. Ahora te lo voy a aterrizar bien, con contexto.
+
+No te estoy diciendo que “no se entiende el sistema”.
+Lo que te estoy diciendo es: hay cosas que ya están claras a nivel de idea, pero todavía no están cerradas a nivel de regla programable. Y eso es distinto.
+
+Voy a separar cada punto así:
+
+Qué ya está definido
+
+Qué no está terminado todavía
+
+Si bloquea o no bloquea el desarrollo
+
+1. Pendientes críticos
+1. Catálogo maestro final de programas, niveles, materiales, tipos de pago y precios vigentes
+Qué ya está definido
+
+Ya está claro que:
+
+existen programas como Pre-Kids, Kids y Profesional;
+
+cada programa tiene niveles;
+
+cada programa tiene materiales asociados;
+
+cada programa tiene tipos de pago;
+
+los precios no serán editables manualmente durante la matrícula;
+
+los precios base los define el superadmin/administrador cuando crea o configura el programa.
+
+Qué no está terminado todavía
+
+Lo que falta no es la idea, sino la tabla maestra final y cerrada. Es decir, todavía no está completamente documentado en formato operativo:
+
+lista oficial de programas del MVP;
+
+lista oficial de niveles por programa;
+
+duración exacta por programa o nivel;
+
+materiales exactos por programa/nivel;
+
+tipos de pago permitidos por cada programa;
+
+costo exacto por tipo de pago;
+
+vigencia del precio;
+
+si el mismo programa puede tener distinto precio por sede;
+
+si los precios se manejan por empresa, por sede o globalmente.
+
+Por qué sí importa
+
+Porque esto alimenta:
+
+catálogos del sistema,
+
+validaciones,
+
+generación del plan,
+
+cartera,
+
+promociones,
+
+verificación de materiales.
+
+¿Bloquea desarrollo?
+
+Sí bloquea parcialmente.
+Se puede programar la estructura técnica, pero no conviene cerrar lógica final ni pantallas definitivas sin ese catálogo maestro.
+
+2. Regla exacta para pagos parciales de cuotas
+Qué ya está definido
+
+Ya quedó claro que:
+
+las cuotas se gestionan en Planes/Cartera;
+
+el sistema debe calcular cronogramas automáticamente;
+
+pueden existir pagos posteriores al registro;
+
+existe el caso real donde un padre no paga la cuota completa.
+
+Qué no está terminado todavía
+
+Lo que falta definir es la regla exacta del comportamiento cuando una cuota no se paga completa. Por ejemplo:
+
+¿se permiten abonos parciales o no?
+
+si se permiten, ¿la cuota queda en estado “parcial”?
+
+¿el saldo restante sigue perteneciendo a esa misma cuota?
+
+¿se puede pagar una cuota incompleta con varios pagos en distintas fechas?
+
+¿el sistema aplica automáticamente el pago a la cuota más antigua?
+
+¿el usuario puede elegir a qué cuota aplicar el pago?
+
+¿qué pasa si paga menos de lo esperado pero quiere seguir en el programa?
+
+¿se genera mora, alerta o simplemente saldo pendiente?
+
+Por qué sí importa
+
+Porque esto afecta:
+
+modelo de datos de cuotas;
+
+lógica de saldo;
+
+estados financieros;
+
+reportes;
+
+UX del módulo de cartera.
+
+¿Bloquea desarrollo?
+
+Sí, este sí bloquea bastante el módulo financiero/cartera.
+Sin esta definición, el desarrollo del cobro queda a medias o habría que rehacerlo.
+
+3. Matriz final de permisos por acción y por módulo
+Qué ya está definido
+
+Ya está claro que:
+
+habrá un superadmin;
+
+habrá administradores y otros usuarios operativos;
+
+el administrador puede habilitar o deshabilitar permisos;
+
+no quieres quedarte con roles rígidos.
+
+Qué no está terminado todavía
+
+Lo que falta es la matriz exacta de permisos, por ejemplo:
+
+quién puede ver matrículas;
+
+quién puede crear matrícula;
+
+quién puede editar matrícula antes y después del guardado;
+
+quién puede registrar pagos;
+
+quién puede anular pagos;
+
+quién puede cerrar caja;
+
+quién puede reabrir caja;
+
+quién puede crear promociones;
+
+quién puede activar/desactivar promociones;
+
+quién puede aprobar caídas;
+
+quién puede mover sedes o aprobar traslados;
+
+quién puede ver todas las sedes y quién solo la suya;
+
+quién puede exportar reportes.
+
+Por qué sí importa
+
+Porque esto afecta:
+
+seguridad,
+
+navegación,
+
+backend,
+
+políticas de acceso,
+
+menú por usuario,
+
+auditoría.
+
+¿Bloquea desarrollo?
+
+Sí bloquea seguridad real, aunque no bloquea hacer prototipos.
+Se puede avanzar en pantallas, pero no cerrar bien el sistema sin esta matriz.
+
+4. Alcance del MVP respecto a stock
+Qué ya está definido
+
+Ya definiste que:
+
+los materiales existen por programa;
+
+la verificación puede marcar materiales entregados;
+
+quieres futuro control por sede;
+
+incluso contemplas rol de almacén/logística en una fase posterior.
+
+Qué no está terminado todavía
+
+Lo que falta cerrar es hasta dónde llega el MVP:
+
+Opción A
+
+Solo registrar materiales entregados en verificación, sin descontar stock real.
+
+Opción B
+
+Registrar materiales entregados y además descontar stock por sede.
+
+Opción C
+
+Hacer stock completo desde el MVP:
+
+entradas,
+
+salidas,
+
+traslados,
+
+alertas,
+
+reposición,
+
+historial.
+
+Por qué sí importa
+
+Porque si eliges A, el diseño es liviano.
+Si eliges B o C, cambian:
+
+tablas,
+
+lógica,
+
+flujos,
+
+permisos,
+
+reportes.
+
+¿Bloquea desarrollo?
+
+Sí bloquea el diseño del módulo de verificación y logística.
+No bloquea matrícula, pero sí afecta la arquitectura de materiales.
+
+5. Reglas exactas de cierre mensual y corrección post-cierre
+Qué ya está definido
+
+Ya dijiste que:
+
+por ahora quieres cierre mensual;
+
+quieres entender el bloqueo post-cierre;
+
+quieres trazabilidad y orden.
+
+Qué no está terminado todavía
+
+Lo que falta es la política exacta:
+
+¿qué significa “cerrar”?
+
+¿solo impide editar?
+
+¿impide crear movimientos retroactivos?
+
+¿quién puede cerrar?
+
+¿quién puede reabrir?
+
+si un pago se olvidó registrar, ¿se registra con fecha real o fecha actual?
+
+si hubo error, ¿se corrige con edición o con movimiento de ajuste?
+
+¿el cierre es por sede?
+
+¿el cierre es por moneda?
+
+¿el cierre afecta caja chica también?
+
+Por qué sí importa
+
+Porque esto cambia:
+
+integridad financiera,
+
+auditoría,
+
+diseño de caja,
+
+reportes históricos.
+
+¿Bloquea desarrollo?
+
+Bloquea parcialmente.
+Se puede desarrollar caja, pero no conviene cerrar reglas de edición y reversa sin esto.
+
+6. Unicidad y validación de comprobantes
+Qué ya está definido
+
+Ya está claro que:
+
+habrá tipo de comprobante;
+
+por ahora boleta o factura;
+
+habrá número de comprobante;
+
+habrá concepto manual.
+
+Qué no está terminado todavía
+
+Falta definir:
+
+si el número de comprobante debe ser único;
+
+único respecto a qué: sede, empresa o serie;
+
+si habrá serie y número o solo número;
+
+si una boleta repetida debe bloquearse;
+
+si se puede guardar un pago sin comprobante;
+
+si el comprobante es obligatorio siempre o solo en ciertos medios de pago;
+
+si el sistema valida formato.
+
+Por qué sí importa
+
+Porque sin eso luego puedes tener:
+
+duplicados,
+
+inconsistencias,
+
+reportes sucios,
+
+auditoría débil.
+
+¿Bloquea desarrollo?
+
+Bloquea poco al inicio, pero sí conviene cerrarlo antes de producción.
+No impide maquetar ni modelar pagos, pero sí afecta validaciones.
+
+7. Estados exactos de cartera cuando hay atrasos, abonos o caída
+Qué ya está definido
+
+Ya sabemos que:
+
+existe cartera;
+
+existen cuotas;
+
+hay estados de pago básicos;
+
+una matrícula caída sale de activos, pero conserva histórico.
+
+Qué no está terminado todavía
+
+Falta definir la máquina de estados financiera, por ejemplo:
+
+pendiente;
+
+pagado;
+
+vencido;
+
+parcial;
+
+refinanciado;
+
+cancelado;
+
+suspendido;
+
+caído.
+
+Y más importante:
+
+cuándo una cuota pasa de pendiente a vencida;
+
+cómo cambia si recibe un abono parcial;
+
+qué pasa con cuotas futuras si la matrícula cae;
+
+si una caída congela deuda o solo la saca de activos;
+
+cómo se verá una matrícula caída con cuotas pendientes.
+
+Por qué sí importa
+
+Porque afecta:
+
+cartera,
+
+filtros,
+
+dashboards,
+
+colores de estado,
+
+lógica de cobranza,
+
+reportes.
+
+¿Bloquea desarrollo?
+
+Sí, sí bloquea el módulo de cartera si quieres hacerlo bien desde el inicio.
+
+8. Reglas exactas de promociones configurables
+Qué ya está definido
+
+Con tu último mensaje, aquí ya avanzaste bastante. De hecho, este punto ya no está “abierto total”; ahora está casi cerrado.
+
+Ya definiste que en el MVP existirán estas 3 promociones:
+
+2 Kids por 700 dólares;
+
+2 Pre-Kids por 700 dólares;
+
+1 Pre-Kids + 1 Kids por 700 dólares.
+
+También definiste que:
+
+aplican al contado;
+
+el monto total se divide entre la cantidad de alumnos;
+
+cada matrícula individual recibe su parte proporcional;
+
+existe un solo pago vinculado al conjunto;
+
+pueden coexistir varias promociones activas;
+
+el administrador puede crear, editar, activar o desactivar promociones;
+
+una promoción puede dirigirse a una, varias o todas las sedes.
+
+Qué no está terminado todavía
+
+Lo poco que todavía falta cerrar es esto:
+
+si la promoción tiene vigencia por fecha;
+
+si puede limitarse por campaña o periodo;
+
+cómo se comporta cuando más de una promoción aplicaría al mismo caso;
+
+si el sistema la sugiere automáticamente o el usuario la elige manualmente;
+
+si “todas las sedes” se guarda como bandera global o como relación con cada sede;
+
+cómo se llama oficialmente la promoción en el catálogo.
+
+Por qué sí importa
+
+Ya no por idea, sino por implementación limpia.
+
+¿Bloquea desarrollo?
+
+Ya no bloquea fuerte.
+Yo lo pasaría a estado “parcialmente resuelto, casi listo”.
+
+2. Pendientes importantes, pero no bloqueantes absolutos
+9. Diseño visual high-fidelity de wireframes
+Qué ya está definido
+
+Ya están definidos:
+
+módulos;
+
+flujos base;
+
+wizard de matrícula;
+
+enfoque funcional de las pantallas.
+
+Qué no está terminado todavía
+
+Falta el diseño visual detallado:
+
+jerarquía visual final;
+
+tamaños;
+
+distribución exacta;
+
+botones;
+
+espaciados;
+
+responsive;
+
+estados vacíos;
+
+mensajes de error;
+
+apariencia visual completa.
+
+¿Por qué importa?
+
+Porque mejora la ejecución UX/UI.
+
+¿Bloquea desarrollo?
+
+No bloquea backend ni lógica.
+Solo bloquea una implementación frontend más pulida si quieres diseñar antes de codificar.
+
+10. Reportes finales obligatorios
+Qué ya está definido
+
+Ya se sabe que quieres reportes de:
+
+cambios realizados,
+
+caja,
+
+matrículas,
+
+cartera,
+
+verificaciones.
+
+Qué no está terminado todavía
+
+Falta la lista exacta y cerrada de reportes del MVP:
+
+cuáles son obligatorios desde el día 1;
+
+cuáles son filtros mínimos;
+
+qué fechas mandan en cada reporte;
+
+qué columnas exporta cada uno;
+
+cuáles son solo para superadmin y cuáles para sede.
+
+¿Por qué importa?
+
+Porque los reportes no deberían salir “después vemos”.
+
+¿Bloquea desarrollo?
+
+No bloquea el núcleo del sistema.
+Pero sí conviene cerrarlo antes de la etapa de dashboards y exportaciones.
+
+11. Migración histórica desde Excel
+Qué ya está definido
+
+Ya quedó dicho que eso se evaluará después de tener un PMV funcional.
+
+Qué no está terminado todavía
+
+Falta decidir:
+
+si migras histórico o no;
+
+qué hojas sí migras;
+
+qué campos no vale la pena traer;
+
+cómo limpiar duplicados o errores viejos.
+
+¿Por qué importa?
+
+Porque cambia esfuerzo y calidad de arranque.
+
+¿Bloquea desarrollo?
+
+No bloquea el MVP.
+Esto puede dejarse para después.
+
+12. Generación documental exacta al hacer “Verificar datos”
+Qué ya está definido
+
+Ya existe la idea del paso “Verificar datos” en matrícula como resumen antes de guardar.
+
+Qué no está terminado todavía
+
+Falta decidir si ese paso:
+
+solo muestra resumen en pantalla;
+
+genera PDF;
+
+genera contrato;
+
+genera ficha imprimible;
+
+genera constancia;
+
+guarda versión firmable.
+
+¿Por qué importa?
+
+Porque cambia bastante el alcance documental.
+
+¿Bloquea desarrollo?
+
+No bloquea el núcleo.
+Puede salir como fase posterior o como versión simple primero.
+
+13. Módulo de personal / empleados
+Qué ya está definido
+
+Ya sabemos que:
+
+existe una hoja de personal;
+
+hay trabajadores por sede;
+
+se necesita seleccionar ejecutivos, verificadores, etc.;
+
+al menos hace falta un catálogo de empleados.
+
+Qué no está terminado todavía
+
+Falta definir si el módulo de personal será:
+
+nivel simple
+
+Solo referencial:
+
+nombre,
+
+cargo,
+
+sede,
+
+estado activo/inactivo.
+
+o nivel estructural
+
+Con:
+
+contratos,
+
+fechas,
+
+historial,
+
+comisiones,
+
+metas,
+
+reasignaciones.
+
+¿Por qué importa?
+
+Porque cambia si personal será solo catálogo o módulo completo.
+
+¿Bloquea desarrollo?
+
+No bloquea el MVP básico, siempre que aceptes arrancar con versión simple.
+
+3. Resumen honesto de cómo están hoy esos puntos
+Ya casi cerrados
+
+promociones configurables;
+
+lógica de precios no editables manualmente;
+
+programas con tipos de pago asociados.
+
+Parciales y todavía delicados
+
+pagos parciales;
+
+estados de cartera;
+
+cierres;
+
+permisos;
+
+comprobantes;
+
+stock en MVP.
+
+Importantes pero puedes dejar para después
+
+wireframes visuales finales;
+
+migración histórica;
+
+generación documental avanzada;
+
+módulo de personal completo;
+
+reportes más sofisticados.
+
+4. Mi conclusión clara
+
+Hoy, después de lo que acabas de aclarar, yo ya no diría que “todo está verde”.
+
+Diría esto:
+
+Lo que todavía sí debes cerrar antes de programar fuerte
+
+pagos parciales;
+
+estados de cartera;
+
+alcance exacto de stock;
+
+matriz de permisos;
+
+cierre mensual;
+
+comprobantes;
+
+catálogo maestro final.
+
+Lo que ya puedes considerar casi encaminado
+
+promociones;
+
+precios base por programa;
+
+matrícula individual por alumno;
+
+wizard de matrícula;
+
+verificación como proceso separado;
+
+caja y caja chica separadas.
+
+El siguiente paso correcto es que tomemos uno por uno esos pendientes críticos y los convirtamos en regla cerrada de sistema.
+Yo empezaría por este orden: catálogo maestro → pagos parciales → cartera/estados → permisos → cierres → stock.
+
+La lista oficial de programas es la siguiente:
+- Kids
+- Pre-Kids
+- Especialización
+- Pre-lectura
+La lista oficial de niveles es:
+- Para el programa Pre-Kits: nivel 1, nivel 2.
+- Para el programa Kits: nivel 1, nivel 2 y nivel 3.
+- Para el programa Pre-lectura: nivel uno.
+- Para el programa de especialización hay un solo paquete, los cuales salen en conjunto.
+Esta viene con una condicional, principalmente para el nivel Kids, Pre-Kids y Pre-Kids, que dura tres meses. Si no se logra concretar en ese tiempo el objetivo deseado, se aumenta un mes de garantía para que el alumno logre terminar el programa. Al igual que en la especialización, que es de seis meses el tiempo base y seis meses más de garantía si es que no logra terminar el programa. En total serían doce meses.
+ Para los materiales exactos por programa también te los he definido y te pido que, de pasada, lo vuelvas a revisar en el archivo ADS. Ya que en una de esas iteraciones hablo de los materiales que corresponden a cada nivel de cada programa. 
+Tipos de pago también está en el ADS. Te pido que revises las iteraciones nuevamente y busques los tipos de pago que he definido o al menos que busques y que en tu respuesta coloques todo lo que encontraste. Si hay algún hueco yo lo voy a complementar. 
+¿El mismo programa puede tener distintos precios por sede? Sí en el apartado de gestión de programas, donde se supone que se tendría que crear, tiene que haber una opción para escoger la sede para la cual va a estar funcionando. Se puede seleccionar más de una sede y también tiene que haber una opción para ocupar todas las sedes para ese programa, cosa que se puede crear dos veces el mismo programa para darme dos sedes distintas con precios distintos. Los precios deberían de manejarse por sede. 
+Te estoy compartiendo un Excel con lo que tengo de info sobre algunos catálogos, materiales tipos de materiales, tipos de pago etc, lo revisas y guarda la info.
+sobre la vigencia de precio la interacción que quiero que tenga desde el sistema es, que tenga fecha de inicio y fecha de fin pero al crea un nuevo tipo de pago con otros precios este se coloque para los siguientes registros, automáticamente el tipo de pago anterior recien se le coloca la ultima fecha de su vigencia, y se crea el nuevo con la misma fecha de inicio de vigencia y mientras no se cree otro este no tiene fecha final de vigencia. por eso al crear los tipos de pagos se le define las sedes para las cuales estará disponible. Y los precios se manejan entonces por sedes.
+
+Si se permiten abonos parciales, es si en caso el titular llega con menos dinero de lo debido para el pago de una cuota. ej: Juan llega a su 4ta cuota de plan 6 de profesional y solo tiene 150 dolares, entonces pagaría esa cantidad y se le da una cantidad de plazo para completar los 50 dolares.
+Y si, la cuota quedaría en pago parcial.
+Si, al dar clic en cualquiera de las cuotas debe de abrirse un panel donde esté todo el info de la cuota, y si se crean pagos parciales entonces aparecen dentro del panel de la cuota correspondiente en la sección de PLANES.
+Se puede pagar una cuota incompleta solo con hasta 2 pagos parciales, y el plazo es obviamente más corto, se le suele dar hasta una semana. 
+El sistema si aplica automáticamente el pago a la cuota más antigua, y si la cuota más antigua tiene un pago parcial, el sistema te alerta que solo le falta tal cantidad para terminar de pagar la cuota.
+y también hay una opción para pagar manualmente la cuota deseada, y sería simplemente entrando al panel de esa cuota y dando click a pagado y subiríamos los datos solicitados. Recordando que esta app no procesa pagos.
+Si paga menos de lo esperado ya no se le crean más pagos parciales, sino se le crean más cuotas, por ejemplo si esta en un plan contado en 2 partes y la segunda cuota lo paga parcialmente en dos montos en fechas distintas y el seugndo monto no logra completar el pago total de la CUOTA, entonces debe de haber un boton para habilitar la opción de crear más cuotas pero ya con fechas propuestas por el trabajador y montos propuesto por el mismo, pero esta acción envía alertas al usuario superadmin cuando se crean estas nuevas cuotas personalizadas, a demás si estamos en una cuota diferente a la ultima cuota del plan que sea, entonces al crear esta cuota personalizada después de la cuota que quedó con los dos plazos ocupados pero no llenaron ese total de la cuota, entonces toda esa fila del registro de anula y se crea una copia de ese registro de pagos solo hasta la ultima cuota donde se registraron pagos, luego de esa aparecerá nuevamente la opción de añadir cuotas personalizadas y esta abrirá un panel para rellenar los datos de esta nueva cuota (costo total de que fecha a que fecha, nombre la cuota) y esta se crearía, con todas la entradas de dato que incluyen una cuota normal.
+
+Para la parte de Matriz final de permisos por acción y por módulo. Me has dicho que hay ciertas cosas que no están terminadas todavía y me dijiste, por ejemplo, lo que falta de la matriz exacta de permisos. Me mostraste algunos puntos. Pienso que hay más puntos que esos.
+Entonces quiero que me muestres, en esta parte, luego en tu respuesta, cuáles son todos los puntos totales en base a todo el sistema que estamos haciendo todos los puntos. Considerando también que los roles que yo estoy tomando en cuenta son los siguientes:
+- filial
+- logística
+- psicopedagogía
+- administración
+ entonces con todo ese análisis me tienes que dar la matriz exacta de todos los permisos que van a ver en el sistema.
+Ahora bien aquí, en la opción de alcance del MVP respecto a stock, me das tres opciones. Escojo la opción C, que es hacer esto completo desde MVP. 
+En la opción 5 de "reglas exactas de cierre mensual y protección por cierre", me has hecho varias preguntas que no están terminadas, que no están respondidas, que no tienen respuesta todavía.
+
+Ahora bien, comprendiendo tú la lógica ya del negocio y el contexto del sistema, quiero que le des una solución óptima a cada uno y me lo propongas como tu mejor solución ante cada una de las problemáticas que tú ya reconoces. Ya que yo no comprendo muy bien estos aspectos de cierre y apertura de cajas, entonces quiero que me des, según el contexto del sistema que estamos desarrollando, cuál sería la mejor solución para cada una de tus preguntas. 
+
+En el punto número seis de unicidad y validación de comprobantes. En los puntos que no están terminados todavía me pregunta si el número de comprobantes debe ser único. El número de comprobantes sí debe ser único.
+
+Respecto a la empresa, ya que entendemos que los números de comprobante se pueden repetir, entonces para no tener ese problema va a ser el número de comprobante único respecto a cada empresa.
+Stopped thinking
+Respuesta rápida
+ProgramasProgramas
+La lista oficial de programas es la siguiente:
+- Kids
+- Pre-Kids
+- Especialización
+- Pre-lectura
+La lista oficial de niveles es:
+- Para el programa Pre-Kits: nivel 1, nivel 2.
+- Para el programa Kits: nivel 1, nivel 2 y nivel 3.
+- Para el programa Pre-lectura: nivel uno.
+- Para el programa de especialización hay un solo paquete, los cuales salen en conjunto.
+Esta viene con una condicional, principalmente para el nivel Kids, Pre-Kids y Pre-Kids, que dura tres meses. Si no se logra concretar en ese tiempo el objetivo deseado, se aumenta un mes de garantía para que el alumno logre terminar el programa. Al igual que en la especialización, que es de seis meses el tiempo base y seis meses más de garantía si es que no logra terminar el programa. En total serían doce meses.
+Para complementar esta parte te comparto un Excel más detallado con las respuestas.
+Para los materiales exactos por programa también te los he definido y te pido que, de pasada, lo vuelvas a revisar en el archivo ADS. Ya que en una de esas iteraciones hablo de los materiales que corresponden a cada nivel de cada programa. 
+Tipos de pago también está en el ADS. Te pido que revises las iteraciones nuevamente y busques los tipos de pago que he definido o al menos que busques y que en tu respuesta coloques todo lo que encontraste. Si hay algún hueco yo lo voy a complementar. 
+¿El mismo programa puede tener distintos precios por sede? Sí en el apartado de gestión de programas, donde se supone que se tendría que crear, tiene que haber una opción para escoger la sede para la cual va a estar funcionando. Se puede seleccionar más de una sede y también tiene que haber una opción para ocupar todas las sedes para ese programa, cosa que se puede crear dos veces el mismo programa para darme dos sedes distintas con precios distintos. Los precios deberían de manejarse por sede. 
+Te estoy compartiendo un Excel con lo que tengo de info sobre algunos catálogos, materiales tipos de materiales, tipos de pago etc, lo revisas y guarda la info.
+sobre la vigencia de precio la interacción que quiero que tenga desde el sistema es, que tenga fecha de inicio y fecha de fin pero al crea un nuevo tipo de pago con otros precios este se coloque para los siguientes registros, automáticamente el tipo de pago anterior recien se le coloca la ultima fecha de su vigencia, y se crea el nuevo con la misma fecha de inicio de vigencia y mientras no se cree otro este no tiene fecha final de vigencia. por eso al crear los tipos de pagos se le define las sedes para las cuales estará disponible. Y los precios se manejan entonces por sedes.
+
+Si se permiten abonos parciales, es si en caso el titular llega con menos dinero de lo debido para el pago de una cuota. ej: Juan llega a su 4ta cuota de plan 6 de profesional y solo tiene 150 dolares, entonces pagaría esa cantidad y se le da una cantidad de plazo para completar los 50 dolares.
+Y si, la cuota quedaría en pago parcial.
+Si, al dar clic en cualquiera de las cuotas debe de abrirse un panel donde esté todo el info de la cuota, y si se crean pagos parciales entonces aparecen dentro del panel de la cuota correspondiente en la sección de PLANES.
+Se puede pagar una cuota incompleta solo con hasta 2 pagos parciales, y el plazo es obviamente más corto, se le suele dar hasta una semana. 
+El sistema si aplica automáticamente el pago a la cuota más antigua, y si la cuota más antigua tiene un pago parcial, el sistema te alerta que solo le falta tal cantidad para terminar de pagar la cuota.
+y también hay una opción para pagar manualmente la cuota deseada, y sería simplemente entrando al panel de esa cuota y dando click a pagado y subiríamos los datos solicitados. Recordando que esta app no procesa pagos.
+Si paga menos de lo esperado ya no se le crean más pagos parciales, sino se le crean más cuotas, por ejemplo si esta en un plan contado en 2 partes y la segunda cuota lo paga parcialmente en dos montos en fechas distintas y el seugndo monto no logra completar el pago total de la CUOTA, entonces debe de haber un boton para habilitar la opción de crear más cuotas pero ya con fechas propuestas por el trabajador y montos propuesto por el mismo, pero esta acción envía alertas al usuario superadmin cuando se crean estas nuevas cuotas personalizadas, a demás si estamos en una cuota diferente a la ultima cuota del plan que sea, entonces al crear esta cuota personalizada después de la cuota que quedó con los dos plazos ocupados pero no llenaron ese total de la cuota, entonces toda esa fila del registro de anula y se crea una copia de ese registro de pagos solo hasta la ultima cuota donde se registraron pagos, luego de esa aparecerá nuevamente la opción de añadir cuotas personalizadas y esta abrirá un panel para rellenar los datos de esta nueva cuota (costo total de que fecha a que fecha, nombre la cuota) y esta se crearía, con todas la entradas de dato que incluyen una cuota normal.
+
+Para la parte de Matriz final de permisos por acción y por módulo. Me has dicho que hay ciertas cosas que no están terminadas todavía y me dijiste, por ejemplo, lo que falta de la matriz exacta de permisos. Me mostraste algunos puntos. Pienso que hay más puntos que esos.
+Entonces quiero que me muestres, en esta parte, luego en tu respuesta, cuáles son todos los puntos totales en base a todo el sistema que estamos haciendo todos los puntos. Considerando también que los roles que yo estoy tomando en cuenta son los siguientes:
+- filial
+- logística
+- psicopedagogía
+- administración
+ entonces con todo ese análisis me tienes que dar la matriz exacta de todos los permisos que van a ver en el sistema.
+Ahora bien aquí, en la opción de alcance del MVP respecto a stock, me das tres opciones. Escojo la opción C, que es hacer esto completo desde MVP. 
+En la opción 5 de "reglas exactas de cierre mensual y protección por cierre", me has hecho varias preguntas que no están terminadas, que no están respondidas, que no tienen respuesta todavía.
+
+Ahora bien, comprendiendo tú la lógica ya del negocio y el contexto del sistema, quiero que le des una solución óptima a cada uno y me lo propongas como tu mejor solución ante cada una de las problemáticas que tú ya reconoces. Ya que yo no comprendo muy bien estos aspectos de cierre y apertura de cajas, entonces quiero que me des, según el contexto del sistema que estamos desarrollando, cuál sería la mejor solución para cada una de tus preguntas. 
+
+En el punto número seis de unicidad y validación de comprobantes. En los puntos que no están terminados todavía me pregunta si el número de comprobantes debe ser único. El número de comprobantes sí debe ser único.
+
+Respecto a la empresa, ya que entendemos que los números de comprobante se pueden repetir, entonces para no tener ese problema va a ser el número de comprobante único respecto a cada empresa.
+
+Va a haber número de serie y el número que es el número de comprobante. Y obviamente con esto estamos llevando a que no va a haber una boleta repetida. Y no, no se puede guardar un pago sin un comprobante. Tampoco no se puede guardar un pago sin una foto.
+
+La foto es muy importante ya que es una forma más segura de validar el pago. El comprobante es obligatorio siempre, claro que la validación de la cantidad de dígitos es distinta, ya que según sea boleta o factura van a ver 8 a 11 caracteres. Si es boleta 8 caracteres y si es factura van a ver 11 caracteres. 
+
+En el punto n° 7. Estados exactos de cartera cuando hay retrasos, abonos o caídas. punto 7. Aquí falta definir la máquina de estado financiera. Aquí yo veo según todos los formatos que te estoy pasando aquí, según todas las instrucciones que ya te he pasado en este mensaje, quiero que tú mismo definas cuáles son los estados que tienen que ver. Desde ya yo veo que tiene que estar pendiente, pagado, vencido, parcial, refinanciado y este refinanciado se presta justamente para la instrucción que te he dado de crear nuevos nuevas cuotas de pago anulando el plan actual y creando una nueva línea de refinanciamiento con un nuevo plan más extenso y más caro si es que en caso tenemos un titular moroso. Cancelado si en caso ya no tenemos noticias del alumno, si ya no viene a clases, si ya no se ha detectado algún pago, entonces se cancela. Suspendido si en caso el alumno decide suspender su tiempo en la institución para que así no se le desperdicie su su membresía en la institución y no se le dé por perdido al alumno. y caído, que es si es que paga una boleta inicial y quiere recuperar su dinero porque se arrepintió o paga una cuota inicial o paga una parte y no quiere seguir pagando porque ya se arrepintió y quiere la devolución de su dinero. Si tiene algún tipo de contexto especial en el cual sí se le es necesario que se le devuelva su dinero, se le devuelve, entonces se marca como caído. Y cuando una cuota pasa de pendiente a vencida. En este caso, una cuota pasa de pendiente a vencida cuando, por ejemplo, nosotros damos un plazo de 30 días. Si en caso viene a matricular a un alumno de Kids y se mete en un plan 2, ya sea un plan 2 o un plan contado en dos partes en el que se le da un tiempo para pagar. Entonces, una vez pasado ese tiempo esa fecha propuesta en un contado 2 o ya sea la fecha automática de cada plan, apenas pasa la cantidad de días, ya pasa a un estado automático de vencido. y cambia al estado de parcial si es que en caso una cuota se le divide o se subdivide a dos cuotas. En este caso, se parcializa el pago de la cuota o se divide el pago de la cuota y dentro de esa cuota se crean dos pagos parciales. Si en caso se le dificulta pagar una cuota a una persona o quiere una cantidad de tiempo para pagar la otra parte de la cuota, entonces se crean dos pagos dentro de esa cuota. Entonces pasaría un estado de pago parcial. Si la matrícula cae, toda esa todo ese plan, todo ese registro del plan, inclusive el mismo registro de la matrícula, ya que los planes están basados en el registro de la matrícula, pasaría a vencido. Perdón, ha caído. Entonces el alumno se desactiva el perfil del alumno, o bueno, en este caso el registro del alumno, ya que se crean registros tanto de alumno como de titular dentro del registro de la matrícula, simplemente están anclados a una llave foránea, pero los registros del alumno se pasan a estado inactivo. Una caída simplemente congela La deuda, si es que en caso no se llega a completar una deuda o si igual se parcializa, se divide en dos una cuota y no termina de pagar y simplemente se cae. En ese caso ya se marca como caído y se anula ese registro. y obviamente en el UX se marcará con cada estado en el que se encuentre. Quiero que mejores la lógica que te estoy dando y la propongas nuevamente en tu respuesta de manera más definida y detallada según las bases que te estoy dando. Complementalo y muéstrame tu solución en base a lo que te estoy indicando. 
+Ahora, pasando al punto 8 de reglas exactas de promociones configurables, corrigiendo con lo que aún no está terminado es:
+Si la promoción tiene vigencia por fecha: si tiene vigencia por fechas
+Si puede limitarse por campaña o periodo: explícame eso.
+Cómo se comporta cuando más de una promoción aplicaría al mismo caso: el registro de un alumno solo puede estar dentro de una promoción no más de una, por lo que si en el sistema una vez registrado la cantidad de alumnos deseados ya con el programa seleccionado entonces si 2 califican a una promoción de 2x700 entonces, estos dos alumnos ya no quedarían disponibles para otra oferta ya que en el ux las dos selecciones se unen.
+Si “todas las sedes” se guarda como bandera global o como relación con cada sede, escoge tu la manera más apropiada.
+Cómo se llama oficialmente la promoción en el catálogo: al crear la promoción también se le tiene que colocar el nombre con el que aparecerá esta misma.
+
+2. Pendientes importantes, pero no bloqueantes absolutos
+
+9. Diseño visual high-fidelity de wireframes
+La jerarquía visual y el diseño será el siguiente tomando como base la interfaz de las imágenes y las siguientes instrucciones:
+
+Lectura global del estilo consolidado
+
+Estas nuevas imágenes confirman que tu sistema debería ir por una línea de:
+
+minimalismo funcional
+monocromía elegante
+mucho orden visual
+espacios bien medidos
+bordes muy suaves
+componentes compactos
+sidebar protagonista
+paneles tipo “workbench” o “workspace”
+casi nada de decoración innecesaria
+fuerte enfoque en productividad y administración
+
+La sensación correcta no es “bonita por efectos”, sino bonita por estructura.
+
+1. Identidad visual compactada
+El estilo exacto que ya se está formando
+
+Tu sistema ya apunta a una mezcla de:
+
+workspace tool
+admin SaaS premium
+sistema modular tipo Notion / Linear / Stripe Dashboard / herramientas operativas
+sidebar utilitaria con doble nivel
+paneles claros con baja saturación cromática
+En una frase
+
+Una interfaz administrativa moderna, silenciosa, compacta y estructurada, donde el protagonismo lo tienen la navegación, la jerarquía y el espacio.
+
+2. Rasgos visuales que más se repiten
+A. Sidebar muy trabajada
+
+Este es uno de los rasgos más fuertes de todas las referencias.
+
+Se repite mucho este patrón:
+
+una barra primaria ultracompacta con solo iconos
+un panel secundario expandido con navegación textual
+bloques internos bien agrupados
+perfil abajo
+configuración / tema / ayuda al final
+CTA o tarjeta contextual insertada dentro del panel
+
+Esto ya no es opcional:
+la sidebar debe ser una de las piezas centrales del sistema.
+
+B. Monocromía refinada
+
+Las referencias nuevas refuerzan algo importante:
+
+no hay exceso de color
+la mayoría de la interfaz vive en grises, blanco roto, negro suave
+los colores aparecen como acentos
+los estados y highlights se usan con contención
+
+Eso hace que el sistema se vea premium.
+
+Conclusión cromática
+
+La interfaz debe construirse primero en:
+
+blanco
+gris cálido o gris frío muy sutil
+gris medio para labels
+negro suave para títulos
+
+Y luego sumar:
+
+un primario
+estados funcionales
+uno o dos acentos muy controlados
+C. Contenedores muy suaves
+
+Las imágenes nuevas muestran algo muy claro:
+
+bordes finos
+radios medios a altos
+sombras mínimas
+superficies casi planas
+profundidad muy contenida
+
+La UI se apoya más en:
+
+separación
+borde sutil
+panelización
+que en sombras pesadas.
+D. Compactación cuidada
+
+No es una interfaz “grande” ni “gordita”.
+Los componentes están optimizados para usar espacio, pero sin sentirse comprimidos.
+
+Ese equilibrio es clave.
+
+La lectura visual correcta es:
+
+compacta
+ordenada
+liviana
+muy escaneable
+3. Estructura del layout recomendada
+
+Con todo lo visto, el layout ideal ya se define casi solo.
+
+Estructura madre
+Nivel 1
+
+Barra lateral primaria
+
+solo iconos
+ancho muy angosto
+navegación estructural del sistema
+Nivel 2
+
+Sidebar secundaria
+
+nombre del módulo / espacio / cuenta
+buscador
+items textuales
+secciones
+acciones rápidas
+tarjeta contextual
+preferencias
+perfil
+Nivel 3
+
+Área de contenido principal
+
+toolbar superior
+filtros
+cards o tablas
+paneles secundarios si aplica
+4. Sidebar: especificación estilística consolidada
+Sidebar primaria
+
+Debe ser:
+
+angosta
+visualmente estable
+muy limpia
+más icónica que textual
+separada por líneas o paneles suaves
+con avatar/perfil al pie
+Medidas sugeridas
+ancho: 64–76 px
+iconos centrados
+padding vertical cómodo
+separación en grupos
+uso fuerte de estados activos suaves
+Sidebar secundaria
+
+Debe sentirse como una extensión natural de la primaria.
+
+Medidas sugeridas
+ancho: 240–300 px
+fondo ligeramente diferenciado o misma superficie
+estructura con:
+encabezado
+buscador
+acciones rápidas
+navegación agrupada
+tarjeta contextual
+preferencias
+perfil
+Comportamiento del item activo
+
+Muy importante según las referencias:
+
+fondo gris o tint suave
+borde fino o solo bloque relleno claro
+radio 10–14 px
+no usar brillos fuertes
+icono y texto con algo más de contraste
+5. Bordes, divisores y superficies
+Bordes
+
+Las referencias nuevas muestran bordes muy consistentes:
+
+finos
+discretos
+casi siempre en gris muy tenue
+más visibles en cards internas y secciones
+Recomendación
+grosor: 1 px
+color: gris sutil
+nunca negro puro
+Divisores
+
+Los divisores funcionan muy bien en este estilo, pero deben ser:
+
+suaves
+horizontales
+de muy bajo contraste
+
+No conviene llenar de cajas dentro de cajas sin control.
+
+Superficies
+
+Trabaja con 3 niveles:
+
+Superficie 1
+
+Fondo general de app
+gris muy suave
+
+Superficie 2
+
+Panel principal / sidebar / cards
+blanco o casi blanco
+
+Superficie 3
+
+Activo / bloque resaltado / tarjeta contextual
+gris suave o tint del color principal
+
+6. Radios y geometría ya definidos por las referencias
+
+Las nuevas imágenes confirman una geometría bastante clara.
+
+Radios recomendados
+elementos pequeños: 8 px
+botones / inputs / dropdowns: 10–12 px
+cards estándar: 14–16 px
+paneles mayores: 18–22 px
+contenedores globales o modales grandes: 24 px
+Sensación formal
+
+Nada debe sentirse cuadrado-duro.
+Pero tampoco ultra redondeado tipo app infantil.
+
+La forma correcta es:
+redondeado sobrio.
+
+7. Inputs y buscadores: características compactadas
+
+Las imágenes muestran inputs muy bien resueltos.
+
+Rasgos repetidos
+altura contenida
+borde suave
+fondo muy limpio
+placeholder visible pero discreto
+icono alineado a la izquierda
+botones o teclas rápidas dentro del campo
+radios suaves
+mucho orden interno
+Estándar recomendado
+Input base
+alto: 40–44 px
+radio: 10–12 px
+padding horizontal: 12–14 px
+icono a la izquierda
+texto claro y aireado
+Quick Search
+
+Es uno de los componentes más repetidos:
+
+debe verse como componente prioritario
+fondo blanco
+borde fino
+icono lupa
+atajo a la derecha opcional (/, ⌘K, etc.)
+Focus state
+
+Debe ser sutil:
+
+borde apenas más notorio
+halo mínimo
+no usar azul fuerte grueso salvo accesibilidad específica
+8. Botones: lectura unificada
+
+Las referencias nuevas dejan ver tres familias claras:
+
+Primario
+sólido
+contraste alto
+limpio
+sin degradados innecesarios
+texto firme
+radio 10–12 px
+Secundario
+borde fino
+fondo blanco
+texto oscuro
+muy usado en configuraciones y formularios
+Ghost / inline
+casi sin contenedor
+ideal para menús, toolbars y acciones secundarias
+Alturas recomendadas
+pequeño: 32–36 px
+estándar: 40 px
+CTA principal: 44 px
+Punto importante
+
+El sistema no debe abusar del botón primario.
+La jerarquía de acción debe sentirse racional.
+
+9. Popups, menús contextuales y dropdowns
+
+Las nuevas imágenes ayudan muchísimo aquí.
+
+Lo que se repite
+panel pequeño flotante
+fondo blanco
+sombra suave
+radio generoso
+items con buen padding
+icono a la izquierda
+hover muy leve
+categorías separadas por líneas suaves
+Estilo correcto
+
+Deben sentirse:
+
+elegantes
+limpios
+rápidos
+silenciosos
+
+No tipo menú pesado de sistema viejo.
+
+Recomendación de popup
+radio: 14–18 px
+padding interno: 8–12 px
+item height: 36–40 px
+sombra baja y difusa
+10. Cards y módulos del dashboard
+
+Con las últimas referencias se confirma algo:
+las cards deben ser muy simples, casi austeras.
+
+Rasgos
+fondo blanco
+borde tenue
+sombra casi nula
+título claro
+contenido alineado
+poca saturación de elementos
+métricas legibles
+tablas internas muy ordenadas
+Cómo se deben sentir
+
+Más “herramienta de trabajo” que “landing moderna”.
+
+Card KPI ideal
+etiqueta arriba
+cifra fuerte
+detalle pequeño abajo o al costado
+filtros en esquina si aplica
+Card de tabla o listado
+header claro
+controles arriba a la derecha
+filas con altura media
+estados con chips suaves
+11. Tablas y bloques financieros
+
+Las últimas imágenes muestran un lenguaje muy útil para módulos de finanzas, billing, payouts, revenue, etc.
+
+Características
+bloques resumen arriba
+tabla debajo
+filtros compactos arriba a la derecha
+celdas limpias
+badges de estado pequeños
+bordes suaves
+layout sobrio
+Recomendación
+
+Para módulos financieros:
+
+usar cifras grandes pero no exageradas
+emplear chips de estado con fondos pálidos
+mantener nombres de columnas en gris medio
+dar suficiente ancho para la lectura
+12. Billing / settings / formularios largos
+
+La referencia de upgrade billing confirma otra dirección:
+
+Patrones clave
+sidebar izquierda
+contenido formulario al centro
+resumen o panel de cobro a la derecha
+estructura por bloques
+labels arriba
+ayuda debajo del título
+inputs y selects sobrios
+opciones tipo cards seleccionables
+Esto define muy bien páginas de:
+suscripción
+facturación
+configuración
+datos empresariales
+planes
+medios de pago
+Regla de UX
+
+Cuando haya procesos largos:
+
+dividir por secciones
+usar títulos internos
+separar bien billing summary del formulario
+destacar total/pago/facturación con panel lateral
+13. Tono tipográfico más preciso
+
+Con estas referencias nuevas, la tipografía ideal debe sentirse:
+
+neutral
+altamente legible
+ligeramente técnica
+no decorativa
+con muy buena lectura en tamaños pequeños
+Jerarquía recomendada
+título de vista: 28–32 px
+título de card: 16–20 px
+texto principal: 14–15 px
+metadatos: 12–13 px
+labels secundarios: 11–12 px
+Contraste tipográfico
+títulos en casi negro
+labels en gris medio
+ayudas en gris tenue
+datos importantes en peso 600 o 700
+14. Espaciado exacto que mejor encaja
+
+Ahora sí se puede compactar mejor la escala:
+
+Escala sugerida
+4 px microajuste
+8 px detalle interno
+12 px separación corta
+16 px espacio base
+20 px grupo medio
+24 px bloque estándar
+32 px separación grande
+40 px sección principal
+Sensación del sistema
+sidebar: compacta
+cards: respiradas
+tablas: medidas
+formularios: claros
+popups: ligeros
+15. Microinteracciones y efectos
+
+Las referencias siguen diciendo lo mismo:
+muy poco efecto, pero muy bien puesto.
+
+Debes usar
+hover suave
+transición rápida
+ligero cambio de fondo
+leve elevación solo en popups
+estados activos suaves
+Debes evitar
+sombras profundas
+glassmorphism excesivo
+animaciones complejas
+escalados agresivos
+brillos intensos
+16. Sistema visual ya compactado en reglas concretas
+Dirección madre
+
+UI monocromática clara, compacta y profesional, con sidebar dual, cards suaves, inputs refinados, tablas silenciosas y una jerarquía basada en estructura más que en efectos.
+
+Reglas directas
+Sidebar
+primaria angosta con iconos
+secundaria expandida con texto
+perfil abajo
+CTA contextual dentro
+Inputs
+40–44 px
+borde 1 px suave
+radio 10–12
+icono a la izquierda
+atajo o acción secundaria opcional
+Botones
+máximo 3 estilos visibles
+radios consistentes
+primario muy sobrio
+secundario bordeado
+Cards
+blancas
+borde tenue
+radio 14–16
+sombra mínima
+padding 20–24
+Menús y popups
+muy limpios
+sombra ligera
+radio 14–18
+opciones con icono + label
+Tablas
+encabezado discreto
+filas aireadas
+badges suaves
+sin líneas verticales fuertes
+17. Tokens visuales sugeridos
+Colores
+App bg: #F4F5F7
+Surface: #FFFFFF
+Surface muted: #F8F9FB
+Border: #E7E9EE
+Text primary: #1F2430
+Text secondary: #667085
+Text muted: #98A2B3
+Primary accent: #4F46E5 o #4F8CFF
+Active tint: #EEF2FF
+Radius
+sm: 8
+md: 12
+lg: 16
+xl: 20
+2xl: 24
+Heights
+input: 40
+compact input: 36
+button: 40
+toolbar control: 36–40
+nav item: 40–44
+18. Qué tipo de producto parece pedir este estilo
+
+Este estilo encaja perfecto con sistemas como:
+
+CRM
+ERP liviano
+POS administrativo
+dashboard financiero
+gestión de tareas
+plataforma académica administrativa
+backoffice
+sistema operativo interno multirol
+
+Especialmente si quieres que se vea:
+
+serio
+premium
+actual
+modular
+usable durante muchas horas
+19. Mi síntesis profesional definitiva
+
+Con todas las referencias juntas, tu sistema ya no debería diseñarse como un dashboard genérico.
+Debería diseñarse como un:
+
+“workspace administrativo premium, de estética minimalista y silenciosa, con navegación lateral de dos niveles, superficies limpias, densidad controlada y componentes funcionales sobrios.”
+
+Ese es el centro del lenguaje visual.
+
+20. Qué conviene hacer después
+
+El siguiente paso ideal sería convertir todo esto en uno de estos 3 formatos:
+
+Opción A
+
+Design brief maestro, para definir el estilo global del producto.
+
+Opción B
+
+Sistema de diseño UI técnico, con reglas por componente:
+
+sidebar
+topbar
+inputs
+buttons
+cards
+tables
+modal
+dropdown
+badges
+tabs
+Opción C
+
+Prompt maestro para IA / Figma / Lovable / v0 / Bolt / Cursor, para que cualquier herramienta te genere interfaces coherentes con este estilo.
+
+Te recomiendo pasar ahora a la opción B, porque ya tienes suficientes referencias para fijar una base seria.
+
+
+Para los reportes finales obligatorios quiero que tu al ya conocer la lógica me des las mejores propuestas para generación de reportes por cada rol, sabiendo que los roles que podrán generar reportes son el superadmin y administrativo, ambos podrán realizar los mismos reportes, tomate el tiempo para ordenar tus ideas respondiéndote las mismas interrogantes que planteaste en el punto 10 de reportes finales, y las interrogantes que hagan falta, y proponme 3 soluciones. y aconsejame la mejor.
+
+
+No migraré histórico, el Excel es solo una referencia de como funcinonaba antes mi empresa, muchas de las dudas que tienes sobre este punto ya están definidos en el archivo ADS.
+
+Punto n°12, esto lo realizaré ya en medio de la programación ya que de momento no tengo las plantilla de los documentos terminado, entonces de momento, termina de registrar, pasará a una pantalla para comprobar datos y se confrimará para guardar registro de matricula. lo de generar contrato será ya en el registro, ahí añadiremos esa opción(de momento sin función)
+
+13.Modulo de persona - parte de esta información también está en el archivo ADS, pero para complementar, te mandaré una idea de como estaba creando las tablas, claro está que es un nivel muy básico sin considerar la trazabilidad y demás pero están algunos de los campos básicos que yo quiero que contenga mi sistema, todo estará en la imagen DATA DE PERSONAL. ahora con eso genera la solución exacta para esas interrogantes del punto n°13. 
+
+ 
+CON ESTO RESPONDO A TUS PREGUNTAS. -- > y genérame las respuestas que solicito, y los últimos huecos tras una análisis general. 
+Thought for 9m 40s
+
+Perfecto. Con lo que acabas de responder, varios huecos ya quedan cerrados y otros ya no necesitan preguntarte más porque se pueden resolver con una decisión de diseño sólida.
+
+Voy a devolvértelo ya como definición de sistema, no como lista de dudas.
+
+1. Normalización oficial que te recomiendo dejar cerrada desde ahora
+1.1 Nombres oficiales del catálogo
+
+En el sistema conviene dejar una sola nomenclatura oficial, porque en ADS y en algunos ejemplos aparecen variaciones como Kits / Kids, Pre-Kits / Pre-Kids, Profesional / Especialización.
+
+Nombre oficial que recomiendo usar en sistema
+Nombre oficial	Alias heredados que el sistema puede reconocer
+Kids	Kits
+Pre-Kids	Pre-Kits
+Pre-lectura	PreLectura
+Especialización	Profesional
+Mi recomendación
+
+En base de datos y catálogos internos, usa solo el nombre oficial.
+Los alias heredados solo deben servir para:
+
+búsqueda;
+
+importaciones futuras;
+
+compatibilidad con reportes antiguos.
+
+2. Catálogo maestro de programas ya aterrizado
+2.1 Programas y niveles
+
+Con tu última definición, el catálogo base queda así:
+
+Programa	Nivel comercial	Duración base	Garantía	Total máximo
+Pre-Kids	Nivel 1	3 meses	1 mes	4 meses
+Pre-Kids	Nivel 2	3 meses	1 mes	4 meses
+Kids	Nivel 1	3 meses	1 mes	4 meses
+Kids	Nivel 2	3 meses	1 mes	4 meses
+Kids	Nivel 3	3 meses	1 mes	4 meses
+Pre-lectura	Nivel único / paquete único	3 meses	1 mes	4 meses
+Especialización	Paquete único	6 meses	6 meses	12 meses
+2.2 Mejora técnica importante
+
+No te recomiendo crear dos veces el mismo programa por sede.
+Eso a futuro te va a ensuciar muchísimo el sistema.
+
+Mejor solución
+
+Separar estas tres cosas:
+
+A. Catálogo del programa
+
+Qué es el programa:
+
+nombre;
+
+nivel;
+
+duración;
+
+garantía;
+
+materiales;
+
+estructura pedagógica.
+
+B. Tipos de pago del programa
+
+Qué modalidades admite:
+
+contado;
+
+contado en 2 partes;
+
+plan 2;
+
+plan 3;
+
+plan 6;
+
+plan 9.
+
+C. Tarifario por sede y vigencia
+
+Cuánto cuesta en cada sede y en qué fecha aplica.
+
+Así:
+
+el programa no se duplica;
+
+el precio sí cambia por sede;
+
+la vigencia se controla bien.
+
+3. Solución correcta para precios por sede y vigencia
+
+Esto ya lo dejo como definición recomendada, porque aquí sí hay que diseñarlo bien desde ahora.
+
+3.1 Regla final
+
+Los precios sí se manejan por sede.
+
+3.2 Estructura recomendada
+
+Cada precio no debe vivir pegado al programa “como un solo valor”.
+Debe vivir en una tabla de tarifarios con estos campos mínimos:
+
+programa;
+
+nivel;
+
+tipo de pago;
+
+sede;
+
+moneda;
+
+matrícula;
+
+costo total;
+
+costo por cuota;
+
+cantidad de cuotas;
+
+fecha inicio vigencia;
+
+fecha fin vigencia;
+
+estado.
+
+3.3 Cómo debe funcionar la vigencia
+
+Tu idea está bien, pero te la mejoro técnicamente para que no haya solapamientos.
+
+Regla recomendada
+
+Cuando se crea un nuevo tarifario para el mismo:
+
+programa,
+
+nivel,
+
+tipo de pago,
+
+sede,
+
+moneda,
+
+el sistema debe:
+
+buscar el tarifario vigente actual;
+
+cerrarle la vigencia automáticamente;
+
+crear el nuevo como vigente.
+
+Regla exacta recomendada
+
+Si trabajas con fechas:
+
+fecha_fin del tarifario anterior = día anterior a la fecha_inicio del nuevo.
+
+Si trabajas con fecha y hora:
+
+fecha_fin del anterior = instante inmediatamente anterior al inicio del nuevo.
+
+Por qué así
+
+Porque si ambos empiezan el mismo día sin control técnico, te queda doble vigencia.
+
+3.4 Multi-sede
+
+En UI sí puedes permitir seleccionar:
+
+una sede;
+
+varias sedes;
+
+todas las sedes.
+
+Pero en backend te recomiendo expandir eso a registros individuales por sede.
+Eso simplifica:
+
+reportes;
+
+filtros;
+
+vigencias;
+
+promociones;
+
+auditoría.
+
+4. Lo que encontré sobre materiales y tipos de pago en ADS + Programas.xlsx
+
+He revisado lo que aparece en ADS y en el Excel nuevo. Te lo ordeno así:
+
+4.1 Materiales encontrados
+Pre-Kids Nivel 1
+
+Encontré:
+
+Cuaderno de Diversión N1
+
+Lecturas de Comprensión N1
+
+Flashcards N1
+
+Pre-Kids Nivel 2
+
+Encontré:
+
+Cuaderno de Diversión N2
+
+Lecturas de Comprensión N2
+
+Flashcards N2
+
+Kids Nivel 1
+
+Encontré:
+
+Anillado Kids 1
+
+Paquete 8 libros Kids 1
+
+Maletín
+
+Kids Nivel 2
+
+Encontré:
+
+Anillado Kids 2
+
+Paquete 8 libros Kids 2
+
+Maletín
+
+Velóptico Kids
+
+Kids Nivel 3
+
+Encontré:
+
+Anillado Kids 3
+
+Paquete 8 libros Kids 3
+
+Maletín
+
+Velóptico Kids
+
+Pre-lectura
+
+Encontré:
+
+Anillado PreLectura
+
+Y adicionalmente en el Excel aparece una pista importante:
+
+Maletines para “Todos los Kids, PreLectura y el nivel Profesional”.
+
+Eso me hace pensar que Pre-lectura probablemente también lleva maletín, pero esto sí conviene confirmarlo contigo como cierre final.
+
+Especialización
+
+Encontré en ADS y Excel:
+
+Velóptico 1
+
+Velóptico 2
+
+Velóptico 3
+
+Módulos PRO 1ra etapa
+
+Módulos PRO 2da etapa
+
+Módulos PRO 3ra etapa
+
+Módulos PRO 4ta etapa
+
+Lectura progresiva
+
+Gimnasia ocular
+
+posible maletín
+
+4.2 Mi recomendación de modelado
+
+Especialización no debería manejarse como “un solo bloque de materiales” sin estructura.
+Lo correcto sería:
+
+Comercialmente
+
+Especialización = paquete único
+
+Internamente
+
+4 etapas logísticas
+
+con receta de materiales por etapa
+
+Eso te permite:
+
+entregar por partes;
+
+descontar stock correctamente;
+
+verificar parcial o totalmente;
+
+mantener el programa comercial simple.
+
+4.3 Tipos de pago encontrados
+Tipos de pago / planes encontrados
+
+En ADS y Excel encontré estos:
+
+Contado
+
+Contado en 2 partes
+
+Plan 2
+
+Plan 3
+
+Plan 6
+
+Plan 9
+
+Reglas por programa que hoy sí tienen sentido
+Programa	Tipos de pago recomendados
+Pre-Kids	Contado, Contado en 2 partes, Plan 2
+Kids	Contado, Contado en 2 partes, Plan 2
+Pre-lectura	Contado, Contado en 2 partes, Plan 2
+Especialización	Contado, Contado en 2 partes, Plan 3, Plan 6, Plan 9
+4.4 Costos encontrados en tus materiales
+Pre-Kids / Kids / Pre-lectura
+
+Contado: 500
+
+Contado en 2 partes: 500
+
+Plan 2: 600
+
+Matrícula Plan 2: 300
+
+Cuota Plan 2: 300
+
+Especialización
+
+Contado: 1000
+
+Contado en 2 partes: 1000
+
+Plan 3: 1200 total → 300 matrícula + 3 cuotas de 300
+
+Plan 6: 1400 total → 200 matrícula + 6 cuotas de 200
+
+Plan 9: 1500 total → 150 matrícula + 9 cuotas de 150
+
+4.5 Aclaración importante
+
+Yo esto lo tomo como tarifario base encontrado, pero ya no como precio fijo universal.
+Ahora pasa a ser:
+
+precio por sede
+
+con vigencia
+
+auditable
+
+cambiable solo por nuevo tarifario
+
+5. Solución final para pagos parciales y refinanciación
+
+Aquí ya te propongo la lógica correcta del sistema.
+
+5.1 Pagos parciales
+
+Sí se permiten pagos parciales, pero con reglas claras:
+
+Regla
+
+una cuota puede recibir máximo 2 abonos parciales;
+
+al primer abono, la cuota pasa a estado Parcial;
+
+al segundo abono:
+
+si completa, queda Pagada;
+
+si no completa, ya no puede seguir parcializándose.
+
+5.2 Plazo de parcial
+
+Tu regla operativa dice “aproximadamente una semana”.
+Yo la convertiría en regla de sistema así:
+
+Regla recomendada
+
+plazo máximo de regularización parcial = 7 días calendario
+
+editable solo por Filial o Administración
+
+si excede 7 días, requiere permiso especial o refinanciación
+
+5.3 Aplicación automática del pago
+
+Esto ya queda así:
+
+Regla principal
+
+El sistema aplica automáticamente el pago a la cuota vencida o pendiente más antigua.
+
+Excepción
+
+También habrá pago manual desde el panel de una cuota específica.
+
+5.4 Solución mejorada para el caso donde ni con 2 parciales se completa
+
+Tu idea de “anular la fila y crear otra” la entiendo, pero te propongo una versión mejor, más limpia y más auditable.
+
+Mi solución recomendada: versionado de plan
+
+En vez de borrar o duplicar desordenadamente:
+
+el plan actual se mantiene como versión 1;
+
+la cuota que no logró completarse queda en estado Refinanciada;
+
+las cuotas futuras no vencidas del plan original quedan como Anuladas por refinanciación;
+
+el sistema crea un nuevo cronograma versión 2 desde ese punto;
+
+la deuda arrastrada se redistribuye en nuevas cuotas personalizadas;
+
+se envía alerta al superadmin;
+
+queda historial completo.
+
+Ventaja
+
+Así no “rompes” el historial anterior.
+Solo generas una nueva versión del plan.
+
+5.5 Campos mínimos de una cuota refinanciada
+
+La nueva cuota personalizada debe guardar:
+
+nombre de la cuota;
+
+número de orden;
+
+monto;
+
+fecha de vencimiento;
+
+fecha de creación;
+
+usuario creador;
+
+motivo;
+
+versión de plan;
+
+cuota origen que generó la refinanciación;
+
+aprobación o alerta enviada.
+
+6. Solución óptima para cierres de caja y reaperturas
+
+Aquí te propongo la solución que yo usaría en este sistema para que sea ordenado, útil y no demasiado contable.
+
+6.1 Qué se debe cerrar
+
+El cierre no debe ser “global a todo el sistema”.
+Debe ser por:
+
+empresa
+
+sede
+
+tipo de caja
+
+moneda
+
+período mensual
+
+6.2 Tipos de caja que recomiendo cerrar por separado
+
+Caja matrículas en soles
+
+Caja matrículas en dólares
+
+Caja chica
+
+Stock no se “cierra” como caja; stock se corta por inventario, no por cierre de caja
+
+6.3 Qué significa “cierre”
+
+Cuando una caja se cierra:
+
+ya no se pueden crear movimientos nuevos con fecha dentro de ese período;
+
+ya no se pueden editar movimientos de ese período;
+
+ya no se pueden borrar movimientos de ese período;
+
+solo se puede consultar y reportar.
+
+6.4 Quién debe poder cerrar
+Recomendación
+
+Administración
+
+Superadmin
+
+Filial no debería cerrar directamente.
+Filial puede solicitar revisión o pre-cierre, pero el cierre formal lo hace Administración o Superadmin.
+
+6.5 Quién debe poder reabrir
+Recomendación
+
+solo Superadmin
+
+opcionalmente Administración, si tú le habilitas ese permiso
+
+6.6 Qué pasa si olvidaron registrar un pago de un mes ya cerrado
+
+La mejor solución para este sistema no es inventar ajustes raros si todavía estás en una operación sencilla.
+
+Recomendación
+
+se genera una solicitud de reapertura
+
+se explica motivo
+
+se aprueba
+
+se reabre solo ese período / sede / caja
+
+se registra el movimiento correcto
+
+se vuelve a cerrar
+
+6.7 Qué pasa si un pago estaba mal registrado
+
+No recomiendo editar el historial “como si nada”.
+
+Regla recomendada
+
+si la caja está abierta: se puede reversar y volver a registrar
+
+si la caja está cerrada: se requiere reapertura autorizada
+
+6.8 Reglas de reapertura que te recomiendo
+
+Toda reapertura debe guardar:
+
+usuario solicitante;
+
+motivo;
+
+caja afectada;
+
+período;
+
+usuario aprobador;
+
+fecha y hora de apertura;
+
+fecha y hora de recierre;
+
+cambios realizados durante la reapertura.
+
+6.9 Mi solución definitiva para ENSIL
+
+La que te recomiendo aplicar es esta:
+
+Política propuesta
+
+cierre mensual
+
+por sede + tipo de caja + moneda
+
+cierre ejecutado por Administración o Superadmin
+
+reapertura solo por Superadmin, o Administración con permiso especial
+
+corrección por reversa y nuevo registro
+
+auditoría obligatoria
+
+Esa es la mejor relación entre:
+
+control,
+
+simplicidad,
+
+trazabilidad,
+
+facilidad operativa.
+
+7. Unicidad y validación de comprobantes
+
+Aquí ya nos acercamos a algo bastante cerrado.
+
+7.1 Lo que ya queda definido
+
+no se puede guardar pago sin comprobante;
+
+no se puede guardar pago sin foto;
+
+habrá serie;
+
+habrá número;
+
+no debe haber boleta repetida;
+
+el comprobante es obligatorio siempre.
+
+7.2 Mejora técnica clave
+
+No te recomiendo que la unicidad sea solo por “número de comprobante”.
+
+La regla correcta debería ser
+
+empresa + tipo_comprobante + serie + número
+
+Ese debe ser el índice único.
+
+7.3 Por qué así
+
+Porque si mañana una empresa usa:
+
+dos series distintas,
+
+o cambia de talonario,
+
+o reinicia numeración por serie,
+
+el sistema no colisiona.
+
+7.4 Validación recomendada
+
+El sistema debe validar:
+
+tipo de comprobante;
+
+serie obligatoria;
+
+número obligatorio;
+
+foto obligatoria;
+
+longitud según tipo;
+
+no duplicidad dentro de la empresa.
+
+7.5 Mi recomendación sobre la longitud
+
+Como tú ya definiste una regla interna:
+
+boleta: 8 caracteres
+
+factura: 11 caracteres
+
+yo lo haría parametrizable, no duro en código.
+Así, si más adelante cambias criterio, no toca backend profundo.
+
+8. Máquina de estados corregida y mejorada
+
+Aquí sí te propongo una mejora importante:
+no conviene usar una sola lista de estados para todo.
+
+Lo correcto es separar:
+
+estado de matrícula;
+
+estado del plan;
+
+estado de la cuota.
+
+8.1 Estado de matrícula
+Estado	Significado
+Borrador	Registro aún no confirmado
+Activa	Matrícula confirmada
+Pendiente de verificación	Aún no se ha verificado
+Verificada incompleta	Se verificó pero faltan materiales
+Verificada completa	Se verificó y entregó todo
+Suspendida	El alumno pausa temporalmente
+Cancelada	Se interrumpe sin devolución operativa posterior
+Caída	Desiste y se congela/termina el expediente con lógica de devolución si aplica
+Trasladada	Se movió a otra sede
+Finalizada	Terminó programa
+8.2 Estado del plan / cartera
+Estado	Significado
+Al día	No hay cuotas vencidas
+Con atraso	Tiene una o más cuotas vencidas
+Parcial	Tiene al menos una cuota parcial vigente
+Refinanciado	El cronograma original fue reemplazado por una nueva versión
+Suspendido	El plan está pausado por suspensión del alumno
+Cancelado	Se cierra por abandono o decisión administrativa
+Caído	El plan se cierra por caída
+Finalizado	Todas las cuotas fueron resueltas y el ciclo terminó
+8.3 Estado de la cuota
+Estado	Significado
+Pendiente	Aún no vence y no tiene pago
+Parcial	Tiene 1 o 2 abonos, pero no está completada
+Pagada	Se completó
+Vencida	Pasó la fecha límite sin pago total
+Refinanciada	El saldo pendiente migró a nuevo cronograma
+Anulada por refinanciación	Ya no aplica porque fue reemplazada
+Cancelada por caída	El plan cayó y ya no sigue cobro
+Suspendida	Cobro temporalmente congelado
+8.4 Cuándo cambia de pendiente a vencida
+
+Mi regla recomendada:
+
+a las 00:00 del día siguiente al vencimiento, según zona horaria de la sede.
+
+8.5 Cómo queda tu lógica mejorada
+Caído
+
+Debe ser un estado de matrícula y plan, no solo de cuota.
+
+Suspendido
+
+Debe congelar el plan temporalmente, no destruirlo.
+
+Cancelado
+
+Debe usarse cuando el alumno abandona o se decide cerrar el expediente sin lógica de devolución por caída.
+
+Refinanciado
+
+No debe ser un simple color en una fila.
+Debe crear una nueva versión del cronograma.
+
+9. Promociones configurables ya corregidas
+
+Con todo lo que ya definiste, este bloque queda prácticamente cerrado.
+
+9.1 Promociones MVP
+
+2 Kids por 700
+
+2 Pre-Kids por 700
+
+1 Pre-Kids + 1 Kids por 700
+
+9.2 Reglas ya cerradas
+
+solo aplica una promoción por matrícula individual;
+
+un grupo promocional une a los alumnos elegibles;
+
+esos alumnos quedan bloqueados para otras promociones simultáneas;
+
+el monto total se divide entre los alumnos incluidos;
+
+existe un pago grupal único;
+
+cada matrícula individual conserva su porción del valor;
+
+las promociones pueden coexistir activas;
+
+tienen nombre;
+
+tienen vigencia por fecha;
+
+pueden aplicarse por sede, varias sedes o todas.
+
+9.3 Lo de campaña o período que me preguntaste
+
+Te lo explico claro:
+
+Período
+
+Es solo la vigencia por fechas.
+Ejemplo:
+
+del 01/01/2026 al 31/01/2026
+
+Campaña
+
+Es una etiqueta comercial o administrativa.
+Ejemplo:
+
+“Campaña Escolar 2026”
+
+“Verano 2026”
+
+“Promo Relanzamiento Piura”
+
+9.4 Mi recomendación
+
+Que la promoción tenga ambos campos:
+
+vigencia_desde / vigencia_hasta → sí afecta la aplicación
+
+campaña → solo para orden, filtros y reportes
+
+9.5 Cómo guardar “todas las sedes”
+
+La mejor solución es híbrida:
+
+campo booleano: aplica_a_todas_las_sedes
+
+tabla hija: promocion_sede
+
+Regla
+
+si aplica_a_todas_las_sedes = true → no necesitas filas por sede
+
+si es false → se guardan las sedes específicas
+
+10. Stock completo desde MVP: solución base
+
+Como escogiste la opción C, te propongo esta base.
+
+10.1 Regla madre
+
+El stock no se edita manualmente.
+El stock se mueve por movimientos.
+
+10.2 Catálogo base
+
+materiales
+
+tipo de material
+
+unidad
+
+programa
+
+nivel
+
+receta de entrega
+
+sede / almacén
+
+10.3 Movimientos mínimos
+
+ingreso por compra
+
+ingreso por producción interna
+
+ingreso por transferencia recibida
+
+salida por entrega a matrícula
+
+salida por venta
+
+salida por merma
+
+ajuste positivo
+
+ajuste negativo
+
+traslado entre sedes
+
+devolución
+
+10.4 Flujo recomendado
+Verificación
+
+Si una matrícula se verifica y entrega materiales:
+
+registra la verificación;
+
+descuenta stock;
+
+deja trazabilidad por matrícula y material.
+
+Transferencias
+
+logística solicita o registra traslado;
+
+administración/superadmin aprueba si quieres control;
+
+sede origen despacha;
+
+sede destino recepciona.
+
+10.5 Lo mínimo que sí debe tener el MVP
+
+kardex por material y sede;
+
+stock actual;
+
+alertas de mínimo;
+
+transferencias;
+
+entrega por matrícula;
+
+ajuste con motivo;
+
+historial completo.
+
+11. Matriz total de permisos del sistema
+
+Aquí te la voy a dar ya como propuesta operativa completa.
+Voy a incluir también Superadmin, porque aunque no lo pusiste en la lista corta, sí existe en el diseño y además lo mencionaste para alertas y reportes.
+
+11.1 Roles base
+
+Superadmin
+
+Administración
+
+Filial
+
+Logística
+
+Psicopedagogía
+
+11.2 Inventario total de permisos del sistema
+
+Esta es la lista total que yo considero correcta para tu sistema.
+
+Seguridad y configuración
+
+Ver usuarios
+
+Crear usuarios
+
+Editar usuarios
+
+Desactivar usuarios
+
+Gestionar roles
+
+Gestionar permisos
+
+Ver auditoría
+
+Ver configuración general
+
+Gestionar empresas
+
+Gestionar sedes
+
+Catálogos maestros
+
+Gestionar programas
+
+Gestionar niveles
+
+Gestionar materiales
+
+Gestionar tipos de pago
+
+Gestionar tarifarios
+
+Gestionar promociones
+
+Gestionar orígenes de lead
+
+Gestionar medios de pago
+
+Gestionar tipos de comprobante
+
+Gestionar estados del sistema
+
+Gestionar cargos / áreas
+
+Personas
+
+Ver titulares
+
+Crear titulares
+
+Editar titulares
+
+Ver beneficiarios
+
+Crear beneficiarios
+
+Editar beneficiarios
+
+Detectar/fusionar duplicados
+
+Matrículas
+
+Ver matrículas
+
+Crear borrador de matrícula
+
+Editar borrador
+
+Confirmar matrícula
+
+Editar matrícula confirmada
+
+Anular borrador
+
+Solicitar traslado
+
+Aprobar traslado
+
+Solicitar caída
+
+Aprobar caída
+
+Reactivar matrícula suspendida
+
+Marcar matrícula como suspendida
+
+Planes / cartera
+
+Ver cartera
+
+Registrar pago automático a cuota más antigua
+
+Registrar pago manual sobre cuota específica
+
+Registrar pago parcial
+
+Crear refinanciación
+
+Aprobar refinanciación
+
+Editar fecha de vencimiento
+
+Suspender plan
+
+Cancelar plan
+
+Cerrar plan finalizado
+
+Pagos / caja
+
+Registrar pago
+
+Ver pagos
+
+Reversar pago
+
+Ver caja matrículas
+
+Registrar egreso
+
+Registrar ajuste
+
+Crear lote de depósito
+
+Ver lotes de depósito
+
+Cerrar caja
+
+Reabrir caja
+
+Ver comprobantes
+
+Validar comprobantes observados
+
+Verificación
+
+Ver pendientes de verificación
+
+Ejecutar verificación
+
+Editar verificación abierta
+
+Cerrar verificación
+
+Ver historial de entregas
+
+Stock / logística
+
+Ver stock
+
+Registrar ingreso de stock
+
+Registrar salida de stock
+
+Registrar ajuste de stock
+
+Solicitar transferencia
+
+Aprobar transferencia
+
+Despachar transferencia
+
+Recepcionar transferencia
+
+Ver kardex
+
+Ver alertas de mínimo
+
+Registrar merma o pérdida
+
+Psicopedagogía
+
+Ver expediente psicopedagógico
+
+Registrar diagnóstico
+
+Registrar seguimiento
+
+Registrar observaciones
+
+Programar asesoría
+
+Cerrar caso / seguimiento
+
+Ver trazabilidad académica básica
+
+Personal
+
+Ver personal
+
+Crear personal
+
+Editar personal
+
+Gestionar contratos
+
+Gestionar asignaciones sede/cargo
+
+Desactivar personal
+
+Ver remuneración
+
+Editar remuneración
+
+Reportes
+
+Generar reportes
+
+Exportar reportes
+
+Guardar vistas de reportes
+
+Ver dashboards ejecutivos
+
+11.3 Matriz por rol propuesta
+
+Te la dejo por defecto así:
+
+Leyenda
+
+Sí = permitido por defecto
+
+No = no permitido por defecto
+
+Parcial = lectura o acción limitada
+
+Módulo / Acción	Superadmin	Administración	Filial	Logística	Psicopedagogía
+Usuarios, roles y permisos	Sí	No*	No	No	No
+Empresas y sedes	Sí	Parcial	No	No	No
+Programas, niveles, materiales	Sí	Sí	No	Parcial lectura	Parcial lectura
+Tipos de pago y tarifarios	Sí	Sí	No	No	No
+Promociones	Sí	Sí	No	No	No
+Orígenes de lead / catálogos operativos	Sí	Sí	Parcial	No	No
+Crear/editar titulares y beneficiarios	Sí	Sí	Sí	No	No
+Crear borrador matrícula	Sí	Sí	Sí	No	No
+Confirmar matrícula	Sí	Sí	Sí	No	No
+Editar matrícula confirmada	Sí	Sí	Parcial	No	No
+Solicitar traslado	Sí	Sí	Sí	No	No
+Aprobar traslado	Sí	Sí	No	No	No
+Solicitar caída	Sí	Sí	Sí	No	No
+Aprobar caída	Sí	Sí	No	No	No
+Ver cartera	Sí	Sí	Sí sede propia	No	Parcial lectura
+Registrar pago	Sí	Sí	Sí	No	No
+Registrar pago parcial	Sí	Sí	Sí	No	No
+Crear refinanciación	Sí	Sí	Sí solicitud	No	No
+Aprobar refinanciación	Sí	Sí	No	No	No
+Ver caja	Sí	Sí	Sí sede propia	No	No
+Registrar egreso/ajuste	Sí	Sí	Parcial	No	No
+Cerrar caja	Sí	Sí	No	No	No
+Reabrir caja	Sí	No**	No	No	No
+Ver pendientes de verificación	Sí	Sí	Sí	Sí	Parcial
+Ejecutar verificación	Sí	Sí	Sí	Sí***	No
+Ver historial de entrega	Sí	Sí	Sí	Sí	Parcial
+Ver stock	Sí	Sí	Parcial	Sí	Parcial
+Ingresos/salidas/ajustes stock	Sí	Sí	No	Sí	No
+Solicitar transferencia stock	Sí	Sí	Sí	Sí	No
+Aprobar transferencia stock	Sí	Sí	No	Parcial	No
+Despachar / recepcionar transferencia	Sí	Sí	No	Sí	No
+Ver expediente psicopedagógico	Sí	Sí	Parcial	No	Sí
+Registrar diagnóstico/seguimiento	Sí	Parcial	No	No	Sí
+Ver personal	Sí	Sí	Parcial sede propia	No	No
+Crear/editar personal	Sí	Sí	No	No	No
+Ver remuneración	Sí	Sí	No	No	No
+Generar/exportar reportes	Sí	Sí	No	No	No
+Ver auditoría	Sí	Parcial	No	No	No
+Notas
+
+* Administración puede recibir permisos de usuarios/roles si tú decides, pero por defecto yo lo dejaría solo en Superadmin.
+
+** Reapertura de caja por defecto solo Superadmin. Administración puede recibirla por permiso especial.
+
+*** Logística puede ejecutar verificación solo en la parte de materiales/entrega, no en datos financieros.
+
+12. Diseño high-fidelity
+
+Este punto, con todo lo que me acabas de pasar, ya no lo considero un hueco.
+Lo considero cerrado como design brief maestro.
+
+Mi recomendación es esta:
+
+ya no seguir discutiéndolo a nivel abstracto;
+
+convertirlo en sistema de diseño técnico.
+
+O sea, para mí este punto ahora ya pasó de “pendiente” a “documentado y listo para aterrizar”.
+
+13. Reportes finales obligatorios: 3 soluciones y mi recomendación
+
+Aquí sí me pediste que piense como sistema y te proponga 3 soluciones.
+
+13.1 Qué preguntas hay que responder primero
+
+Antes de escoger solución, ya te respondo las preguntas base:
+
+¿Quién genera reportes?
+
+Superadmin
+
+Administración
+
+¿Quién ve dashboards sin exportar?
+
+Filial
+
+Logística
+
+Psicopedagogía
+
+¿Qué fechas deben gobernar?
+
+No una sola. Deben variar por familia de reporte.
+
+Regla correcta por familia
+Familia	Fecha principal
+Matrículas comerciales	Fecha de matrícula
+Auditoría operativa	Fecha de registro
+Cartera	Fecha de vencimiento
+Pagos	Fecha de pago
+Verificación	Fecha de verificación
+Stock	Fecha de movimiento
+Personal	Fecha de contrato / asignación
+13.2 Solución 1: Centro de reportes fijos
+Qué es
+
+Un módulo con reportes ya predefinidos, filtros estándar y exportación.
+
+Reportes recomendados
+Comerciales / matrícula
+
+Matrículas por sede
+
+Matrículas por programa y nivel
+
+Matrículas por tipo de pago
+
+Matrículas por origen de lead
+
+Matrículas por promoción aplicada
+
+Traslados
+
+Caídas / cancelaciones / suspensiones
+
+Cartera
+
+Cuotas por vencer
+
+Cuotas vencidas
+
+Pagos parciales
+
+Planes refinanciados
+
+Cartera por sede
+
+Cartera por programa
+
+Antigüedad de deuda
+
+Caja
+
+Ingresos por sede y moneda
+
+Egresos por sede y moneda
+
+Resumen mensual por caja
+
+Lotes de depósito
+
+Cajas reabiertas
+
+Pagos reversados
+
+Verificación
+
+Matrículas pendientes de verificación
+
+Verificaciones incompletas
+
+Verificaciones completas
+
+Entregas por verificador
+
+Stock
+
+Stock actual por sede
+
+Kardex por material
+
+Transferencias entre sedes
+
+Material entregado por programa
+
+Mermas y ajustes
+
+Stock mínimo / alertas
+
+Personal
+
+Personal activo por sede
+
+Contratos próximos a vencer
+
+Asignaciones por cargo
+
+Resumen remunerativo
+
+Auditoría
+
+Cambios críticos
+
+Caídas aprobadas
+
+Refinanciaciones creadas
+
+Reaperturas de caja
+
+Cambios de tarifario y promociones
+
+Pros
+
+fácil de usar;
+
+rápido de desarrollar;
+
+menos riesgo.
+
+Contras
+
+poca flexibilidad.
+
+13.3 Solución 2: Constructor flexible de reportes
+Qué es
+
+Un módulo tipo builder donde Superadmin y Administración eligen:
+
+módulo;
+
+columnas;
+
+filtros;
+
+agrupaciones;
+
+exportación.
+
+Pros
+
+muy flexible;
+
+potente a futuro.
+
+Contras
+
+más caro y más lento de desarrollar;
+
+más riesgo de complejidad;
+
+más mantenimiento.
+
+13.4 Solución 3: Híbrida
+Qué es
+
+Combinar:
+
+reportes fijos obligatorios
+
+más un “reporte personalizable” para Superadmin y Administración
+
+Mi recomendación
+
+Esta es la mejor solución para ENSIL.
+
+Cómo la implementaría
+Nivel 1
+
+Reportes fijos obligatorios para operación diaria.
+
+Nivel 2
+
+Un reporte avanzado configurable solo para:
+
+Superadmin
+
+Administración
+
+Con estas funciones:
+
+elegir familia de datos;
+
+seleccionar filtros;
+
+seleccionar columnas;
+
+guardar vista;
+
+exportar a Excel/PDF.
+
+Por qué esta es la mejor
+
+Porque te da:
+
+orden en el MVP;
+
+utilidad inmediata;
+
+escalabilidad sin sobrediseño.
+
+14. Módulo de personal: solución exacta
+
+Aquí sí te doy la estructura correcta.
+El error del Excel viejo es que mezcla en una misma fila:
+
+datos personales,
+
+sede,
+
+cargo,
+
+contrato,
+
+pensión,
+
+remuneración,
+
+vacaciones.
+
+Eso para operar rápido sirve, pero para sistema no.
+
+14.1 Solución correcta
+
+Separar el módulo de personal en 4 entidades.
+
+A. Persona
+
+Datos permanentes del trabajador:
+
+DNI
+
+nombres y apellidos
+
+fecha de nacimiento
+
+edad calculada
+
+género
+
+estado civil
+
+hijos sí/no
+
+número de hijos dependientes
+
+grado de instrucción
+
+profesión
+
+dirección
+
+celular
+
+correo
+
+estado activo/inactivo
+
+B. Empleado
+
+Vincula a la persona con ENSIL:
+
+código interno de empleado
+
+fecha de ingreso a empresa
+
+estado laboral
+
+observaciones
+
+C. Asignación
+
+Permite que una misma persona tenga más de una función o cambie de sede/cargo.
+
+Campos:
+
+empleado
+
+sede
+
+cargo
+
+área
+
+rol del sistema
+
+fecha inicio
+
+fecha fin
+
+asignación principal sí/no
+
+estado
+
+Esto es clave porque en tu propio Excel aparece una misma persona repetida con cargos distintos.
+
+D. Contrato
+
+Historial contractual:
+
+tipo de contrato
+
+fecha ingreso según último contrato
+
+fecha de cese bajo último contrato
+
+fecha de renuncia
+
+full time / part time
+
+AFP / ONP / RH
+
+fondo seleccionado
+
+remuneración bruta
+
+aporte
+
+remuneración neta
+
+vacaciones inicio
+
+vacaciones retorno
+
+estado del contrato
+
+14.2 Qué debe permitir el módulo
+Administración / Superadmin
+
+crear personal
+
+editar personal
+
+registrar contratos
+
+cerrar contratos
+
+cambiar asignaciones
+
+ver remuneración
+
+ver historial
+
+Filial
+
+ver personal asignado a su sede
+
+no editar remuneración
+
+no editar contratos
+
+Psicopedagogía / Logística
+
+no gestionar personal
+
+solo visualizar si alguna funcionalidad lo necesita
+
+14.3 Mi recomendación final para este módulo
+
+En el MVP:
+
+sí entra personal;
+
+pero entra como módulo administrativo medio, no como RRHH completo.
+
+O sea:
+
+sí datos personales;
+
+sí contratos;
+
+sí asignaciones;
+
+sí remuneración resumen;
+
+no nómina avanzada;
+
+no cálculo laboral complejo;
+
+no planillas automáticas.
+
+15. Lo que ya considero resuelto con tus respuestas
+
+Con todo lo que acabas de responder, yo ya daría por cerrados estos puntos:
+
+programas oficiales;
+
+niveles oficiales;
+
+duración y garantía;
+
+precios por sede;
+
+vigencia de tarifarios;
+
+promociones MVP;
+
+promociones por sede;
+
+pagos parciales;
+
+límite de 2 parciales;
+
+refinanciación como necesidad real;
+
+stock completo desde MVP;
+
+obligatoriedad de comprobante;
+
+obligatoriedad de foto;
+
+unicidad por empresa + serie + número;
+
+reportes solo por Superadmin y Administración;
+
+generación documental avanzada se posterga;
+
+no habrá migración histórica.
+
+16. Últimos huecos reales después de este análisis general
+
+Ahora sí te digo los últimos huecos reales que me quedan viendo todo el panorama.
+
+16.1 Confirmar receta exacta final de materiales para Pre-lectura
+
+Lo que tengo encontrado:
+
+anillado prelectura
+
+posiblemente maletín
+
+Lo que falta cerrar:
+
+si lleva algo más;
+
+si efectivamente maletín aplica siempre.
+
+16.2 Confirmar receta exacta final de Especialización
+
+Encontré bastante, pero todavía conviene cerrar exactamente:
+
+si el maletín sí aplica;
+
+si lectura progresiva y gimnasia ocular son obligatorios siempre;
+
+si velópticos 1, 2 y 3 se entregan por etapa;
+
+si módulos pro se controlan por etapa o como set.
+
+16.3 Confirmar si Especialización mantiene “Contado en 2 partes”
+
+En el Excel y rastros del ADS aparece, pero conviene que me lo cierres explícitamente para no dejarlo como inferencia.
+
+16.4 Política de devolución para matrícula en estado “Caído”
+
+Ya entendí bien el concepto, pero falta definir la regla concreta:
+
+devolución total o parcial;
+
+quién la aprueba;
+
+si genera egreso de caja;
+
+si requiere motivo documentado;
+
+si hay fecha límite para pedir devolución.
+
+16.5 Definir si Administración puede o no gestionar usuarios/permisos
+
+Mi recomendación es:
+
+Superadmin: sí
+
+Administración: no por defecto, salvo permiso especial
+
+Pero eso todavía conviene confirmarlo como decisión.
+
+16.6 Alcance exacto del módulo psicopedagógico
+
+Ya sé que existirá el rol, pero falta cerrar si el módulo incluirá:
+
+solo diagnóstico y observaciones;
+
+o también seguimientos;
+
+o también programación de asesorías;
+
+o también indicadores de evolución.
+
+16.7 Catálogo final de sedes y empresas
+
+Necesario para:
+
+tarifarios;
+
+promociones;
+
+unicidad de comprobantes;
+
+reportes;
+
+cierres.
+
+16.8 Numeraciones internas
+
+Falta cerrar numeración de:
+
+expediente;
+
+matrícula;
+
+lote de depósito;
+
+transferencia de stock;
+
+solicitud de aprobación.
+
+17. Mi cierre profesional
+
+Con lo que acabas de responder, el sistema ya no está en fase de “entender la idea”.
+Ya está en fase de cerrar reglas finas y pasar a especificación definitiva.
+
+Mi lectura hoy es esta:
+
+Ya suficientemente maduro para pasar a:
+
+documento final de reglas de negocio;
+
+modelo físico de base de datos corregido;
+
+matriz de permisos formal;
+
+backlog técnico por módulos.
+
+Antes de codificar fuerte todavía conviene cerrar:
+
+receta final de materiales de Pre-lectura;
+
+receta final de Especialización;
+
+contado 2 partes en Especialización;
+
+política de devolución del estado caído;
+
+alcance final del módulo psicopedagógico;
+
+catálogo formal de sedes y empresas.
+
+El siguiente paso correcto ya no es seguir discutiendo ideas sueltas.
+El siguiente paso correcto es que yo te convierta todo esto en un documento maestro final de reglas de negocio cerradas, ya listo para Antigravity y para que la IA programe con contexto consistente.
+
+INSTRUCCION Y SUGERENCIAS BASE_LANDING.docx
+Documento
+INFORME SEMANAL ENSIL KIDS Y PREKIDS MISS MARIA PUNO FEBRERODICIEMBRE
+INFORME SEMANAL 20 DE MARZO MISS LILY20 DE MARZO
+16.1- Es todo lo que lleva pre lectura. 16.2- Sobre las etapas y el veloptico, el material de espacialización o profecional(cualquiera de las dos está bien) es un paquete solo, para las 4 etapas del profesional se usan los 3 velopticos 1, 2 y 3, no son 3 velopticos por etapa es un juego para las 4 etapas. 16.3- SI mantiene. 16.4- solo se marca la devolución COMO CAIDO, si es completa o parcial se dejará en un comentario QUE EXPLIQUE EL ESTADO, ya que se maneja de manera externa al sistema. y únicamente se tiene que aprobar por el superadmin(en ese tramo de aprobar la peticion de cambio de estado a CAIDO, se inhabilita el cambio de estado hasta q el superadmin apecte la petición, y una vez q se pasa a caído el de la sede no lo puede volver a habilitar solo el superadmin) deja esta logica definitiva hasta dejarla sin incosnsitencias. 16.5- Sigo tu recomendación. 16.6- Ya que solo será una cuenta de psicopedagogía por sede, esta tendrá el listado de todos sus alumnos, y la posibilidad de hacer seguimiento a los entrenamientos y demás datos que analizando el excel que te voy a enviar quiero que tu mismo definas la logica y funcionalidades que debería de tener si o si. Te explico que lleva los excel, este sería como un tipo de informe que tu generarias en el sistema pero los datos lo llenan la psicopedagoga cada fin de semana, claro que cada programa lleva un seguimiento distinto, cada alumno tiene que programar una sita, eso se hace desde el usuario de cada filial, ahí tiene que haber una sección en la que se programan citas semanales para cada alumno y tambien los cronogramas de actividades de cada mes los cuales son los que estan en la imagen que te comparto(IMAGENI DE UN EXCEL CON UN TITULO AMARILLO QUE DICE ERES ILIMITADO-ese titulo tambien es editable al creal el cronograma del mes) ese cuadro se genera cada mes, y tiene que haber una opcion para crear ese cuadro para cada mes, con los campos que salen ahí(la imagen de cronograma de actividades), esto estará en una seccion de PROGRAMACIÓN y solo tine acceso el usuario de psicopedagogia de cada filial, donde tendrá un boton para exportar el cuadro tal cual como en la imagen, complementa la lógica hasta dejarla sin inconsistencias, muy aparte del cuadro volviendo con la programación de clases, como verá en el excel, en cualquier cuadro ya sea de profesional kids o prekids, hay un número(lo que será un código de alumno en el sistema) el dato de alumno, la fecha de inicio(esta sería la misma de la primera asesoría o la primera clase programada por el alumno) luego está la fecha de asistencia y luego la columna NIVEL (pero esta está solo en Kids y prekids debido a que profesional no cuenta con niveles(por que se adquiere en la matrícula como un solo programa completo de 20 modulos, no tiene niveles como kids 1 2 3 o 4), en el profesional no se coloca esta columna, luego sigue la fecha de asistencia, aqui viene los campos que se van a rellenar semana tras semana  según la cantidad de clases que tenga el alumno en la semana y será los campos que llenarán, ojo que son los mismos campos para cada clase y lo normal es que sea solo una clase programada por semana, aunque hay casos de algunas filiales que reservan hasta 2 o 3 veces por semana, de igual manera solo aparecerá en el usuario de psicopedagogia para llenar los datos de los alumnos que han reservado si asesoría previamente. entonces a la miss le aparecerá en su cuadro para llenar datos, en el espacio del alumno NO RESERVÓ, y esto se le colocará en cada campo, si el alumno reserva y no llega ese día y esa hora de su reservación entonces solo aparecerá FALTÓ, entonces así funcionará hasta la columna fecha de asistencia, siguiendo con el resto de campos por programa, en Profesional los siguientes campos serían: MÓDULO(n° del modulo en el que se encuentra) luego la velocidad que tuvo en esa clase, que se expresa en pxm(palabras por minuto) y siguiendo con la ultima columna sería COMP(comprensión y se mide en porcentajes). en Kids la tres columnas siguientes es SESIÓN(que es el equivalente de modulos en el profesional) y esta tiene las mismas dos columnas para llenar que son Velocidad y Comprensión. en prekids la columna que sigue sería SEMANA y depsuesta estan dos preguntas ¿IDENTIFICA?, ESTO SE RESPONDE ENTRE LA SIGUIENTES OPCIONES FIJAS SI/NO/50% al igual que la ultima columna que es otra pregunta ¿LEE SOLO?, para que tengas más clara la idea te compartí los excel de donde saco esta info, que tambien sería una forma en la que generarias los reportes y con la opcion de exportar a un excel. COMPLETA LA LOGICA ANALISANDO TODOS LOS PROCESOS QUE TE DIJE Y DALE LA MEJOR SOLUCION Y LLENA O CORRIGE INCONSISTENCIAS de la manera más optima.  16.7 . Te mandÉ EN UN DOCUMENTO DE WORD LAS FILIALES. 16.8- LA NUMERACIÓN SERÁ DESDE 000001(registros de matrículas), para todos los identificadores igual será desde 0, y el registro historico será solo considerando a los alumnos que actualmente cuentan con su matricula vigente aunque no estén asistiendo Y SE INSERTARÁ MEDIANTE UN INSERT DE DATOS EN LA PLATAFORMA SUPABASE al igual que los stocks, a menos que propongas una mejor manera de hacer la transferencia de datos de stock matriculas alumnos padres, trabajadores etc etc.
+Memoria guardada actualizada
+Thought for 2m 26s
+
+Perfecto. Con lo último que me acabas de responder, ya puedo dejar gran parte del sistema en estado casi definitivo.
+
+Voy a hacer 6 cosas en esta respuesta:
+
+cerrar lo que ya queda resuelto;
+
+darte la lógica final de “caído” sin inconsistencias;
+
+darte la solución completa del módulo de psicopedagogía y programación;
+
+cerrar empresa, filiales y comprobantes;
+
+proponerte la mejor forma de numeración y carga inicial de datos;
+
+decirte cuáles son los últimos huecos reales que todavía quedan.
+
+1. Lo que ya doy por cerrado
+Programas y niveles
+
+Tomo como regla vigente tu último mensaje, por encima de nombres o rastros anteriores en ADS o Excel. Internamente, el sistema debe normalizar nombres y trabajar con una sola nomenclatura oficial. El material institucional anterior ya confirmaba la estructura de Kids con tres niveles y Profesional como programa continuo, aunque ahora la regla oficial del sistema pasa a ser la que tú acabas de definir.
+
+Catálogo oficial
+
+Kids → Nivel 1, Nivel 2, Nivel 3
+
+Pre-Kids → Nivel 1, Nivel 2
+
+Pre-lectura → Nivel único
+
+Especialización → paquete único
+
+Duración y garantía
+
+La primera estructura del negocio ya apuntaba a programas con avance por metas y primera asesoría posterior a matrícula; con tu última indicación, la regla final del sistema queda así: Kids, Pre-Kids y Pre-lectura trabajan con 3 meses base + 1 mes de garantía; Especialización trabaja con 6 meses base + 6 meses de garantía.
+
+Materiales
+
+La documentación de negocio ya confirmaba maletín, materiales de Pre-Kids, material Kids, y Profesional con 20 módulos, lectura progresiva y gimnasia ocular. ADS además ya había dejado la lógica de verificación por materiales y actualización posterior sin borrar histórico. Con tu última aclaración, el cierre correcto es este: Pre-lectura lleva solo lo que me acabas de confirmar; Especialización usa un solo paquete general, y los tres velópticos no se repiten por etapa, sino que sirven para las cuatro etapas completas.
+
+Tipos de pago
+
+ADS y Programas.xlsx convergen en una misma base: contado, contado en 2 partes, Plan 2, Plan 3, Plan 6 y Plan 9; además ADS ya había distinguido correctamente que el contado en 2 partes no es promoción y que los planes se comportan con intervalos de 30 días exactos, mientras que el contado en 2 partes usa fechas propuestas al momento de matrícula.
+
+Precios por sede con vigencia
+
+La solución correcta queda así:
+
+el programa no se duplica por sede;
+
+lo que varía por sede es el tarifario vigente;
+
+el tarifario se define por programa + nivel + tipo de pago + sede + vigencia;
+
+cuando nace un nuevo tarifario para el mismo combo, el sistema cierra automáticamente el anterior.
+
+Eso es consistente con la lógica de catálogos, vigencias y snapshots que ya estaba planteada en ADS.
+
+Promociones
+
+Ya quedan cerradas las tres promociones MVP que definiste, y ADS ya venía empujando una lógica de promociones configurables, con vigencia y pago único grupal. La implementación correcta sigue siendo esta:
+
+grupo promocional;
+
+un solo pago;
+
+reparto interno entre matrículas;
+
+una matrícula no puede pertenecer a dos promociones al mismo tiempo;
+
+si el UX “une” dos alumnos en promoción, esos dos quedan bloqueados para otra promo mientras esa selección siga activa.
+
+2. Lógica final del estado “Caído”
+
+Este punto sí había que dejarlo fino, porque aquí se mezclan estado, cartera, permisos y devolución.
+
+Mi propuesta final, ya corregida para ENSIL
+2.1 Qué es “Caído”
+
+Caído es un estado terminal de matrícula y plan.
+No es solo un comentario ni un color en la tabla. Significa que:
+
+la matrícula deja de operar;
+
+el plan deja de generar seguimiento activo;
+
+el alumno deja de figurar como activo en la operación diaria;
+
+la cartera queda congelada;
+
+el historial se conserva completo;
+
+la devolución, si existió, se explica en comentario, porque se resuelve fuera del sistema.
+
+2.2 Cómo se activa
+
+Ningún usuario de sede puede cambiar directamente a caído.
+
+Flujo correcto
+
+Filial o Administración solicita cambio a Caído.
+
+Desde ese momento, el botón de cambio de estado queda bloqueado.
+
+La solicitud entra a bandeja de aprobación.
+
+Solo Superadmin puede aprobar o rechazar.
+
+Si aprueba:
+
+matrícula = caído
+
+plan = caído
+
+cuotas futuras = canceladas por caída
+
+alumno operativo = inactivo
+
+historial = intacto
+
+Si rechaza:
+
+el registro vuelve a su estado previo.
+
+2.3 Qué pasa con los pagos ya registrados
+
+No se borran. Nunca.
+Quedan en el historial como parte de la trazabilidad del caso.
+
+2.4 Qué pasa con la devolución
+
+La regla final que tú definiste me parece correcta para el MVP:
+
+el sistema no calcula devolución;
+
+el sistema no liquida devolución;
+
+el sistema solo guarda:
+
+que el caso terminó en caído;
+
+comentario explicativo;
+
+usuario solicitante;
+
+usuario aprobador;
+
+fecha de solicitud;
+
+fecha de aprobación.
+
+2.5 Qué pasa después
+
+Una matrícula en estado caído:
+
+no puede registrar nuevos pagos;
+
+no puede programar asesorías;
+
+no puede registrar nuevas verificaciones;
+
+no puede volver a activarse desde sede;
+
+solo Superadmin puede reabrir o restaurar, mediante acción especial auditada.
+
+2.6 Estado recomendado de las cuotas cuando hay caída
+
+No conviene que todas queden simplemente “caídas”.
+La solución más limpia es:
+
+cuota pagada → se mantiene pagada
+
+cuota parcial → se mantiene parcial, con plan caído
+
+cuotas pendientes futuras → canceladas por caída
+
+Eso te deja mejor lectura histórica que poner todo en una sola bolsa.
+
+2.7 Campos mínimos de la solicitud de caída
+
+matrícula
+
+plan asociado
+
+motivo
+
+comentario libre
+
+indica si hubo devolución externa: sí/no
+
+detalle de devolución en comentario
+
+solicitante
+
+fecha de solicitud
+
+aprobador
+
+fecha de aprobación
+
+estado de solicitud: pendiente / aprobada / rechazada
+
+Con eso, este bloque queda coherente y sin contradicción con tu flujo. ADS ya exigía que caída sacara al registro de planes activos y que el control fuerte recayera en permisos y auditoría.
+
+3. Solución completa del módulo de Psicopedagogía
+
+Este punto ya merece módulo propio, no un “extra”.
+Por lo que me describiste y por lo que aparece en el material institucional, la psicopedagogía en ENSIL no es solo observación académica: también articula primera asesoría, seguimiento por sesión, avance por metas, inasistencias, programación semanal y cronograma mensual. La documentación institucional además ya habla de primera asesoría, evaluación por psicopedagoga y reportes a padres.
+
+3.1 Rol del usuario de psicopedagogía
+
+Habrá una cuenta de psicopedagogía por sede.
+Su alcance debe quedar así:
+
+Puede:
+
+ver todos los alumnos activos de su sede;
+
+ver su programa, nivel y estado;
+
+ver primera asesoría pendiente;
+
+registrar seguimiento de clases;
+
+llenar reportes semanales;
+
+crear y exportar cronograma mensual;
+
+ver historial psicopedagógico;
+
+marcar reservado / no reservó / faltó / atendido;
+
+evaluar avance y continuidad;
+
+programar o reprogramar actividades internas del área.
+
+No puede:
+
+cambiar pagos;
+
+aprobar caídas;
+
+editar tarifarios;
+
+modificar comprobantes;
+
+tocar caja;
+
+cerrar caja.
+
+3.2 Estructura del módulo
+
+Yo lo dividiría en 4 submódulos:
+
+A. Panel de alumnos
+
+Lista general de alumnos de la sede con filtros por:
+
+programa
+
+nivel
+
+psicopedagoga
+
+estado de matrícula
+
+estado de asistencia
+
+primera asesoría pendiente
+
+próxima cita
+
+faltas recientes
+
+sin reserva de la semana
+
+B. Programación
+
+Aquí vive todo lo que tú describiste de citas y cronogramas.
+
+Debe incluir:
+
+programación semanal de asesorías por alumno;
+
+vista calendario;
+
+vista lista de reservas;
+
+creación de cronograma mensual;
+
+exportación del cronograma mensual.
+
+C. Seguimiento
+
+Aquí se llena el avance real de cada alumno por sesión.
+
+Debe incluir:
+
+ficha del alumno;
+
+historial de asistencias;
+
+registros por clase;
+
+métricas por programa;
+
+observaciones semanales.
+
+D. Reportes
+
+Debe permitir exportar:
+
+reporte semanal por programa;
+
+reporte mensual por sede;
+
+cronograma mensual visual;
+
+historial individual del alumno.
+
+3.3 Programación de asesorías
+
+Aquí la lógica correcta debe ser así:
+
+3.3.1 Quién programa la cita
+
+Tú dijiste que la cita semanal del alumno se programa desde el usuario de Filial.
+Eso me parece correcto.
+
+3.3.2 Qué ve psicopedagogía
+
+Psicopedagogía no “crea desde cero” todas las reservas del alumno.
+Lo correcto es que vea:
+
+reservas ya hechas por Filial;
+
+primera asesoría asignada;
+
+reprogramaciones;
+
+huecos disponibles.
+
+3.3.3 Estados de reserva recomendados
+
+Reservado
+
+Confirmado
+
+Asistió
+
+Faltó
+
+No reservó
+
+Reprogramado
+
+Cancelado por sede
+
+Cancelado por alumno
+
+3.3.4 Regla semanal
+
+La regla general será:
+
+lo normal = 1 clase por semana
+
+permitido = 2 o 3, si sede lo programa
+
+Entonces el sistema no debe forzar una sola clase semanal, sino permitir varias instancias por semana.
+
+3.4 Lógica del llenado semanal
+
+Aquí está la parte más delicada y ya te la dejo armada.
+
+Regla general
+
+El sistema no debe obligar a la miss a crear registros vacíos manuales para todos.
+Lo correcto es esto:
+
+Cada semana, por alumno, se generan “slots” de seguimiento según la reserva
+
+Si no reservó:
+
+el registro de esa semana muestra NO RESERVÓ
+
+Si reservó y no asistió:
+
+el registro muestra FALTÓ
+
+Si asistió:
+
+la miss llena las métricas correspondientes.
+
+Eso evita desorden y respeta tu operación real.
+
+3.5 Plantillas de seguimiento por programa
+A. Especialización
+
+Campos por registro de clase:
+
+fecha de asistencia
+
+módulo
+
+velocidad (pxm)
+
+comprensión (%)
+
+observación
+
+estado de asistencia
+
+B. Kids
+
+Campos por registro de clase:
+
+fecha de asistencia
+
+nivel
+
+sesión
+
+velocidad (pxm)
+
+comprensión (%)
+
+observación
+
+estado de asistencia
+
+C. Pre-Kids
+
+Campos por registro de clase:
+
+fecha de asistencia
+
+nivel
+
+semana
+
+identifica: sí / no / 50%
+
+lee solo: sí / no / 50%
+
+observación
+
+estado de asistencia
+
+D. Pre-lectura
+
+Como no me diste aún una planilla equivalente tan detallada, la solución óptima es:
+
+tratarlo como programa de seguimiento psicopedagógico liviano;
+
+usar estructura cercana a Pre-Kids pero con plantilla propia configurable.
+
+Mi recomendación concreta:
+
+fecha de asistencia
+
+semana o sesión
+
+reconoce / responde / avanza
+
+observación
+
+estado de asistencia
+
+Y luego, cuando cierres el formato pedagógico final, se ajusta la plantilla sin romper el modelo.
+
+3.6 Primera asesoría
+
+Este punto sí debe existir como objeto propio, no solo como “la primera clase”.
+
+La documentación institucional ya la trata como un evento especial con presencia del apoderado, explicación de metodología, materiales y uso del programa.
+
+Por eso recomiendo:
+
+primera_asesoria como entidad separada, con:
+
+matrícula
+
+fecha programada
+
+fecha realizada
+
+asistieron apoderado y alumno: sí/no
+
+psicopedagoga
+
+se explicó metodología: sí/no
+
+se explicó uso de materiales: sí/no
+
+observaciones
+
+estado
+
+3.7 Cronograma mensual
+
+La imagen que me compartiste y tu explicación dejan claro que esto no es solo una agenda: es un cuadro oficial mensual del área.
+
+Debe tener:
+
+sede
+
+mes
+
+año
+
+título editable
+
+bloques por actividad
+
+horario
+
+responsable
+
+exportación visual
+
+Actividades mínimas que debe soportar
+
+maratones
+
+campo visual
+
+ortografía
+
+nivel de páginas
+
+taller de alumnos
+
+otras personalizadas
+
+Mi recomendación técnica
+
+No lo guardes como una imagen ni como una sola celda gigante.
+Guárdalo en dos capas:
+
+capa 1: cabecera del cronograma
+
+sede
+
+mes
+
+año
+
+título principal
+
+estado
+
+capa 2: detalle de ítems
+
+tipo de actividad
+
+fecha
+
+hora
+
+turno
+
+responsable
+
+observación
+
+orden visual
+
+Así luego puedes:
+
+editar
+
+reordenar
+
+exportar
+
+imprimir
+
+Exportación
+
+El usuario de psicopedagogía debe tener:
+
+botón Exportar cronograma
+
+salida en PDF
+
+y opcionalmente imagen
+
+Tu idea de que se vea “tal cual el cuadro” está bien.
+La mejor solución es generar una vista imprimible HTML/PDF con plantilla fija.
+
+3.8 Reporte semanal psicopedagógico
+
+Aquí sí te propongo formalizarlo.
+
+Debe poder salir en tres niveles
+Nivel 1: individual
+
+Historial de un alumno:
+
+fechas
+
+asistencia
+
+sesión/módulo/semana
+
+métricas
+
+observaciones
+
+Nivel 2: por programa y sede
+
+Kids
+
+Pre-Kids
+
+Especialización
+
+Pre-lectura
+
+Nivel 3: resumen ejecutivo semanal
+
+alumnos atendidos
+
+alumnos que faltaron
+
+alumnos que no reservaron
+
+alumnos con primera asesoría pendiente
+
+promedio de velocidad/comprensión por programa
+
+observaciones destacadas
+
+3.9 Reporte a padres / uso interno
+
+No te recomiendo mezclar desde el inicio:
+
+reporte técnico interno,
+
+y reporte bonito para padres.
+
+Solución óptima
+
+Primero implementa:
+
+reporte técnico interno
+
+exportable a Excel
+
+Después implementas:
+
+ficha visual para padres
+
+3.10 Tabla mínima que debe existir para esto
+
+Te la doy de forma conceptual:
+
+programaciones_asesoria
+
+cronogramas_mensuales
+
+cronograma_items
+
+seguimientos_clase
+
+primeras_asesorias
+
+seguimiento_observaciones
+
+psicopedagoga_sede
+
+agenda_disponibilidad_psicopedagogia
+
+4. Empresas, filiales y comprobantes
+4.1 Empresa y sedes
+
+Con la tabla que me compartiste y el documento de filiales, el sistema debe separar claramente:
+
+empresa legal
+
+filial operativa
+
+El documento de filiales ya lista las sedes operativas y sus datos base, mientras que ADS ya exigía guardar snapshots de empresa y sede al momento de matrícula o movimiento, para que el pasado no cambie si luego reordenas razones sociales o asignaciones.
+
+4.2 Modelo correcto
+
+empresas
+
+filiales
+
+filial_empresa_historica si quieres trazabilidad avanzada
+
+snapshots en matrícula, pago, caja y comprobante
+
+4.3 Comprobante
+
+Tu decisión final es correcta, pero la dejo formalizada:
+
+índice único recomendado
+
+empresa + tipo_comprobante + serie + número
+
+Eso impide duplicados reales sin pelearte con numeraciones que se repiten entre empresas. ADS ya venía apuntando a que el comprobante debía guardarse con tipo, número y evidencia, y ahora tú ya cerraste además serie, foto obligatoria y obligatoriedad total.
+
+4.4 Foto obligatoria
+
+Queda como validación dura:
+
+no se registra pago sin comprobante;
+
+no se registra pago sin foto.
+
+5. Numeración y carga inicial de datos
+5.1 Numeración
+
+Tu criterio de empezar todo desde 000001 es correcto, pero no lo haría con inserts manuales “armados a mano” registro por registro.
+
+Mejor solución
+
+Usar:
+
+secuencia interna numérica
+
+y un código visible formateado con LPAD
+
+Ejemplo:
+
+id interno = 1
+
+código visible = 000001
+
+Esto aplica a:
+
+matrícula
+
+expediente
+
+solicitud de caída
+
+lote de depósito
+
+transferencia de stock
+
+solicitud de aprobación
+
+cronograma mensual
+
+reserva de asesoría
+
+5.2 No recomiendo usar el código visible como PK
+
+La clave primaria debe ser:
+
+bigint o uuid interno
+
+Y el correlativo visible debe ser:
+
+campo calculado o materializado
+
+Por qué
+
+Porque si mañana cambias formato, prefijo o lógica, no rompes relaciones.
+
+5.3 Carga inicial de datos
+
+Tú planteaste hacer INSERT directo a Supabase con datos vigentes.
+Eso funciona, pero para tu caso yo te recomiendo algo mejor.
+
+Solución recomendada: migración por staging
+
+En vez de cargar directo a tablas finales:
+
+Paso 1
+
+Subes datos a tablas staging:
+
+staging_alumnos
+
+staging_titulares
+
+staging_matriculas
+
+staging_stock
+
+staging_personal
+
+Paso 2
+
+Ejecutas scripts de normalización:
+
+limpieza de nombres
+
+unificación de sede
+
+detección de duplicados
+
+mapeo de programa y nivel
+
+validación de DNI/teléfono
+
+relaciones padre/alumno
+
+Paso 3
+
+Insertas a tablas finales con script controlado
+
+Ventajas
+
+puedes revisar errores antes;
+
+no contaminas tablas productivas;
+
+te deja auditar qué se importó y qué no.
+
+5.4 Mi recomendación exacta
+
+Para tu proyecto:
+
+sí importa solo vigentes
+
+sí importa stock vigente
+
+sí importa personal vigente
+
+no migraría histórico completo
+
+sí haría staging antes del insert final
+
+Eso es más seguro que un insert directo “ciego”.
+
+6. Últimos huecos reales que todavía veo
+
+Ya no son muchos. Pero sí quedan algunos.
+
+6.1 Pre-lectura por sede
+
+En Programas.xlsx aparece una pista de PreLectura asociada a Tacna, mientras que tú ya lo definiste como programa oficial del sistema. Mi recomendación final es esta:
+
+Pre-lectura existe en catálogo maestro global;
+
+pero se habilita por sede mediante catálogo de disponibilidad.
+
+Así no contradices ni el catálogo general ni la operación real observada en el Excel.
+
+6.2 Plantilla final de seguimiento de Pre-lectura
+
+Aquí todavía falta una definición funcional tan concreta como la que ya sí tenemos para:
+
+Especialización
+
+Kids
+
+Pre-Kids
+
+No es bloqueante fuerte, pero sí conviene cerrarla antes de programar el módulo psicopedagógico completo.
+
+6.3 Metas pedagógicas operativas por programa
+
+La documentación de negocio y el informe profesional sí contienen metas y objetivos por Kids y Profesional, como pxm, comprensión y progresión. Eso puede servir para que el sistema no solo registre datos, sino también marque alertas de avance.
+
+Mi recomendación
+
+Agregar más adelante un catálogo de metas por:
+
+programa
+
+nivel
+
+sesión o módulo esperado
+
+No es imprescindible para MVP 1, pero sí muy útil.
+
+6.4 Política exacta de suspensión
+
+Ya definiste “suspendido” a nivel conceptual.
+Lo que falta precisar es:
+
+quién lo aprueba;
+
+cuánto tiempo puede durar;
+
+si congela o reprograma cuotas;
+
+si congela solo asistencia o también cartera.
+
+6.5 Reporte psicopedagógico imprimible final
+
+Ya está clara la lógica técnica, pero la plantilla visual definitiva todavía puede esperar hasta que entres a programación, tal como ya decidiste.
+
+7. Mi conclusión cerrada
+
+Con lo que me acabas de dar, el sistema ya está muy cerca de estar listo para una especificación maestra final.
+
+Hoy yo ya daría por zanjados:
+
+programas y niveles;
+
+duración y garantía;
+
+materiales clave;
+
+promociones;
+
+pagos parciales;
+
+refinanciación;
+
+estado caído;
+
+stock completo en MVP;
+
+comprobantes;
+
+empresa + serie + número;
+
+psicopedagogía como módulo real;
+
+cronograma mensual;
+
+numeración base;
+
+migración solo de vigentes.
+
+Los únicos huecos que yo dejaría todavía en lista corta son:
+
+plantilla exacta de seguimiento de Pre-lectura;
+
+política exacta de suspensión;
+
+metas pedagógicas automáticas si quieres que el sistema también “interprete” avance;
+
+confirmación final del catálogo de disponibilidad por sede para cada programa.
+
+El siguiente paso correcto ya no es seguir respondiendo huecos por chat disperso.
+El siguiente paso correcto es convertir todo esto en un documento maestro final de reglas de negocio + módulos + estados + permisos + tablas operativas, ya listo para Antigravity y Supabase.
+
+ 6.1 Pre-lectura por sede En Programas.xlsx aparece una pista de PreLectura asociada a Tacna, mientras que tú ya lo definiste como programa oficial del sistema. Mi recomendación final es esta: Pre-lectura existe en catálogo maestro global;  pero se habilita por sede mediante catálogo de disponibilidad.  Así no contradices ni el catálogo general ni la operación real observada en el Excel. CORRECTO, acepto tu solución. 6.2 Sería la misma que el Kids y completa el resto de la lógica. 6.3 Añade el catalogo de metas, pero no todos los programas cuentan con metas claras como por ejemplo pre kids y pre lectura que son como preparaciones previas del kids y profesional, no cuentan con metas, a diferencia de los kids que la meta del kids 1 son 100pxm, kids 2 son 150pxm, kids 3 son 200 pxm, y en el profesional dentro del paquete completo las metas son de 100pxm en el modulo 1 y al ser 20 módulos se aumenta 100pxm más a medida que se avanza de modulo así llegando a las 2000 pxm en el modulo 20. el cual además es el objetivo del programa para-con nuestros alumnos del nivel profesional. A esta idea complétale la lógica y slucionando inconsistencias a tu criterio conociendo ya el 100% del proyecto. 6.4 Ya definiste “suspendido” a nivel conceptual. Lo que falta precisar es: quién lo aprueba -> superadmin cuánto tiempo puede durar -> se puede definir un tiempo así como también de manera indefinida, hasta habilitar manualmente. si congela o reprograma cuotas y si congela solo asistencia o también cartera -> esto dale la solución tu, tomando la mejor decisión. 6.5 Si.  Además definiremos la tipografia por excelencia para nuestro sistema:  Plus Jakarta Sans usando sus variaciones de manera inteligente: <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">  Y usará el siguiente paquete de iconografía instalando: npm install @tabler/icons --save  Teniendo ya todo cerrado, cuales son los siguientes paso para proceder con la programación, ya tengo mi proyecto creado conectado mediante mcp a supabase.
+Thought for 31s
+
+Perfecto. Con lo que acabas de cerrar, ya no estamos en fase de descubrimiento, sino en fase de ejecución controlada.
+
+Y antes de darte los siguientes pasos de programación, te dejo las últimas definiciones ya cerradas integradas correctamente, para que no quede ninguna inconsistencia suelta.
+
+1. Cierres finales integrados al sistema
+1.1 Pre-lectura por sede
+
+Queda oficialmente así:
+
+Pre-lectura existe en el catálogo maestro global
+
+pero su disponibilidad real se controla por sede
+
+por lo tanto, una sede puede tener:
+
+Kids habilitado
+
+Pre-Kids habilitado
+
+Especialización habilitado
+
+Pre-lectura no habilitado
+sin romper el catálogo general.
+
+Solución técnica correcta
+
+Debe existir una tabla tipo:
+
+programas
+
+programa_niveles
+
+programa_sede_disponibilidad
+
+Así el programa existe una sola vez, pero se activa por sede.
+
+1.2 Seguimiento de Pre-lectura
+
+Queda oficialmente así:
+
+Pre-lectura usará la misma lógica de seguimiento que Kids, con las adaptaciones mínimas de nomenclatura si más adelante hicieran falta.
+
+Entonces su plantilla de seguimiento será:
+
+fecha de asistencia
+
+nivel o nivel único
+
+sesión
+
+velocidad (pxm)
+
+comprensión (%)
+
+observación
+
+estado de asistencia
+
+Regla final
+
+No se crea un sistema especial aparte para Pre-lectura.
+Se comporta como Kids en:
+
+programación;
+
+asistencia;
+
+seguimiento;
+
+reportes;
+
+exportación.
+
+Eso simplifica mucho el desarrollo y evita bifurcar la lógica del módulo psicopedagógico.
+
+1.3 Catálogo de metas
+
+Esto sí conviene dejarlo como parte del sistema desde ahora, pero no para todos los programas.
+
+Regla final
+
+El sistema debe tener un catálogo de metas configurable por programa, con posibilidad de que un programa no tenga metas definidas.
+
+Queda así:
+Programa	Tiene metas automáticas
+Pre-Kids	No
+Pre-lectura	No
+Kids	Sí
+Especialización	Sí
+Metas Kids
+
+Kids 1 → meta: 100 pxm
+
+Kids 2 → meta: 150 pxm
+
+Kids 3 → meta: 200 pxm
+
+Metas Especialización
+
+Módulo 1 → 100 pxm
+
+Módulo 2 → 200 pxm
+
+Módulo 3 → 300 pxm
+
+...
+
+Módulo 20 → 2000 pxm
+
+Regla de cálculo
+
+La meta de Especialización puede calcularse automáticamente así:
+
+meta_pxm = módulo * 100
+
+Mi recomendación técnica
+
+Aunque pueda calcularse por fórmula, igual conviene guardarla en catálogo y no depender solo de cálculo duro.
+
+¿Por qué?
+Porque si mañana cambias una meta puntual o creas una excepción, no rompes código.
+
+Estructura recomendada
+
+Tabla tipo:
+
+catalogo_metas
+
+programa_id
+
+nivel_id nullable
+
+modulo_desde nullable
+
+modulo_hasta nullable
+
+meta_pxm
+
+meta_comprension nullable
+
+activo
+
+Cómo usarlo en el sistema
+
+El sistema no debe “castigar” automáticamente al alumno si no llega a la meta.
+Debe usarlo para:
+
+mostrar objetivo esperado;
+
+comparar avance real vs meta;
+
+marcar alerta visual;
+
+alimentar reportes de progreso.
+
+Resultado UX recomendado
+
+En la ficha del alumno y en seguimiento:
+
+velocidad actual
+
+meta esperada
+
+diferencia
+
+estado:
+
+debajo de meta
+
+en rango
+
+supera meta
+
+Inconsistencia corregida
+
+No conviene mezclar meta académica con duración garantizada.
+La garantía extiende el tiempo del programa.
+La meta mide avance esperado.
+Son dos cosas distintas.
+
+1.4 Suspensión
+
+Este punto sí necesitaba una solución más técnica.
+
+Tú ya cerraste:
+
+quién aprueba → superadmin
+
+duración → puede ser definida o indefinida
+
+Ahora te doy la mejor solución para lo que faltaba.
+
+Mi solución final para “Suspendido”
+Qué es suspensión
+
+La suspensión es una pausa temporal operativa de la matrícula y del seguimiento del alumno, sin convertirlo en caído ni cancelado.
+
+Quién la solicita
+
+Filial
+
+Administración
+
+Quién la aprueba
+
+solo Superadmin
+
+Qué pasa cuando se aprueba
+
+La matrícula pasa a estado Suspendida
+
+El alumno deja de aparecer en:
+
+programación activa
+
+seguimiento semanal activo
+
+alertas de verificación operativa
+
+El plan financiero pasa a estado Suspendido
+
+Las futuras reservas o clases programadas pendientes se cancelan por suspensión
+
+El historial previo se conserva completo
+
+Qué hacer con las cuotas
+
+Aquí está la decisión importante.
+
+Mi recomendación
+
+La suspensión debe congelar tanto asistencia como cartera, pero de forma ordenada.
+
+¿Por qué?
+
+Porque si no congelas la cartera:
+
+el alumno estaría suspendido,
+
+pero le seguirían venciendo cuotas de un servicio que está pausado,
+
+y eso te genera más refinanciaciones artificiales y ruido operativo.
+
+Entonces la regla correcta es:
+
+Cuando una matrícula entra en suspensión:
+
+las cuotas no vencidas se reprograman
+
+el cronograma se desplaza según el tiempo suspendido
+
+las cuotas ya vencidas antes de la suspensión se mantienen como estaban
+
+las cuotas ya pagadas se mantienen intactas
+
+Ejemplo
+
+Plan con cuotas mensuales:
+
+cuota 1 pagada
+
+cuota 2 pendiente, aún no vencida
+
+suspensión por 45 días
+
+Resultado:
+
+cuota 2 ya no vence en su fecha original
+
+se mueve 45 días
+
+todas las siguientes también se corren 45 días
+
+Si la suspensión es indefinida
+
+Mi recomendación:
+
+no recalcular inmediatamente todas las cuotas
+
+dejar el plan en estado Suspendido
+
+bloquear nuevos vencimientos automáticos
+
+al reactivar, el sistema propone nuevo cronograma a partir de fecha de reanudación
+
+Si la suspensión tiene fecha definida
+
+Entonces sí puedes recalcular automáticamente desde el inicio.
+
+Campos mínimos de suspensión
+
+matrícula
+
+plan
+
+motivo
+
+comentario
+
+fecha inicio suspensión
+
+fecha fin suspensión nullable
+
+tipo: temporal / indefinida
+
+solicitante
+
+aprobador
+
+fecha aprobación
+
+estado solicitud
+
+Qué pasa al reactivar
+
+solo Superadmin reactiva
+
+o Administración si tú luego lo permites por permiso especial
+
+el sistema:
+
+reactiva matrícula
+
+reactiva plan
+
+recalcula cronograma si corresponde
+
+devuelve al alumno a programación activa
+
+2. Tipografía e iconografía oficial
+
+Esto ya queda como decisión de sistema.
+
+Tipografía oficial
+
+Plus Jakarta Sans
+
+Uso recomendado:
+
+títulos principales: 700
+
+títulos de sección: 600
+
+labels: 500
+
+texto general: 400
+
+datos numéricos importantes: 600 o 700
+
+Iconografía oficial
+
+@tabler/icons
+
+Recomendación
+
+No mezclar múltiples paquetes de íconos.
+Quédate solo con Tabler para mantener coherencia visual.
+
+Uso correcto
+
+sidebar
+
+estados
+
+acciones rápidas
+
+tablas
+
+cards KPI
+
+formularios
+
+3. Qué sigue ahora para empezar a programar
+
+Ya con tu proyecto creado y conectado por MCP a Supabase, los siguientes pasos correctos no son “programar cualquier módulo”, sino seguir un orden de construcción.
+
+Te recomiendo este flujo exacto:
+
+FASE 1 — Congelar la documentación final dentro del proyecto
+Objetivo
+
+Que Antigravity, tú y cualquier IA tengan una única fuente de verdad.
+
+Qué debes crear dentro del proyecto
+
+Una carpeta tipo:
+
+/docs
+
+Y dentro:
+
+1. 01-reglas-negocio.md
+
+Aquí debe ir:
+
+programas
+
+niveles
+
+duraciones
+
+garantías
+
+promociones
+
+pagos parciales
+
+refinanciación
+
+suspensión
+
+caído
+
+comprobantes
+
+stock
+
+psicopedagogía
+
+2. 02-modulos-sistema.md
+
+Listado final de módulos:
+
+autenticación
+
+usuarios/roles
+
+empresas/sedes
+
+programas/tarifarios/promociones
+
+matrículas
+
+cartera/planes
+
+caja
+
+stock
+
+verificación
+
+psicopedagogía
+
+reportes
+
+auditoría
+
+3. 03-estados-y-maquinas.md
+
+Aquí documentas:
+
+estados de matrícula
+
+estados de plan
+
+estados de cuota
+
+estados de caja
+
+estados de solicitud
+
+estados de reserva psicopedagógica
+
+transiciones válidas
+
+4. 04-permisos-matriz.md
+
+Tu matriz final de permisos por rol.
+
+5. 05-diseno-ui.md
+
+Todo el brief visual:
+
+layout dual sidebar
+
+tokens
+
+tipografía
+
+iconografía
+
+estilo de tablas, forms, cards, modals
+
+6. 06-migracion-inicial.md
+
+Qué se migra:
+
+solo vigentes
+
+staging
+
+scripts
+
+limpieza
+
+validaciones
+
+FASE 2 — Diseñar la base de datos real
+Objetivo
+
+Pasar de reglas a estructura.
+
+Aquí debes hacer primero el modelo lógico y físico definitivo.
+
+Qué toca crear
+
+esquema de tablas
+
+relaciones
+
+enums
+
+índices
+
+constraints
+
+secuencias/códigos
+
+auditoría
+
+RLS
+
+Orden recomendado de tablas
+A. Base organizacional
+
+empresas
+
+filiales
+
+roles
+
+permisos
+
+usuarios
+
+usuario_filial
+
+usuarios_permisos_override
+
+B. Personas
+
+personas
+
+empleados
+
+asignaciones_empleado
+
+contratos_empleado
+
+titulares
+
+alumnos
+
+parentescos
+
+C. Académico/comercial
+
+programas
+
+niveles
+
+programa_sede_disponibilidad
+
+materiales
+
+recetas_materiales
+
+tipos_pago
+
+tarifarios
+
+promociones
+
+promociones_sedes
+
+metas_programa
+
+D. Operación matrícula
+
+expedientes
+
+matriculas
+
+matricula_alumno
+
+matricula_titular
+
+snapshots_financieros
+
+grupos_promocion
+
+E. Cartera
+
+planes
+
+versiones_plan
+
+cuotas
+
+pagos
+
+pagos_detalle
+
+pagos_cuotas_aplicadas
+
+solicitudes_refinanciacion
+
+F. Caja
+
+cajas
+
+movimientos_caja
+
+cierres_caja
+
+reaperturas_caja
+
+comprobantes
+
+G. Stock
+
+almacenes
+
+stock_actual
+
+movimientos_stock
+
+transferencias_stock
+
+items_transferencia
+
+ajustes_stock
+
+mermas
+
+H. Verificación
+
+verificaciones
+
+verificacion_items
+
+I. Psicopedagogía
+
+primeras_asesorias
+
+reservas_psicopedagogia
+
+seguimientos_clase
+
+cronogramas_mensuales
+
+cronograma_items
+
+J. Control
+
+solicitudes_aprobacion
+
+auditoria_eventos
+
+comentarios_sistema
+
+FASE 3 — Crear migraciones SQL
+
+No empieces por frontend.
+
+Haz primero:
+
+migración 001 → catálogos base
+
+migración 002 → usuarios/roles/permisos
+
+migración 003 → personas
+
+migración 004 → programas/tarifarios/promos
+
+migración 005 → matrículas/cartera
+
+migración 006 → pagos/caja/comprobantes
+
+migración 007 → stock
+
+migración 008 → psicopedagogía
+
+migración 009 → auditoría y helpers
+
+Mi recomendación
+
+No hagas una sola migración gigante.
+Haz migraciones pequeñas y reversibles.
+
+FASE 4 — Seeders y datos maestros
+
+Antes del frontend real, debes sembrar:
+
+empresas
+
+filiales
+
+roles
+
+permisos
+
+programas
+
+niveles
+
+tipos de pago
+
+materiales
+
+metas
+
+estados base
+
+catálogos operativos
+
+También debes preparar
+
+usuario superadmin inicial
+
+usuarios dummy por rol
+
+sedes de prueba
+
+programas de prueba
+
+FASE 5 — Autenticación, autorización y RLS
+
+Como ya estás con Supabase, esto debe venir antes de los módulos grandes.
+
+Qué debes resolver ya
+
+login
+
+perfil del usuario
+
+rol
+
+sede o sedes asignadas
+
+permisos efectivos
+
+políticas RLS por:
+
+empresa
+
+sede
+
+rol
+
+módulo
+
+Regla fuerte
+
+No dependas solo del frontend para ocultar cosas.
+Todo permiso crítico debe respetarse también desde backend/RLS.
+
+FASE 6 — Design system antes de UI compleja
+
+Antes de hacer pantallas grandes, crea los componentes base.
+
+Componentes mínimos
+
+AppShell
+
+SidebarPrimary
+
+SidebarSecondary
+
+Topbar
+
+PageHeader
+
+Card
+
+KPI Card
+
+Button
+
+Input
+
+Select
+
+DatePicker
+
+Modal
+
+Drawer
+
+Table
+
+Badge
+
+Tabs
+
+SearchBox
+
+EmptyState
+
+ConfirmDialog
+
+Tokens
+
+colores
+
+radios
+
+sombras
+
+alturas
+
+spacing
+
+tipografía
+
+iconografía
+
+Resultado
+
+Con eso ya puedes construir el sistema sin improvisar estilos.
+
+FASE 7 — Construcción por módulos, en el orden correcto
+Orden recomendado de programación
+1. Usuarios + empresas + filiales + permisos
+
+Porque todo depende de eso.
+
+2. Catálogos académicos y comerciales
+
+programas
+
+niveles
+
+materiales
+
+tipos de pago
+
+tarifarios
+
+promociones
+
+metas
+
+3. Matrícula
+
+wizard
+
+titulares
+
+alumnos
+
+resumen
+
+confirmación
+
+4. Planes / cartera
+
+cronograma
+
+pagos parciales
+
+refinanciación
+
+suspensión
+
+caído
+
+5. Caja / comprobantes
+
+movimientos
+
+validación
+
+cierre y reapertura
+
+6. Verificación
+
+checklist de materiales
+
+relación con stock
+
+7. Stock completo
+
+movimientos
+
+transferencias
+
+alertas
+
+kardex
+
+8. Psicopedagogía
+
+reservas
+
+programación
+
+seguimiento
+
+cronogramas
+
+exportaciones
+
+9. Reportes
+
+reportes fijos
+
+reportes híbridos
+
+10. Auditoría y pulido final
+
+logs
+
+correcciones
+
+permisos finos
+
+exportaciones
+
+FASE 8 — Carga inicial de datos
+
+Aquí aplica lo que te recomendé:
+
+Hazlo así:
+
+staging tables
+
+limpieza
+
+normalización
+
+inserción controlada
+
+Importa primero:
+
+empresas
+
+filiales
+
+personal
+
+alumnos vigentes
+
+titulares vigentes
+
+matrículas vigentes
+
+stock actual
+
+No importes todavía:
+
+histórico completo
+
+reportes antiguos
+
+cronogramas viejos irrelevantes
+
+FASE 9 — Pruebas funcionales por flujo
+
+Antes de “dar por terminado” un módulo, prueba flujos completos.
+
+Flujos obligatorios a probar
+
+matrícula normal
+
+matrícula con promoción
+
+pago contado
+
+pago parcial
+
+refinanciación
+
+caída
+
+suspensión
+
+verificación con descuento de stock
+
+traslado de stock
+
+cierre de caja
+
+reapertura
+
+programación psicopedagógica
+
+exportación de cronograma
+
+4. Qué debes pedirle ahora a Antigravity
+
+Ya no le pidas “hazme el sistema ENSIL”.
+
+Pídeselo por bloques cerrados.
+
+Ejemplo correcto de secuencia
+
+“Crea el esquema SQL de empresas, filiales, roles, permisos y usuarios en Supabase”
+
+“Ahora crea el módulo de programas, niveles, tipos de pago, tarifarios y promociones”
+
+“Ahora crea el wizard de matrícula basado en estas reglas”
+
+“Ahora crea el motor de planes, cuotas, parciales y refinanciación”
+
+etc.
+
+Regla clave
+
+Cada prompt debe incluir:
+
+alcance exacto
+
+tablas involucradas
+
+reglas de negocio
+
+qué no debe tocar
+
+outputs esperados
+
+5. Mi recomendación profesional inmediata
+
+Si quieres empezar bien, el siguiente bloque que deberías hacer ya, antes de escribir más UI, es este:
+
+Sprint 0
+Entregables
+
+carpeta /docs
+
+modelo de datos final
+
+migraciones base
+
+seeds base
+
+autenticación
+
+roles/permisos
+
+design system base
+
+Ese sprint no se ve “bonito”, pero es el que hace que todo lo demás salga bien.
+
+6. Qué sigue exactamente, en orden
+
+Te lo dejo ultra claro:
+
+Paso 1
+
+Congelar documentación final dentro del proyecto.
+
+Paso 2
+
+Definir y crear el esquema de base de datos definitivo.
+
+Paso 3
+
+Crear migraciones y seeds.
+
+Paso 4
+
+Configurar auth + roles + RLS.
+
+Paso 5
+
+Montar design system base con:
+
+Plus Jakarta Sans
+
+Tabler Icons
+
+layout dual sidebar
+
+Paso 6
+
+Construir catálogos maestros.
+
+Paso 7
+
+Construir wizard de matrícula.
+
+Paso 8
+
+Construir cartera, pagos, parciales y refinanciación.
+
+Paso 9
+
+Construir caja y comprobantes.
+
+Paso 10
+
+Construir stock y verificación.
+
+Paso 11
+
+Construir psicopedagogía.
+
+Paso 12
+
+Construir reportes.
+
+7. Mi cierre
+
+Con todo lo que ya definiste, sí estás en condiciones de empezar programación real.
+
+Ya no te falta “la idea del sistema”.
+Lo que te falta ahora es disciplina de ejecución:
+
+una sola documentación viva,
+
+un orden técnico correcto,
+
+construir módulo por módulo,
+
+no mezclar frontend bonito con reglas todavía no implementadas.
+
+El siguiente paso que más te conviene hacer conmigo es este:
+
+te preparo el Sprint 0 completo, con:
+
+estructura de carpetas,
+
+documentos base,
+
+orden de migraciones,
+
+backlog técnico inicial,
+
+y prompts exactos para Antigravity por cada bloque.
+
+preparalo
+Thought for 24s
+
+Perfecto. Te dejo el Sprint 0 completo ya preparado para que lo ejecutes como base real de programación en Antigravity.
+
+La idea del Sprint 0 no es “avanzar pantallas bonitas”, sino dejar congelado el núcleo del sistema para que todo lo que programes después salga con orden, trazabilidad y sin retrabajo.
+
+SPRINT 0 — Fundaciones del sistema ENSIL
+Objetivo general
+
+Dejar listo el proyecto para empezar el desarrollo funcional sin ambigüedades, asegurando que existan:
+
+una fuente única de verdad en documentación;
+
+una base de datos bien estructurada;
+
+permisos y seguridad base;
+
+catálogos maestros iniciales;
+
+design system base;
+
+prompts y backlog listos para construcción por módulos.
+
+Resultado esperado al cerrar Sprint 0
+
+Al terminar este sprint, ya debes poder decir:
+
+“mi proyecto ya tiene su estructura definitiva”;
+
+“Supabase ya tiene migraciones y seeds base”;
+
+“los roles y permisos ya existen”;
+
+“los catálogos principales ya están sembrados”;
+
+“la UI ya tiene shell y componentes base”;
+
+“ya puedo empezar a construir módulos sin improvisar”.
+
+1. Alcance exacto del Sprint 0
+Sí entra
+
+documentación final dentro del proyecto;
+
+arquitectura de carpetas;
+
+modelo de datos base;
+
+migraciones SQL iniciales;
+
+seeds iniciales;
+
+autenticación y perfil base;
+
+roles, permisos y RLS inicial;
+
+design system base;
+
+App Shell principal;
+
+backlog técnico inicial;
+
+prompts maestros para Antigravity.
+
+No entra
+
+wizard de matrícula completo;
+
+lógica completa de cartera;
+
+verificación;
+
+stock operativo;
+
+psicopedagogía funcional;
+
+reportes completos;
+
+exportaciones finales.
+
+2. Estructura de carpetas recomendada
+
+Te recomiendo trabajar con una estructura así, aunque luego la ajustes al framework exacto que uses.
+
+project-root/
+├─ docs/
+│  ├─ 01-reglas-negocio.md
+│  ├─ 02-modulos-sistema.md
+│  ├─ 03-estados-y-maquinas.md
+│  ├─ 04-permisos-matriz.md
+│  ├─ 05-diseno-ui.md
+│  ├─ 06-migracion-inicial.md
+│  ├─ 07-catalogos-maestros.md
+│  ├─ 08-roadmap-desarrollo.md
+│  └─ 09-prompts-antigravity.md
+│
+├─ supabase/
+│  ├─ migrations/
+│  ├─ seeds/
+│  ├─ functions/            (si luego usas edge functions)
+│  └─ policies/
+│
+├─ src/
+│  ├─ app/
+│  │  ├─ (auth)/
+│  │  ├─ (dashboard)/
+│  │  └─ providers/
+│  │
+│  ├─ components/
+│  │  ├─ ui/
+│  │  ├─ layout/
+│  │  └─ shared/
+│  │
+│  ├─ features/
+│  │  ├─ auth/
+│  │  ├─ settings/
+│  │  ├─ catalogos/
+│  │  ├─ matriculas/
+│  │  ├─ cartera/
+│  │  ├─ caja/
+│  │  ├─ stock/
+│  │  ├─ verificacion/
+│  │  ├─ psicopedagogia/
+│  │  └─ reportes/
+│  │
+│  ├─ lib/
+│  │  ├─ supabase/
+│  │  ├─ auth/
+│  │  ├─ permissions/
+│  │  ├─ utils/
+│  │  ├─ validators/
+│  │  └─ constants/
+│  │
+│  ├─ styles/
+│  │  ├─ globals.css
+│  │  ├─ tokens.css
+│  │  └─ theme.ts
+│  │
+│  └─ types/
+│
+├─ scripts/
+│  ├─ import/
+│  ├─ normalize/
+│  └─ validate/
+│
+├─ public/
+│
+├─ package.json
+└─ README.md
+3. Documentación viva que debes crear ya
+
+Esta carpeta /docs sí debe construirse en Sprint 0.
+
+3.1 01-reglas-negocio.md
+
+Aquí consolidas el negocio ya cerrado. Debe incluir:
+
+Secciones
+
+programas oficiales;
+
+niveles oficiales;
+
+duración y garantía;
+
+materiales por programa;
+
+tipos de pago;
+
+vigencia de tarifarios;
+
+promociones MVP;
+
+pagos parciales;
+
+refinanciación;
+
+estado caído;
+
+suspensión;
+
+comprobantes;
+
+stock completo desde MVP;
+
+psicopedagogía;
+
+numeraciones.
+
+3.2 02-modulos-sistema.md
+
+Debe listar los módulos definitivos:
+
+autenticación y perfil;
+
+usuarios, roles y permisos;
+
+empresas y filiales;
+
+personal;
+
+programas, niveles, materiales;
+
+tipos de pago, tarifarios, promociones;
+
+matrículas;
+
+cartera y planes;
+
+caja y comprobantes;
+
+stock y logística;
+
+verificación;
+
+psicopedagogía;
+
+reportes;
+
+auditoría.
+
+3.3 03-estados-y-maquinas.md
+
+Debe documentar las transiciones válidas.
+
+Al menos:
+
+estado de matrícula;
+
+estado de plan;
+
+estado de cuota;
+
+estado de reserva;
+
+estado de solicitud;
+
+estado de caja;
+
+estado de verificación;
+
+estado de stock/transferencia.
+
+3.4 04-permisos-matriz.md
+
+Aquí congelas:
+
+roles;
+
+permisos;
+
+alcance por sede;
+
+acciones críticas;
+
+acciones que requieren aprobación.
+
+3.5 05-diseno-ui.md
+
+Debe contener:
+
+Plus Jakarta Sans como tipografía oficial;
+
+Tabler Icons como iconografía oficial;
+
+layout de doble sidebar;
+
+tokens visuales;
+
+reglas de tablas, formularios, badges, modales, cards.
+
+3.6 06-migracion-inicial.md
+
+Debe decir:
+
+qué se migra;
+
+qué no se migra;
+
+cómo usar tablas staging;
+
+cómo validar datos;
+
+cómo insertar solo vigentes.
+
+3.7 07-catalogos-maestros.md
+
+Muy importante. Aquí detallas:
+
+empresas;
+
+filiales;
+
+programas;
+
+niveles;
+
+materiales;
+
+tipos de pago;
+
+estados;
+
+tipos de comprobante;
+
+medios de pago;
+
+cargos;
+
+áreas;
+
+metas.
+
+3.8 08-roadmap-desarrollo.md
+
+Con fases, dependencias y orden de construcción.
+
+3.9 09-prompts-antigravity.md
+
+Aquí guardas los prompts ya curados para usar con la IA del desarrollo.
+
+4. Modelo de datos base que debes construir en Sprint 0
+
+Todavía no estás creando todas las tablas de negocio complejas, pero sí la base estructural.
+
+4.1 Núcleo organizacional
+
+Debes dejar listas estas tablas:
+
+empresas
+
+filiales
+
+roles
+
+permisos
+
+rol_permiso
+
+usuarios_perfil
+
+usuario_filial
+
+areas
+
+cargos
+
+4.2 Núcleo de personal
+
+personas
+
+empleados
+
+empleado_asignaciones
+
+empleado_contratos
+
+4.3 Núcleo académico-comercial
+
+programas
+
+programa_niveles
+
+programa_sede_disponibilidad
+
+materiales
+
+programa_materiales
+
+tipos_pago
+
+tarifarios
+
+promociones
+
+promocion_sedes
+
+catalogo_metas
+
+4.4 Núcleo de catálogos operativos
+
+tipos_comprobante
+
+medios_pago
+
+origenes_lead
+
+estados_sistema si quieres parametrizar parte de estados
+
+almacenes o ubicaciones_stock base
+
+4.5 Núcleo de control
+
+auditoria_eventos
+
+solicitudes_aprobacion
+
+5. Orden de migraciones SQL para Sprint 0
+
+Hazlas pequeñas y bien separadas.
+
+Migración 001
+
+001_empresas_filiales_roles_permisos.sql
+
+Incluye:
+
+empresas
+
+filiales
+
+roles
+
+permisos
+
+rol_permiso
+
+Migración 002
+
+002_usuarios_perfiles_asignacion.sql
+
+Incluye:
+
+usuarios_perfil
+
+usuario_filial
+
+funciones helper mínimas si las necesitas
+
+Migración 003
+
+003_areas_cargos_personas_empleados.sql
+
+Incluye:
+
+áreas
+
+cargos
+
+personas
+
+empleados
+
+asignaciones
+
+contratos
+
+Migración 004
+
+004_programas_niveles_materiales.sql
+
+Incluye:
+
+programas
+
+niveles
+
+programa_sede_disponibilidad
+
+materiales
+
+relación programa-material
+
+Migración 005
+
+005_tipos_pago_tarifarios_promociones.sql
+
+Incluye:
+
+tipos_pago
+
+tarifarios
+
+promociones
+
+promocion_sedes
+
+lógica de vigencia
+
+catálogo de metas
+
+Migración 006
+
+006_catalogos_operativos.sql
+
+Incluye:
+
+tipos_comprobante
+
+medios_pago
+
+origenes_lead
+
+estados auxiliares si corresponde
+
+Migración 007
+
+007_auditoria_y_solicitudes.sql
+
+Incluye:
+
+auditoría
+
+solicitudes de aprobación
+
+triggers base de trazabilidad si ya quieres dejarlos
+
+6. Seeds que sí debes hacer ahora
+
+Los seeds del Sprint 0 son importantísimos porque te permiten empezar a probar sin inventar data a mano.
+
+6.1 Seed de empresas y filiales
+
+Ya con la información que me pasaste, debes cargar:
+
+ENSIL INT
+
+ENSIL EVOLUTION
+
+ENSIL DE LAS AMÉRICAS TACNA
+
+ENSIL REVOLUTION
+
+SILEE
+
+Y sus filiales respectivas.
+
+6.2 Seed de roles
+
+superadmin
+
+administración
+
+filial
+
+logística
+
+psicopedagogía
+
+6.3 Seed de permisos
+
+Todos los permisos que ya definimos en la matriz.
+
+6.4 Seed de programas
+
+Kids
+
+Pre-Kids
+
+Pre-lectura
+
+Especialización
+
+6.5 Seed de niveles
+
+Kids 1, 2, 3
+
+Pre-Kids 1, 2
+
+Pre-lectura único
+
+Especialización paquete único
+
+6.6 Seed de tipos de pago
+
+contado
+
+contado_2_partes
+
+plan_2
+
+plan_3
+
+plan_6
+
+plan_9
+
+6.7 Seed de materiales
+
+Con los materiales ya definidos.
+
+6.8 Seed de metas
+
+Kids 1: 100 pxm
+
+Kids 2: 150 pxm
+
+Kids 3: 200 pxm
+
+Especialización: módulos 1–20 con incremento de 100 pxm
+
+6.9 Seed de comprobantes
+
+boleta
+
+factura
+
+6.10 Seed de medios de pago
+
+efectivo
+
+yape
+
+transferencia
+
+7. Auth + permisos + RLS que debes dejar funcional
+
+Esto sí entra en Sprint 0.
+
+7.1 Auth base
+
+Debes resolver:
+
+login;
+
+sesión;
+
+perfil actual;
+
+rol actual;
+
+sede actual o sedes asignadas.
+
+7.2 Helpers recomendados
+
+Crea funciones o utilidades para:
+
+obtener usuario actual;
+
+obtener rol actual;
+
+obtener sedes del usuario;
+
+verificar permiso;
+
+verificar si es superadmin;
+
+verificar si puede operar en cierta sede.
+
+7.3 RLS mínimo
+
+No hace falta aún todo ultra fino, pero sí mínimo:
+
+Regla base
+
+un usuario de filial ve solo su sede;
+
+logística ve solo lo que le corresponde;
+
+psicopedagogía ve solo su sede;
+
+administración ve según permisos asignados;
+
+superadmin ve todo.
+
+7.4 Política práctica
+
+En Sprint 0 basta con asegurar:
+
+lectura restringida por sede en tablas sensibles;
+
+escrituras controladas por rol;
+
+protección contra lectura global indebida.
+
+8. Design System base que debes construir ya
+
+Todavía no harás todas las pantallas, pero sí debes dejar el lenguaje visual montado.
+
+8.1 Tipografía
+
+Configura Plus Jakarta Sans como fuente principal global.
+
+Uso recomendado
+
+títulos página: 700
+
+títulos bloque: 600
+
+texto normal: 400
+
+labels: 500
+
+cifras KPI: 700
+
+8.2 Iconografía
+
+Instala y usa solo:
+@tabler/icons
+
+8.3 Tokens a crear
+
+Define desde ya:
+
+colores
+
+radios
+
+spacing
+
+alturas
+
+tipografía
+
+sombras
+
+bordes
+
+estados
+
+8.4 Colores base
+
+Usa la línea que ya habías aceptado:
+
+fondo app
+
+surface
+
+surface muted
+
+border
+
+text primary
+
+text secondary
+
+text muted
+
+primary accent
+
+active tint
+
+8.5 Componentes mínimos del Sprint 0
+
+Debes crear, aunque sea en versión inicial:
+
+AppShell
+
+SidebarPrimary
+
+SidebarSecondary
+
+Topbar
+
+PageHeader
+
+Card
+
+Button
+
+Input
+
+Select
+
+Badge
+
+Table
+
+Modal
+
+Drawer
+
+SearchBox
+
+EmptyState
+
+ConfirmDialog
+
+8.6 Qué sí debe quedar navegable
+
+Aunque sea con pantallas vacías, deberías poder navegar por:
+
+Dashboard
+
+Configuración
+
+Catálogos
+
+Matrículas
+
+Cartera
+
+Caja
+
+Stock
+
+Psicopedagogía
+
+Reportes
+
+9. Backlog técnico inicial del Sprint 0
+
+Te lo organizo por bloques.
+
+Bloque A — Infraestructura
+
+Crear estructura de carpetas.
+
+Configurar docs del proyecto.
+
+Configurar variables de entorno.
+
+Confirmar conexión MCP/Supabase.
+
+Configurar linters/formatters si aplica.
+
+Bloque B — Base de datos
+
+Crear migración de empresas y filiales.
+
+Crear migración de roles y permisos.
+
+Crear migración de usuarios_perfil.
+
+Crear migración de personas y empleados.
+
+Crear migración de programas/niveles/materiales.
+
+Crear migración de tipos_pago/tarifarios/promociones.
+
+Crear migración de auditoría y solicitudes.
+
+Ejecutar migraciones y validar esquema.
+
+Bloque C — Seeds
+
+Seed de empresas y filiales.
+
+Seed de roles.
+
+Seed de permisos.
+
+Seed de programas y niveles.
+
+Seed de materiales.
+
+Seed de tipos de pago.
+
+Seed de metas.
+
+Seed de medios de pago y comprobantes.
+
+Bloque D — Seguridad
+
+Implementar login.
+
+Resolver perfil y rol actual.
+
+Resolver sede actual.
+
+Crear helper hasPermission.
+
+Crear políticas RLS mínimas.
+
+Probar accesos por rol.
+
+Bloque E — UI base
+
+Configurar Plus Jakarta Sans.
+
+Instalar Tabler Icons.
+
+Crear tokens.
+
+Crear AppShell.
+
+Crear doble sidebar.
+
+Crear topbar.
+
+Crear componentes base.
+
+Crear páginas vacías navegables.
+
+Bloque F — Calidad base
+
+Crear README técnico.
+
+Crear guía de cómo correr migraciones.
+
+Crear guía de seeds.
+
+Crear guía de naming conventions.
+
+Crear guía de prompts para IA.
+
+10. Definición de terminado del Sprint 0
+
+El Sprint 0 estará realmente terminado solo si se cumple esto:
+
+Backend / DB
+
+migraciones ejecutan sin error;
+
+seeds corren sin error;
+
+hay datos base reales cargados;
+
+RLS mínimo funciona por rol/sede.
+
+Frontend
+
+AppShell funcional;
+
+doble sidebar implementada;
+
+tipografía e iconografía configuradas;
+
+componentes base creados;
+
+navegación principal visible.
+
+Documentación
+
+carpeta /docs completa con base funcional;
+
+reglas congeladas;
+
+permisos congelados;
+
+módulos congelados;
+
+roadmap congelado.
+
+Validación
+
+existe un superadmin funcional;
+
+existe al menos un usuario por rol de prueba;
+
+puedes loguearte y navegar según rol.
+
+11. Prompts listos para Antigravity
+
+Te los dejo ya preparados para usar por bloques.
+
+Prompt 1 — Documentación base
+
+“Crea dentro de /docs los archivos 01-reglas-negocio.md, 02-modulos-sistema.md, 03-estados-y-maquinas.md, 04-permisos-matriz.md, 05-diseno-ui.md, 06-migracion-inicial.md, 07-catalogos-maestros.md y 08-roadmap-desarrollo.md. Usa como fuente de verdad las reglas ya definidas para ENSIL: programas oficiales, niveles, duraciones, garantías, tipos de pago, promociones, pagos parciales, refinanciación, suspensión, caído, stock MVP, psicopedagogía, comprobantes y numeración.”
+
+Prompt 2 — Migraciones base
+
+“Genera las migraciones SQL para Supabase/PostgreSQL del Sprint 0 del sistema ENSIL. Crea primero empresas, filiales, roles, permisos, rol_permiso, usuarios_perfil, usuario_filial, áreas, cargos, personas, empleados, empleado_asignaciones, empleado_contratos, programas, niveles, programa_sede_disponibilidad, materiales, programa_materiales, tipos_pago, tarifarios, promociones, promocion_sedes, catalogo_metas, tipos_comprobante, medios_pago, origenes_lead, auditoria_eventos y solicitudes_aprobacion. Usa claves primarias robustas, índices, timestamps, soft delete si aplica y restricciones coherentes.”
+
+Prompt 3 — Seeds
+
+“Genera seeds iniciales para el sistema ENSIL con empresas, filiales, roles, permisos, programas, niveles, tipos de pago, materiales, metas, tipos de comprobante y medios de pago. Debe quedar un superadmin funcional y datos base consistentes para empezar pruebas.”
+
+Prompt 4 — Auth + permisos
+
+“Implementa autenticación y autorización base del sistema ENSIL con Supabase. Resuelve perfil actual, rol actual, sede o sedes asignadas, helper hasPermission, protección de rutas y políticas RLS mínimas por sede y rol.”
+
+Prompt 5 — Design system
+
+“Implementa el design system base del sistema ENSIL usando Plus Jakarta Sans y @tabler/icons. Crea tokens visuales, AppShell con doble sidebar, topbar y componentes base: Button, Input, Select, Badge, Card, Table, Modal, Drawer, SearchBox y EmptyState, siguiendo el lenguaje visual premium, sobrio, compacto y administrativo ya definido.”
+
+Prompt 6 — Navegación base
+
+“Crea la navegación inicial del backoffice ENSIL con páginas vacías pero estructuradas para Dashboard, Configuración, Catálogos, Matrículas, Cartera, Caja, Stock, Psicopedagogía y Reportes. Todo debe integrarse al AppShell y respetar permisos base.”
+
+12. Orden exacto de ejecución dentro de Antigravity
+
+Te recomiendo que lo hagas en este orden, sin saltarte pasos:
+
+Día 1
+
+estructura de carpetas
+
+carpeta docs
+
+documentación base
+
+README técnico
+
+Día 2
+
+migraciones 001 a 003
+
+validación de esquema organizacional y usuarios
+
+Día 3
+
+migraciones 004 a 007
+
+seeds base
+
+revisión de integridad
+
+Día 4
+
+auth
+
+perfil actual
+
+rol/sede
+
+RLS base
+
+Día 5
+
+design system
+
+AppShell
+
+doble sidebar
+
+componentes base
+
+Día 6
+
+navegación base
+
+páginas vacías
+
+prueba de accesos por rol
+
+Día 7
+
+limpieza
+
+revisión
+
+checklist de cierre de Sprint 0
+
+13. Mi recomendación más importante
+
+No intentes en Sprint 0 “dejar avanzada matrícula”.
+Resiste eso.
+
+Si haces bien este sprint, luego:
+
+la matrícula sale más rápida,
+
+la cartera no se rompe,
+
+los permisos no se improvisan,
+
+la IA programa con mucho menos error.
+
+14. Qué sigue después del Sprint 0
+
+Cuando cierres esto, el siguiente sprint correcto sería:
+
+Sprint 1
+
+catálogos maestros operativos
+
+gestión de programas
+
+niveles
+
+materiales
+
+tipos de pago
+
+tarifarios
+
+promociones
+
+metas
+
+Sprint 2
+
+wizard de matrícula
+
+titulares
+
+alumnos
+
+resumen
+
+confirmación
+
+Sprint 3
+
+planes
+
+cuotas
+
+pagos parciales
+
+refinanciación
+
+suspensión
+
+caído
+
+Sprint 4
+
+caja
+
+comprobantes
+
+cierre y reapertura
+
+Sprint 5
+
+stock
+
+transferencias
+
+verificación
+
+Sprint 6
+
+psicopedagogía
+
+programación
+
+seguimiento
+
+cronogramas
+
+exportaciones
+
+Sprint 7
+
+reportes
+
+auditoría
+
+pulido
+
+15. Cierre
+
+Ya te lo dejé preparado como base de ejecución.
+
+Tu siguiente movimiento correcto ahora es este:
+
+crear la carpeta /docs y ejecutar los prompts 1, 2 y 3 en ese orden.
+
+Después:
+auth + permisos, y recién luego design system.
+
+Si quieres, en el siguiente mensaje te dejo ya armado el contenido exacto del archivo 01-reglas-negocio.md para que lo pegues directo en tu proyecto.

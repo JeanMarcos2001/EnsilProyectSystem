@@ -1,0 +1,104 @@
+Guía de Estructura de Proyecto para Desarrollo con Inteligencia Artificial
+
+Resumen Ejecutivo
+
+El uso de herramientas de Inteligencia Artificial (IA) en el desarrollo de software ha generado la necesidad de establecer estructuras de proyecto específicas que permitan a los agentes de IA comprender mejor el contexto, evitar respuestas genéricas y automatizar tareas repetitivas. La dispersión de archivos de contexto, documentación y scripts suele ser un obstáculo para la eficiencia.
+
+Este documento detalla una estructura organizada basada en la creación de archivos de contexto dinámicos (claud.md), una carpeta de documentación técnica especializada (docs), herramientas de automatización (tools) y capacidades extendidas mediante comandos personalizados (skills). El objetivo central es proporcionar a la IA una fuente de verdad única y estructurada que mejore la precisión de sus respuestas y facilite el mantenimiento del proyecto a largo plazo.
+
+
+--------------------------------------------------------------------------------
+
+
+1. El Archivo de Contexto Central: claud.md
+
+El pilar fundamental de esta estructura es el archivo de contexto (denominado claud.md en el caso de Claude, aunque adaptable a otros agentes). Este archivo sirve como el resumen ejecutivo que la IA lee cada vez que se inicia una sesión de trabajo.
+
+* Generación Inicial: Se recomienda utilizar comandos como /init para que la IA escanee el proyecto y genere automáticamente un resumen que incluya el stack tecnológico, versiones de dependencias, comandos principales y modelos de datos.
+* Contenido Crítico:
+  * Stack Tecnológico: Especifica las versiones exactas para evitar que la IA sugiera código obsoleto.
+  * Patrones de Diseño: Define cómo deben escribirse los componentes (ej. componentes de servidor, uso de acciones, validaciones con Zod).
+  * Estructura de Directorios: Un mapa visual de la organización del código.
+  * Modelos de Datos: Resumen de entidades principales (ej. productos, órdenes, categorías).
+* Reglas de Comportamiento (Rules): Permite establecer restricciones específicas para la IA, como "no ejecutar el build en cada cambio" o seguir convenciones de nomenclatura estrictas.
+
+
+--------------------------------------------------------------------------------
+
+
+2. Documentación Especializada en la Carpeta docs
+
+En lugar de depender de un único archivo masivo, la estructura propone dividir la documentación en archivos modulares dentro de una carpeta /docs. Esto facilita la navegación y permite a la IA enfocarse en fragmentos específicos de información.
+
+Tipos de Documentación Requerida
+
+Carpeta/Archivo	Propósito	Contenido Típico
+architecture.md	Visión general del diseño técnico.	Diagramas de entidad-relación, rutas de API, infraestructura y patrones de arquitectura.
+decisions/	Historial de decisiones técnicas.	Justificación de por qué se eligió una tecnología sobre otra (ej. base de datos relacional vs. NoSQL).
+runbooks/	Guías operativas paso a paso.	Instrucciones detalladas sobre cómo realizar despliegues, migraciones de base de datos o auditorías.
+
+"En 'decisions' típicamente escribimos por qué hicimos algo de esa forma y en 'runbooks' especificamos cómo debería ser algo que se necesite".
+
+
+--------------------------------------------------------------------------------
+
+
+3. Automatización mediante la Carpeta tools
+
+La carpeta tools está diseñada para albergar programas o instrucciones que la IA puede invocar para realizar tareas manuales de forma rápida.
+
+* Scripts de Utilidad: Programas (normalmente en la subcarpeta scripts) para automatizar acciones como la creación de usuarios con múltiples roles mediante línea de comandos (CLI) o la ejecución de pruebas.
+* Llenado de Datos (Seeding): Scripts para poblar la base de datos con información de prueba (ej. productos de ejemplo para un e-commerce), lo cual es esencial para probar funcionalidades de búsqueda y UI sin ingresar datos manualmente.
+
+
+--------------------------------------------------------------------------------
+
+
+4. Capacidades Extendidas: skills y MCPs
+
+Dentro de la carpeta oculta del agente (ej. .claud/skills), se pueden definir comandos personalizados que encapsulan flujos de trabajo complejos.
+
+Estructura de un Skill
+
+Cada skill se define en un archivo skill.md con una configuración que incluye:
+
+1. Nombre: El comando que se invocará (ej. /prueba o /construir).
+2. Descripción: Para qué sirve el comando.
+3. Pasos: Instrucciones secuenciales que la IA debe seguir.
+
+Ejemplos de Implementación
+
+* Skill de Pruebas de UI: Puede instruir a la IA para que abra un navegador utilizando herramientas como Chrome DevTools MCP, navegue a una página específica, verifique la existencia de elementos y corrija errores si fallan.
+* Skill de Construcción y Despliegue: Un comando único (ej. /build) que ejecute el build del proyecto, revise errores, realice un commit con un mensaje descriptivo y haga un push al repositorio.
+
+
+--------------------------------------------------------------------------------
+
+
+5. Escalabilidad y Monorepos
+
+Para proyectos de gran envergadura o monorepos, la estructura es recursiva:
+
+* Cada aplicación (Frontend, Backend, API) puede tener su propio archivo claud.md y su propio conjunto de skills y documentación.
+* Esto permite que equipos diferentes trabajen en partes separadas del proyecto manteniendo el contexto específico de su área sin interferencias.
+
+
+--------------------------------------------------------------------------------
+
+
+6. Consideraciones sobre Despliegue (Cynote)
+
+El análisis destaca la importancia de contar con plataformas de despliegue accesibles para proyectos desarrollados bajo esta metodología, especialmente para MVPs o clientes con presupuesto limitado.
+
+* Cynote: Se menciona como una opción recomendada para desplegar aplicaciones full-stack (Node, Python, Go, Elixir) y bases de datos (PostgreSQL, MySQL).
+* Ventajas Clave: Precios competitivos (desde $2 USD/mes para bases de datos y servidores), soporte para web sockets, HTTPS automático, variables de entorno y conexión directa con repositorios de GitHub/GitLab.
+
+
+--------------------------------------------------------------------------------
+
+
+Citas Destacadas
+
+* "Si ustedes van a tener un poco más ordenado su proyecto... van a ayudarle a la IA a que pueda conocer mucho más de su proyecto y darles mejores respuestas".
+* "Una documentación típicamente se va actualizando a medida que ustedes hagan cambios... la idea no es solamente generar los archivos sino que realmente ustedes tienen que entender qué es lo que va allí".
+* "Esto lo van a utilizar luego y cuando tengan un proyecto mucho más grande esto les va a servir para que la IA no esté divagando o completando cosas que le faltan".

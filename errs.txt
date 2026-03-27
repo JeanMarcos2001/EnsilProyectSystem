@@ -1,0 +1,1166 @@
+﻿
+lint_output.log:7:    
+1:16  error    A 
+`require()` style 
+import is forbidden  @t
+ypescript-eslint/no-req
+uire-imports
+lint_output.log:8:    
+2:14  error    A 
+`require()` style 
+import is forbidden  @t
+ypescript-eslint/no-req
+uire-imports
+lint_output.log:9:    
+3:12  error    A 
+`require()` style 
+import is forbidden  @t
+ypescript-eslint/no-req
+uire-imports
+lint_output.log:10:    
+4:14  error    A 
+`require()` style 
+import is forbidden  @t
+ypescript-eslint/no-req
+uire-imports
+lint_output.log:19:  
+50:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:20:  
+83:17  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:21:  
+91:24  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:22:  
+92:53  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:25:   
+35:9   error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+     @typescript-eslint
+/no-explicit-any
+lint_output.log:26:   
+41:58  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+     @typescript-eslint
+/no-explicit-any
+lint_output.log:27:   
+43:28  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+     @typescript-eslint
+/no-explicit-any
+lint_output.log:42:    
+8:46  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:43:   
+19:46  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:44:   
+35:46  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:45:   
+38:3   error  Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free  @typescript
+-eslint/ban-ts-comment
+lint_output.log:46:   
+60:46  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:47:   
+61:3   error  Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free  @typescript
+-eslint/ban-ts-comment
+lint_output.log:48:   
+81:46  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:49:   
+84:3   error  Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free  @typescript
+-eslint/ban-ts-comment
+lint_output.log:50:  
+107:46  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:53:   
+47:5   error  Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free  @typescript
+-eslint/ban-ts-comment
+lint_output.log:54:   
+48:43  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:55:   
+69:29  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:56:   
+80:17  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:57:   
+93:17  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:58:  
+156:16  error  Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free  @typescript
+-eslint/ban-ts-comment
+lint_output.log:59:  
+158:63  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:62:  
+60:17  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:81:   
+41:42  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:82:   
+42:48  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:83:   
+48:44  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:84:   
+65:47  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:85:   
+66:17  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:87:   
+92:17  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:88:  
+105:17  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:89:  
+174:20  error    Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free       @types
+cript-eslint/ban-ts-com
+ment
+lint_output.log:90:  
+176:67  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                 @types
+cript-eslint/no-explici
+t-any
+lint_output.log:95:    
+8:46  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:96:   
+28:28  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:97:   
+31:31  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:98:   
+31:39  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:99:   
+43:46  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:100:   
+68:46  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:101:   
+88:46  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:102:  
+113:46  error    
+Unexpected any. 
+Specify a different 
+type        @typescript
+-eslint/no-explicit-any
+lint_output.log:105:   
+34:15  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:106:   
+35:16  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:107:   
+46:5   error  Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free  @typescript
+-eslint/ban-ts-comment
+lint_output.log:108:   
+47:47  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:109:   
+96:17  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:110:  
+107:24  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:111:  
+108:53  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:114:   
+36:9   error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:115:   
+38:15  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:116:   
+39:16  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:117:   
+46:52  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:118:   
+52:28  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:119:   
+79:33  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:120:   
+83:34  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:121:  
+137:65  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:122:  
+138:68  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+       @typescript-esli
+nt/no-explicit-any
+lint_output.log:137:   
+ 8:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:138:   
+28:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:139:   
+75:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:140:   
+88:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:141:  
+101:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:144:  
+32:15  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:145:  
+33:14  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:146:  
+34:16  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:147:  
+45:5   error  Use 
+"@ts-expect-error" 
+instead of 
+"@ts-ignore", as 
+"@ts-ignore" will do 
+nothing if the 
+following line is 
+error-free  @typescript
+-eslint/ban-ts-comment
+lint_output.log:148:  
+46:47  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:149:  
+87:17  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:150:  
+97:24  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:151:  
+98:53  error  
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+            @typescript
+-eslint/no-explicit-any
+lint_output.log:154:   
+35:9   error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+      @typescript-eslin
+t/no-explicit-any
+lint_output.log:155:   
+37:15  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+      @typescript-eslin
+t/no-explicit-any
+lint_output.log:156:   
+38:14  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+      @typescript-eslin
+t/no-explicit-any
+lint_output.log:157:   
+39:16  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+      @typescript-eslin
+t/no-explicit-any
+lint_output.log:158:   
+46:60  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+      @typescript-eslin
+t/no-explicit-any
+lint_output.log:159:   
+48:28  error    
+Unexpected any. 
+Specify a different 
+type                   
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+      @typescript-eslin
+t/no-explicit-any
+lint_output.log:174:   
+8:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:175:  
+29:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:176:  
+82:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+lint_output.log:177:  
+98:46  error  
+Unexpected any. 
+Specify a different 
+type  @typescript-eslin
+t/no-explicit-any
+
+

@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN SYSTEM — SISTEMA ENSIL
+   Basado en PLANIFICACION_SISTEMA_ENSIL.md § 7. Identidad Visual
+   ============================================================ */
+
+
+:root {
+  /* Tipografía */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Superficie */
+  --color-app-bg:        #F4F5F7;
+  --color-surface:       #FFFFFF;
+  --color-surface-muted: #F8F9FB;
+  --color-border:        #E7E9EE;
+
+  /* Texto */
+  --color-text-primary:   #1F2430;
+  --color-text-secondary: #667085;
+  --color-text-muted:     #98A2B3;
+
+  /* Acento principal */
+  --color-accent:       #4F46E5;
+  --color-accent-tint:  #EEF2FF;
+  --color-accent-hover: #4338CA;
+
+  /* Estados */
+  --color-success-bg:   #ECFDF3;
+  --color-success-text: #027A48;
+  --color-warning-bg:   #FFFAEB;
+  --color-warning-text: #B54708;
+  --color-danger-bg:    #FEF3F2;
+  --color-danger-text:  #B42318;
+  --color-partial-bg:   #EFF8FF;
+  --color-partial-text: #175CD3;
+  --color-muted-bg:     #F2F4F7;
+  --color-muted-text:   #344054;
+  --color-fallen-bg:    #FEE4E2;
+  --color-fallen-text:  #912018;
+
+  /* Sidebar */
+  --sidebar-primary-w:   64px;
+  --sidebar-secondary-w: 256px;
+}
+
+
+/* Base */
+body {
+  background-color: var(--color-app-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
